@@ -1,0 +1,22 @@
+{
+  "portNode": 3000,
+  "security": {
+    "jwtLife": 360000
+  },
+  "dbConfig": {
+    "host": "mongodb://localhost",
+    "port": ":27017",
+    "db": "/crea-db-test",
+    "user": "creadbUser",
+    "password": "fZsM1342GZXQMaze§(-_-)!x8FCTgkBwgFtEvwD7ML"
+  },
+  "api": {
+    "version": "v0.0.2"
+  },
+  "client": {
+    "name": "Android API v1",
+    "clientId": "android",
+    "clientSecret": "SomeRandomCharsAndNumbers"
+  }
+}
+
