@@ -3,20 +3,20 @@ const mongoose = require('mongoose');
 //Define a schema
 const Schema = mongoose.Schema;
 
-let members = {
+let member = {
     id: String,
     username: String
 }
 
 let Survey = new Schema({
     title: {type: String, required: true},
-    creator: {type: String, required: true},
+    creator: {type: member, required: true},
     description: {type: String, required: true},
     theme: {type: String, required: true},
     tags: {type: [String], required: true, default: []},
-    members: {type: [members], default: []},
-    editors: {type: [members], default: []},
-    admins: {type: [members], required: true, default: []},
+    members: {type: [member], default: []},
+    editors: {type: [member], default: []},
+    admins: {type: [member], required: true},
     candidatesIds: {type: [String], required: false},
     images: [{type: String, url: String}],
     activate: {type: Boolean, default: false},

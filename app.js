@@ -13,7 +13,8 @@ const surveysRoutes = require('./src/survey/survey.routes');
 
 
 //middleware
-app.use(morgan(":remote-addr | :remote-user |[:date[clf]] | :method | \":url\" | :status | res-size: :res[content-length] | :response-time ms"));
+app.use(morgan(":remote-addr | :remote-user |[:date[clf]] " +
+    "| :method | \":url\" | :status | res-size: :res[content-length] | :response-time ms"));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 

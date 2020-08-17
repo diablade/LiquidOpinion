@@ -5,9 +5,12 @@ module.exports = {
     createSurvey: async (req, res, next) => {
         //TODO validate data
         const reqSurvey = req.body.survey;
+        if (!reqSurvey.admins) {
+            reqSurvey.admins = [{id: req.user.id, username: req.user.username}];
+        }
         const survey = new SurveyModel({
             title: reqSurvey.title,
-            creator: reqSurvey.creator,
+            creator: {id: req.user.id, username: req.user.username},
             description: reqSurvey.description,
             theme: reqSurvey.theme,
             tags: reqSurvey.tags,
@@ -33,7 +36,7 @@ module.exports = {
             const savedSurvey = await survey.save();
             res.status(200).json({survey: savedSurvey});
         } catch (err) {
-            res.status(500).send(err);
+            next({status: 500, message: err});
         }
     },
     updateSurvey: async (req, res, next) => {
@@ -43,7 +46,7 @@ module.exports = {
             if (!SURVEY.canEditSurvey(req.user, actualSurvey)) res.status(405).send({message: "not allowed"});
         } catch (err) {
             console.log(err);
-            res.status(500).send(err);
+            next({status: 500, message: err});
         }
         try {
             const updatedSurvey = await SurveyModel.updateOne({_id: req.params.id}, {
@@ -77,7 +80,7 @@ module.exports = {
             if (err.name === 'MongoError' && err.code === 11000) {
                 next(new Error('There was a duplicate key error'));
             } else {
-                res.status(500).send(err);
+                next({status: 500, message: err});
             }
         }
     },
@@ -89,17 +92,20 @@ module.exports = {
                     res.status(200).json(survey);
                     next();
                 } else {
-                    res.status(401).send('Not allowed');
+                    next({status: 401, message: "Not allowed"});
                 }
             } else {
-                res.status(404).send('Not found');
+                next({status: 404, message: "Not found"});
             }
         } catch (err) {
             console.log('user error', err);
-            res.status(500).send("not found");
+            next({status: 404, message: "not found"});
         }
     },
     getSurveys: (req, res, next) => {
+
+    },
+    deleteSurvey: (req, res, next) => {
 
     },
 };

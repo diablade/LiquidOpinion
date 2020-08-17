@@ -37,7 +37,7 @@ module.exports = {
             res.status(200).send("ok");
         } catch (err) {
             console.log('token error', err);
-            res.status(500).send("error token");
+            next({status: 500, message: "error token"});
         }
     },
     authUser: async function (req, res, next) {
@@ -59,19 +59,22 @@ module.exports = {
                 });
         } catch (err) {
             console.log('token error', err);
-            res.status(400).send('invalid token');
+            next({status: 400, message: "invalid token"});
         }
     },
     authMasterUser: function (req, res, next) {
         const masterToken = req.header('liquid-master-token');
-        if (!masterToken) return res.status(401).send("access denied");
-        try {
-            const verifiedToken = jwt.verify(masterToken, process.env.SECURITY_JWT_MASTER_SIGN);
-            req.userId = verifiedToken.userId;
-            next();
-        } catch (err) {
-            console.log('token error', err);
-            res.status(400).send('invalid token');
+        if (!masterToken) {
+            next({status: 400, message: "access denied"});
+        } else {
+            try {
+                const verifiedToken = jwt.verify(masterToken, process.env.SECURITY_JWT_MASTER_SIGN);
+                req.userId = verifiedToken.userId;
+                next();
+            } catch (err) {
+                console.log('token error', err);
+                next({status: 400, message: "invalid token"});
+            }
         }
     },
     authRole: function (role) {
@@ -79,9 +82,9 @@ module.exports = {
             try {
                 //get user account
                 const user = await UserModel.findById(req.userId);
-                if (user == null) return res.status(404).json({status: "error", message: "user doesn't exist"});
-
-                if (user.role === role) {
+                if (user == null) {
+                    next({status: 404, message: "user doesn't exist"});
+                } else if (user.role === role) {
                     req.user = user;
                     next();
                 } else {
