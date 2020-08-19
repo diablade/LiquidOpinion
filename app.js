@@ -13,10 +13,11 @@ const surveysRoutes = require('./src/survey/survey.routes');
 
 
 //middleware
+app.use(express.json());
 app.use(morgan(":remote-addr | :remote-user |[:date[clf]] " +
     "| :method | \":url\" | :status | res-size: :res[content-length] | :response-time ms"));
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -36,6 +37,13 @@ app.use('/user', usersRoutes);
 app.use('/survey', surveysRoutes);
 // app.use('/candidat', candidatsRoutes);
 // app.use('/vote', votesRoutes);
+//api health routes
+app.get('/api', (req, res) => {
+    res.status(200).json({status: 'running', version: pjson.version})
+});
+app.get('/', (req, res) => {
+    res.json({"welcome": "to the jungle"});
+});
 
 // for all other routes go with 404 error
 app.use(function (req, res, next) {
@@ -51,13 +59,6 @@ app.use(function (err, req, res, next) {
     res.json({error: message});
 });
 
-//api health routes
-app.get('/api', (req, res) => {
-    res.status(200).json({status: 'running', version: pjson.version})
-});
-app.get('/', (req, res) => {
-    res.json({"welcome": "to the jungle"});
-});
 
 
 app.listen(process.env.PORT_NODE, () => console.log('' +

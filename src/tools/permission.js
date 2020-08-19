@@ -33,17 +33,17 @@ module.exports = {
         canViewSurvey: function (user, survey) {
             return (!survey.isPrivate ||
                 isMember(user.id, survey.members) ||
-                user.role === this.ROLE.ADMIN)
+                user.role === module.exports.ROLE.ADMIN)
         },
         canEditSurvey: function (user, survey) {
             return (
                 isMember(user.id, survey.editors) ||
                 isMember(user.id, survey.admins) ||
-                user.role === this.ROLE.ADMIN)
+                user.role === module.exports.ROLE.ADMIN)
         },
         canDeleteSurvey: function (user, survey) {
             return (isMember(user.id, survey.admins) ||
-                user.role === this.ROLE.ADMIN)
+                user.role === module.exports.ROLE.ADMIN)
         }
     },
     CANDIAT: {},

@@ -28,8 +28,8 @@ let Survey = new Schema({
     delayReVote: {type: String, default: 'P1D'},
     expireAt: {type: Date, required: false},
     selfDestruct: {type: Date, required: false},
-    modified: {type: Date, default: Date.now, required: true},
-    created: {type: Date, default: Date.now, required: true},
+    modified: {type: Date, default: Date.now},
+    created: {type: Date, default: Date.now},
 });
 
 module.exports = mongoose.model('Survey', Survey);

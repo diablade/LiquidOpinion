@@ -17,7 +17,7 @@ const UserSchema = new Schema({
         unique: true,
         required: 'Email is required',
         validate: {
-            validator: function(v) {
+            validator: function (v) {
                 return EMAIL_REGEX.test(v);
             },
             message: "Please enter a valid email"
@@ -32,8 +32,8 @@ const UserSchema = new Schema({
         type: String,
         unique: true,
         required: true,
-        min:2,
-        max:35
+        min: 2,
+        max: 35
         // validate: {
         //     validator: function(v) {
         //         return USERNAME_REGEX.test(v);
@@ -47,8 +47,8 @@ const UserSchema = new Schema({
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     photo: String,
-    modified: { type: Date,default: Date.now},
-    created: {type: Date,default: Date.now}
+    modified: {type: Date, default: Date.now},
+    created: {type: Date, default: Date.now},
 });
 
 module.exports = mongoose.model('User', UserSchema);

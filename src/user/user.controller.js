@@ -137,7 +137,7 @@ module.exports = {
                     last_name: userModified.last_name,
                     description: userModified.description,
                     photo: userModified.photo,
-                    modified: Date.now,
+                    modified: Date.now(),
                 }
             });
             res.status(200).json({message: "updated", user: updatedUser});

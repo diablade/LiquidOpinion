@@ -8,7 +8,7 @@ function signToken(userId) {
         },
         process.env.SECURITY_JWT_SIGN,
         {
-            expiresIn: '1h'
+            expiresIn: process.env.SECURITY_JWT_LIFE,
         })
 }
 
@@ -18,7 +18,7 @@ async function signMasterToken(userId) {
         },
         process.env.SECURITY_JWT_MASTER_SIGN,
         {
-            expiresIn: '7d'
+            expiresIn: process.env.SECURITY_JWT_MASTER_LIFE,
         })
 }
 
@@ -58,8 +58,7 @@ module.exports = {
                     next({status: 500, message: err});
                 });
         } catch (err) {
-            console.log('token error', err);
-            next({status: 400, message: "invalid token"});
+            next({status: 401, message: "invalid token"});
         }
     },
     authMasterUser: function (req, res, next) {
