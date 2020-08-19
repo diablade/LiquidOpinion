@@ -44,34 +44,37 @@ module.exports = {
         }
         try {
             const actualSurvey = await SurveyModel.findById(req.params.id);
-            if (!SURVEY.canEditSurvey(req.user, actualSurvey)) {
-                next({status: 405, message: "not allowed"});
+            if (actualSurvey) {
+                if (SURVEY.canEditSurvey(req.user, actualSurvey)) {
+                    await SurveyModel.updateOne({_id: req.params.id}, {
+                        $set: {
+                            title: reqSurvey.title,
+                            description: reqSurvey.description,
+                            theme: reqSurvey.theme,
+                            tags: reqSurvey.tags,
+                            members: reqSurvey.members,
+                            editors: reqSurvey.editors,
+                            admins: reqSurvey.admins,
+                            candidatesIds: reqSurvey.candidatesIds,
+                            images: reqSurvey.images,
+                            activate: reqSurvey.activate,
+                            visibleBySearch: reqSurvey.visibleBySearch,
+                            isPrivate: reqSurvey.isPrivate,
+                            noteMax: reqSurvey.noteMax,
+                            typeOfVote: reqSurvey.typeOfVote,
+                            noteLabels: reqSurvey.noteLabels,
+                            delayReVote: reqSurvey.delayReVote,
+                            expireAt: reqSurvey.expireAt,
+                            selfDestruct: reqSurvey.selfDestruct,
+                            modified: Date.now(),
+                        }
+                    });
+                    res.status(200).json({message: "ok"});
+                } else {
+                    next({status: 405, message: "not allowed"});
+                }
             } else {
-                await SurveyModel.updateOne({_id: req.params.id}, {
-                    $set: {
-                        title: reqSurvey.title,
-                        description: reqSurvey.description,
-                        theme: reqSurvey.theme,
-                        tags: reqSurvey.tags,
-                        members: reqSurvey.members,
-                        editors: reqSurvey.editors,
-                        admins: reqSurvey.admins,
-                        candidatesIds: reqSurvey.candidatesIds,
-                        images: reqSurvey.images,
-                        activate: reqSurvey.activate,
-                        visibleBySearch: reqSurvey.visibleBySearch,
-                        isPrivate: reqSurvey.isPrivate,
-                        noteMax: reqSurvey.noteMax,
-                        typeOfVote: reqSurvey.typeOfVote,
-                        noteLabels: reqSurvey.noteLabels,
-                        delayReVote: reqSurvey.delayReVote,
-                        expireAt: reqSurvey.expireAt,
-                        selfDestruct: reqSurvey.selfDestruct,
-                        modified: Date.now(),
-                    }
-                });
-                res.status(200).json({message: "ok"});
-                next();
+                next({status: 404, message: "not found"});
             }
         } catch (err) {
             console.log(err);
@@ -82,28 +85,44 @@ module.exports = {
             }
         }
     },
-    getSurvey: (req, res, next) => {
-        try {
-            const survey = SurveyModel.findById(req.params.id);
-            if (survey) {
-                if (SURVEY.canViewSurvey(req.userId, survey)) {
-                    res.status(200).json(survey);
-                    next();
+    getSurvey: async (req, res, next) => {
+        if (!req.params.id) {
+            next({status: 400, message: "bad request"});
+        } else {
+            try {
+                const survey = await SurveyModel.findById(req.params.id);
+                if (survey) {
+                    if (SURVEY.canViewSurvey(req.user, survey)) {
+                        res.status(200).json(survey);
+                    } else {
+                        next({status: 401, message: "Not allowed"});
+                    }
                 } else {
-                    next({status: 401, message: "Not allowed"});
+                    next({status: 404, message: "Not found"});
                 }
-            } else {
-                next({status: 404, message: "Not found"});
+            } catch (err) {
+                console.log('user error', err);
+                next({status: 404, message: "not found"});
             }
-        } catch (err) {
-            console.log('user error', err);
-            next({status: 404, message: "not found"});
         }
     },
     getSurveys: (req, res, next) => {
 
     },
-    deleteSurvey: (req, res, next) => {
-
+    deleteSurvey: async (req, res, next) => {
+        if (!req.params.id) {
+            next({status: 400, message: "bad request"});
+        } else {
+            try {
+                const feedback = await SurveyModel.deleteOne({_id: req.params.id});
+                if (feedback.ok) {
+                    res.status(200).json({message: "deleted"});
+                } else {
+                    next({status: 500, message: "error"});
+                }
+            } catch (err) {
+                next({status: 500, message: err});
+            }
+        }
     },
 };
