@@ -85,6 +85,33 @@ module.exports = {
             }
         }
     },
+    publishSurvey: async (req, res, next) => { //or unPublish
+        try {
+            const actualSurvey = await SurveyModel.findById(req.params.id);
+            if (actualSurvey) {
+                if (SURVEY.canEditSurvey(req.user, actualSurvey)) {
+                    await SurveyModel.updateOne({_id: req.params.id}, {
+                        $set: {
+                            activate: req.params.activate,
+                            modified: Date.now(),
+                        }
+                    });
+                    res.status(200).json({message: "ok"});
+                } else {
+                    next({status: 405, message: "not allowed"});
+                }
+            } else {
+                next({status: 404, message: "not found"});
+            }
+        } catch (err) {
+            console.log(err);
+            if (err.name === 'MongoError' && err.code === 11000) {
+                next(new Error('There was a duplicate key error'));
+            } else {
+                next({status: 500, message: err});
+            }
+        }
+    },
     getSurvey: async (req, res, next) => {
         if (!req.params.id) {
             next({status: 400, message: "bad request"});
