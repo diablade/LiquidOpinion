@@ -31,11 +31,13 @@ module.exports = {
     },
     SURVEY: {
         canViewSurvey: function (user, survey) {
-            console.log('canviewPublic', (!survey.isPrivate) );
+            console.log('canviewPublic', (!survey.isPrivate));
             console.log('canviewIsMem', isMember(user.id, survey.members));
             console.log('canviewRole', user.role === module.exports.ROLE.ADMIN);
             return (!survey.isPrivate ||
                 isMember(user.id, survey.members) ||
+                isMember(user.id, survey.editors) ||
+                isMember(user.id, survey.admins) ||
                 user.role === module.exports.ROLE.ADMIN);
         },
         canEditSurvey: function (user, survey) {
