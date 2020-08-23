@@ -61,7 +61,25 @@ module.exports = {
                 user.role === module.exports.ROLE.ADMIN);
         }
     },
-    CANDIDATE: {},
+    CANDIDATE: {
+        canViewCandidate: function (user, survey) {
+            return (!survey.isPrivate ||
+                isMember(user.id, survey.members) ||
+                isMember(user.id, survey.editors) ||
+                isMember(user.id, survey.admins) ||
+                user.role === module.exports.ROLE.ADMIN);
+        },
+        canEditCandidate: function (user, survey) {
+            return (
+                isMember(user.id, survey.editors) ||
+                isMember(user.id, survey.admins) ||
+                user.role === module.exports.ROLE.ADMIN);
+        },
+        canDeleteCandidate: function (user, survey) {
+            return (isMember(user.id, survey.admins) ||
+                user.role === module.exports.ROLE.ADMIN);
+        }
+    },
     VOTE: {
         canAccessVotation: function (user, survey) {
             if (!survey.activate) {

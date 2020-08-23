@@ -131,12 +131,31 @@ module.exports = {
         try {
             const updatedUser = await UserModel.updateOne({_id: userModified.id}, {
                 $set: {
-                    email: userModified.email,
+                    //email: userModified.email,
                     username: userModified.username,
                     first_name: userModified.first_name,
                     last_name: userModified.last_name,
                     description: userModified.description,
                     photo: userModified.photo,
+                    modified: Date.now(),
+                }
+            });
+            res.status(200).json({message: "updated", user: updatedUser});
+        } catch (err) {
+            if (err.name === 'MongoError' && err.code === 11000) {
+                next(new Error('There was a duplicate key error'));
+            } else {
+                console.log(err);
+                res.status(500).send(err);
+            }
+        }
+    },
+    updateEmail: async (req, res, next) => {
+        const email = req.body.email;
+        try {
+            const updatedUser = await UserModel.updateOne({_id: req.user.id}, {
+                $set: {
+                    email: email,
                     modified: Date.now(),
                 }
             });
@@ -220,5 +239,11 @@ module.exports = {
             console.log('user error', err);
             next(new Error("not found", 404));
         }
+    },
+    deleteUser: (req, res, next) => {
+        //TODO delete user myself or ADMIN
+    },
+    lostPassword: (req, res, next) => {
+        //TODO lost password myself or ADMIN
     }
 };

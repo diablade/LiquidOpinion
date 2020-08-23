@@ -1,8 +1,8 @@
-const CandidatModel = require('./candidat.model');
+const CandidateModel = require('./candidate.model');
 const {SURVEY, ROLE} = require('../tools/permission');
 
 module.exports = {
-    createCandidat: async (req, res, next) => {
+    createCandidate: async (req, res, next) => {
         //TODO validate data
         const reqSurvey = req.body.survey;
         if (!reqSurvey.admins || reqSurvey.admins.length === 0) {
@@ -40,7 +40,7 @@ module.exports = {
             next({status: 500, message: err});
         }
     },
-    updateCandidat: async (req, res, next) => {
+    updateCandidate: async (req, res, next) => {
         const reqSurvey = req.body.survey;
         if (!req.params.id) {
             next({status: 400, message: "bad request"});
@@ -95,13 +95,13 @@ module.exports = {
             }
         }
     },
-    getCandidat: async (req, res, next) => {
+    getCandidate: async (req, res, next) => {
         if (!req.params.id) {
             next({status: 400, message: "bad request"});
         } else {
             try {
-                const survey = await SurveyModel.findById(req.params.id);
-                if (survey) {
+                const candidate = await CandidateModel.findById(req.params.id);
+                if (candidate) {
                     if (SURVEY.canViewSurvey(req.user, survey)) {
                         res.status(200).json(survey);
                     } else {
@@ -116,16 +116,13 @@ module.exports = {
             }
         }
     },
-    getCandidates: (req, res, next) => {
-
-    },
-    deleteCandidat: async (req, res, next) => {
+    deleteCandidate: async (req, res, next) => {
         if (!req.params.id) {
             next({status: 400, message: "bad request"});
         } else {
             try {
-                const feedback = await CandidatModel.deleteOne({_id: req.params.id});
-                const voteBack = await VoteCtrl.deleteVotes(req.params.id);
+                //TODO control permission (get survey.admins or editors)
+                const feedback = await CandidateModel.deleteOne({_id: req.params.id});
                 if (feedback.ok) {
                     res.status(200).json({message: "deleted"});
                 } else {

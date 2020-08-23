@@ -5,20 +5,21 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 var pjson = require('./package.json');
 const app = express();
-//import routes
+
+// IMPORT ROUTES
 const usersRoutes = require('./src/user/user.routes');
 const surveysRoutes = require('./src/survey/survey.routes');
-// const candidatsRoutes = require('./src/user/candidat.routes');
-// const votesRoutes = require('./src/user/vote.routes');
+const candidatesRoutes = require('./src/candidate/candidate.routes');
+const votesRoutes = require('./src/vote/vote.routes');
 
-
-//middleware
+// USE MIDDLEWARE
 app.use(morgan(":remote-addr | :remote-user |[:date[clf]] " +
     "| :method | \":url\" | :status | res-size: :res[content-length] | :response-time ms"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}));
 // app.use(bodyParser.json());
 
+// CORS POLICY
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
@@ -32,11 +33,12 @@ app.use((req, res, next) => {
     next();
 });
 
-//MAIN ROUTES middleware
+// MAIN ROUTES middleware
 app.use('/user', usersRoutes);
 app.use('/survey', surveysRoutes);
-// app.use('/candidat', candidatsRoutes);
-// app.use('/vote', votesRoutes);
+app.use('/candidate', candidatesRoutes);
+app.use('/vote', votesRoutes);
+
 //api health routes
 app.get('/api', (req, res) => {
     res.status(200).json({status: 'running', version: pjson.version})
@@ -44,6 +46,7 @@ app.get('/api', (req, res) => {
 app.get('/', (req, res) => {
     res.json({"welcome": "to the jungle"});
 });
+
 
 // for all other routes go with 404 error
 app.use(function (req, res, next) {
@@ -58,7 +61,6 @@ app.use(function (err, req, res, next) {
     const message = err.message || "something looks wrong :(";
     res.json({error: message});
 });
-
 
 
 app.listen(process.env.PORT_NODE, () => console.log('' +

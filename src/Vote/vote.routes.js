@@ -4,10 +4,8 @@ const voteController = require('./vote.controller');
 const {authUser} = require('../tools/auth');
 
 router.post('/vote', authUser, voteController.vote);
-router.get('/:id', authUser, voteController.getSurvey);
-router.get('/all', authUser, voteController.getSurveys);
-router.put('/update/:id', authUser, voteController.updateSurvey);
-router.put('/publish/:id/:ativate', authUser, voteController.publishSurvey);
-router.delete('/delete/:id', authUser, voteController.deleteSurvey);
+// router.get('/candidate/:id', authUser, voteController.getRangeDateVotesByCandidateId);
+router.delete('/delete/candidate/:id', authUser, voteController.deleteAllVotesByCandidateId);
+router.delete('/delete/user/:id', authUser, voteController.deleteAllVotesByUserId);
 
 module.exports = router;

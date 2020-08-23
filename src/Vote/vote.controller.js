@@ -95,7 +95,7 @@ module.exports = {
                 }
             });
     },
-    getLastDateVotesByCandidateId: async (req, res, next) => {
+    getRangeDateVotesByCandidateId: async (req, res, next) => {
         if (!req.params.candidatId && !req.params.surveyId) {
             next({status: 400, message: "bad request"});
         } else {
@@ -128,9 +128,10 @@ module.exports = {
             next({status: 400, message: "bad request"});
         } else {
             try {
-                const feedback = await SurveyModel.deleteOne({_id: req.params.id});
-                if (feedback.ok) {
-                    res.status(200).json({message: "deleted"});
+                const candidate = await CandidateModel.findById(req.params.id);
+                if (candidate) {
+                    //TODO delete vote and save
+                    //res.status(200).json({message: "vote deleted"});
                 } else {
                     next({status: 500, message: "error"});
                 }
@@ -139,7 +140,6 @@ module.exports = {
             }
         }
     },
-    delelteAllVotesByUserId: (req, res, next) => {
-
+    deleteAllVotesByUserId: (req, res, next) => {
     }
 };
