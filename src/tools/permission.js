@@ -9,6 +9,16 @@ function waitToReVote(lastDateVote, delay) {
     return moment(lastDateVote).add(moment.duration(delay)) >= moment();
 }
 
+function getLastVote(userHashId, votes) {
+    const userVotes = _.find(votes, function (v) {
+        return v.encryptedUserId === userHashId
+    });
+    if (userVotes) {
+        return _.orderBy(userVotes, [date], ['desc'])[0];
+    }
+    return null;
+}
+
 function isMember(userId, listOfMembers) {
     return _.some(listOfMembers, ['id', userId]);
 }
@@ -51,15 +61,23 @@ module.exports = {
                 user.role === module.exports.ROLE.ADMIN);
         }
     },
-    CANDIAT: {},
+    CANDIDATE: {},
     VOTE: {
-        canVote: function (user, lastDateVote, survey) {
-            if (survey.expiredAt && isExpired(survey.expiredAt)) {
+        canAccessVotation: function (user, survey) {
+            if (!survey.activate) {
+                return {can: false, why: "deactivate"};
+            } else if (survey.expiredAt && isExpired(survey.expiredAt)) {
                 return {can: false, why: "expired"};
-            } else if (waitToReVote(lastDateVote)) {
-                return {can: false, why: "wait"};
-            } else if (survey.private && !isMember) {
+            } else if (survey.isPrivate && !isMember(user.id, survey.members)) {
                 return {can: false, why: "private"};
+            } else {
+                return {can: true, why: ""};
+            }
+        },
+        allowDelayVote: function (userHashId, candidate, delay) {
+            const lastDateVote = getLastVote(userHashId, candidate.votes);
+            if (lastDateVote && waitToReVote(lastDateVote, delay)) {
+                return {can: false, why: "wait"};
             } else {
                 return {can: true, why: ""};
             }
