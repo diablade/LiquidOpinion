@@ -1,0 +1,19 @@
+@import "../node_modules/@angular/material/theming";
+
+@include mat-core();
+
+$liquid-primary: mat-palette($mat-green,800);
+$liquid-accent: mat-palette($mat-amber,A200,A100,A400);
+$liquid-warn: mat-palette($mat-red,A200,A100,A400);
+
+$liquid-theme: mat-light-theme($liquid-primary,$liquid-accent,$liquid-warn);
+
+@include angular-material-theme($liquid-theme);
+
+//.alternative {
+//  $liquid-primary: mat-palette($mat-amber, 800);
+//  $liquid-accent: mat-palette($mat-light-green, 800);
+//  $liquid-warn: mat-palette($mat-red);
+//  $liquid-theme: mat-light-theme($liquid-primary, $liquid-accent, $liquid-warn);
+//  @include angular-material-theme($liquid-theme);
+//}
