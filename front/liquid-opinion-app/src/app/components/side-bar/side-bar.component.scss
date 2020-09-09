@@ -1,0 +1,65 @@
+.sideMenu {
+  position: relative;
+  background: white;
+  padding-top: 10px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  transition: width 0.15s ease-out;
+
+  &-collapse {
+    width: 100px;
+  }
+
+  &-exp {
+    width: 250px;
+  }
+
+  .center {
+    flex-grow: 1;
+  }
+
+  .sections {
+    *:focus {
+      outline: none;
+    }
+
+    .rowSelection {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      padding: 0.4em 1em 0.4em 1.2em;
+
+      .itemLine {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .icon {
+        text-align: center;
+        width: 30px;
+      }
+
+      .text {
+        margin-left: 0.8em;
+      }
+
+      .twoElementLayout {
+        margin-left: -3em;
+      }
+
+      .hide {
+        display: none;
+      }
+    }
+
+    .rowSelection:hover, .selected {
+      color: blue;
+      background-color: white;
+      border-radius: 15px 0 0 15px;
+      cursor: pointer;
+    }
+  }
+}
+

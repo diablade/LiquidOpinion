@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'liquid-opinion-app';
+  sideBarCollapse: boolean = false;
+
+  onTopBtnClick($event: any) {
+    this.sideBarCollapse = !this.sideBarCollapse;
+  }
 }

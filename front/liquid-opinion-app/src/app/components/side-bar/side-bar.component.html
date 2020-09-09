@@ -1,14 +1,60 @@
-<p>side-bar works!</p>
-<mat-card>Simple card
-  <section>
-    <div class="example-label">Raised</div>
-    <div class="example-button-row">
-      <button mat-raised-button>Basic</button>
-      <button mat-raised-button color="primary">Primary</button>
-      <button mat-raised-button color="accent">Accent</button>
-      <button mat-raised-button color="warn">Warn</button>
-      <button mat-raised-button disabled>Disabled</button>
-      <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+<div class="sideMenu" [ngClass]="collapse ? 'sideMenu-collapse':'sideMenu-exp'">
+  <div class="sections">
+    <!-- INVENTAIRE -->
+    <div class="rowSelection" routerLinkActive="selected" routerLink="inventaire">
+      <div class="itemLine icon">
+        <fa-icon [icon]="faBriefCase" class="icon"></fa-icon>
+      </div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">mes sondages</div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
     </div>
-  </section>
-</mat-card>
+
+    <!-- CYCLE -->
+    <div class="rowSelection" routerLinkActive="selected" routerLink="etat">
+      <div class="itemLine icon">
+        <fa-icon [icon]="faPoll" class="icon"></fa-icon>
+      </div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">reste à voter</div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
+    </div>
+
+    <!-- CONTROLE -->
+    <div class="rowSelection" routerLinkActive="selected" routerLink="control">
+      <div class="itemLine icon">
+        <i class="fas times-alerte fa-lg"></i>
+      </div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">----</div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
+    </div>
+
+    <!-- SIGNALEMENT -->
+    <div class="rowSelection" routerLinkActive="selected" routerLink="signalement">
+      <div class="itemLine icon">
+        <fa-icon [icon]="faeuro" class="icon"></fa-icon>
+      </div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">Sondage Public</div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
+    </div>
+  </div>
+
+  <div class="sections center">
+    <div class="rowSelection">
+      <div class="itemLine icon">
+        <i class="fas times-filtre fa-lg"></i>
+      </div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">Filtres personnalisés</div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine'">
+        <i class="fas fa-cog fa-lg"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="sections">
+    <div *appRight="['ADM_ACC']" class="rowSelection" routerLinkActive="selected" routerLink="admin">
+      <div class="itemLine icon">
+        <i class="fas fa-cog fa-lg"></i>
+      </div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">Administration</div>
+    </div>
+  </div>
+</div>

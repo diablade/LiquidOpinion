@@ -1,12 +1,15 @@
-
-<mat-toolbar color="primary"><p>top-bar works!</p>
-  <div class="example-button-row">
-    <button mat-raised-button>Basic</button>
-    <button mat-raised-button color="primary">Primary</button>
-    <button mat-raised-button color="accent">Accent</button>
-    <button mat-raised-button color="warn">Warn</button>
-    <button mat-raised-button disabled>Disabled</button>
-    <a mat-raised-button routerLink=".">Link</a>
+<mat-toolbar color="primary">
+  <fa-icon (click)="onClick('collapse')" [icon]="faBars" class="icon"></fa-icon>
+  <div class="title" routerLink="">
+    Liquide Opinion
   </div>
+  <!--  <div class="example-button-row">-->
+  <!--    <button mat-raised-button>Basic</button>-->
+  <!--    <button mat-raised-button color="primary">Primary</button>-->
+  <!--    <button mat-raised-button color="accent">Accent</button>-->
+  <!--    <button mat-raised-button color="warn">Warn</button>-->
+  <!--    <button mat-raised-button disabled>Disabled</button>-->
+  <!--    <a mat-raised-button routerLink=".">Link</a>-->
+  <!--  </div>-->
 </mat-toolbar>
 

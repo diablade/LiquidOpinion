@@ -1,23 +1,29 @@
 /**
-  ARCHITECTURE DE L'APPLICATION TIMES WEB
+  ARCHITECTURE DE L'APPLICATION
  */
 
 //  $$$$$$$$$$$$$$$ TOP-BAR $$$$$$$$$$$$$$$$$
 //  | S |####################################
 //  | I |####################################
 //  | D |####################################
-//  | E |########### COMPONENT ##############
+//  | E |########### DASHBOARD ##############
 //  | - |####################################
 //  | B |####################################
 //  | A |####################################
 //  | R |---------- FOOTER ------------------
 
-.full{
+.main {
+  background: #edf1f7;
   width: 100%;
-  height: calc(100% - 64px); // -64px => of .header
+  height: 100%;
 }
-.sideBar{
-  width: 250px;
+
+.dashboard {
+  padding: 25px;
+}
+
+.sideBar {
+  height: 100%;
   box-shadow: 0.2em 0 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
