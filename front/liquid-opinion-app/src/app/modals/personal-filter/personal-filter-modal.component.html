@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Ajouter la recherche à mes filtres personnels</h1>
+<div mat-dialog-content>
+        <h6>Nom de la recherche</h6>
+        <input type="text" placeholder=" Ma recherche" [(ngModel)]="data.name" (ngModelChange)="onNameChange($event)">
+        <h6 style="margin-top: 10px">Couleur</h6>
+        <i class="fas fa-eye-dropper fa-lg"></i>
+        <input [(colorPicker)]="color" [style.background]="color" (colorPickerSelect)="colorSelect(color)"/>
+</div>
+
+<div style="margin-top: 10px; text-align: center">
+    <button type="button"  (click)="onNoClick()">Annuler</button>
+    <button [disabled]="formNotValid" [mat-dialog-close]="data" type="button">Enregistrer</button>
+</div>

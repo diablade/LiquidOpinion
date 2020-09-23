@@ -1,0 +1,22 @@
+<div>
+    <!--HEADER-->
+    <div>
+        <h4>{{ title }}</h4>
+    </div>
+    <!--BODY-->
+    <mat-dialog-content>
+        {{ message }}
+    </mat-dialog-content>
+    <!--FOOTER-->
+    <mat-dialog-actions align="end" *ngIf="!isOneButton">
+<!--        <button mdbBtn type="button" color="danger" mdbWavesEffect [mat-dialog-close]="false">{{ cancelButton }}</button>-->
+        <button mat-raised-button color="primary" [mat-dialog-close]="false">{{ cancelButton }}</button>
+
+<!--        <button mdbBtn type="button" color="success" mdbWavesEffect [mat-dialog-close]="true">{{ validationButton }}</button>-->
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">{{ validationButton }}</button>
+    </mat-dialog-actions>
+
+    <mat-dialog-actions align="end" *ngIf="isOneButton">
+        <button mdbBtn type="button" color="primary" mdbWavesEffect [mat-dialog-close]="true">{{ validationButton }}</button>
+    </mat-dialog-actions>
+</div>

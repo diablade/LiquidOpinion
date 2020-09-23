@@ -11,6 +11,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { SurveysComponent } from './components/surveys/surveys.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     TopBarComponent,
     TopBarComponent,
     SideBarComponent,
-    DashboardComponent
+    DashboardComponent,
+    SurveysComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

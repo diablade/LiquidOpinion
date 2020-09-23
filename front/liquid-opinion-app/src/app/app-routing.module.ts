@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {SurveysComponent} from './components/surveys/surveys.component';
+import {NotfoundComponent} from './components/notfound/notfound.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
-  //{path: 'not-found', component: NotfoundComponent}, TODO 404
-  //{path: '**', redirectTo: '/not-found'}, TODO 404
+  {path: 'surveys', component: SurveysComponent},
+  {path: 'not-found', component: NotfoundComponent},
+  {path: '**', redirectTo: '/not-found'},
 ];
 
 @NgModule({
