@@ -18,7 +18,7 @@ let Survey = new Schema({
     editors: {type: [member], default: []},
     admins: {type: [member], required: true},
     candidatesIds: {type: [String], required: false},
-    images: [{type: String, url: String}],
+    images: [{format: String, url: String}],
     activate: {type: Boolean, default: false},
     visibleBySearch: {type: Boolean, default: false},
     isPrivate: {type: Boolean, default: false},

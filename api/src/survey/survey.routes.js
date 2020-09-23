@@ -4,9 +4,10 @@ const surveyController = require('./survey.controller');
 const {authUser} = require('../tools/auth');
 
 router.get('/:id', authUser, surveyController.getSurvey);
-router.get('/all', authUser, surveyController.getSurveys);
+router.get('/public', authUser, surveyController.getPublicSurveys);
+router.get('/filtered', authUser, surveyController.getFilteredSurveys);
 router.put('/update/:id', authUser,  surveyController.updateSurvey);
-router.put('/publish/:id/:ativate', authUser,  surveyController.publishSurvey);
+router.put('/publish/:id/:activate', authUser,  surveyController.publishSurvey);
 router.post('/create', authUser,  surveyController.createSurvey);
 router.delete('/delete/:id', authUser, surveyController.deleteSurvey);
 

@@ -147,8 +147,13 @@ module.exports = {
             }
         }
     },
-    getSurveys: (req, res, next) => {
-
+    getPublicSurveys: (req, res, next) => {
+        const surveys = SurveyModel.find({activate : true, isPrivate: false, visibleBySearch: true});
+        res.status(200).json(surveys);
+    },
+    getFilteredSurveys: (req, res, next) => {
+        const surveys = SurveyModel.find({activate : true, visibleBySearch: true});
+        res.status(200).json(surveys);
     },
     deleteSurvey: async (req, res, next) => {
         if (!req.params.id) {
