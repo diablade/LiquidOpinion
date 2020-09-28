@@ -1,7 +1,26 @@
-<div class="sideMenu" [ngClass]="collapse ? 'sideMenu-collapse':'sideMenu-exp'">
+<div [ngClass]="collapse ? 'sideMenu-collapse':'sideMenu-exp'" class="sideMenu">
   <div class="sections">
-    <!-- INVENTAIRE -->
-    <div class="rowSelection" routerLinkActive="selected" routerLink="inventaire">
+    <div class="rowSelection" routerLink="not-found" routerLinkActive="selected">
+      <button class="w-100 radius" color="primary" mat-raised-button>
+        <div class="d-flex">
+          <fa-icon [icon]="faPlus" class="icon"></fa-icon>
+          <div [ngClass]="collapse ? 'hide' : ''">créer un sondage</div>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="sections">
+    <!-- me concernant -->
+    <div class="rowSelection" routerLink="not-found" routerLinkActive="selected">
+      <div class="itemLine icon">
+        <fa-icon [icon]="faPoll" class="icon"></fa-icon>
+      </div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">me concernant</div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
+    </div>
+
+    <!-- mes sondages -->
+    <div class="rowSelection" routerLink="surveys" routerLinkActive="my-survey">
       <div class="itemLine icon">
         <fa-icon [icon]="faBriefCase" class="icon"></fa-icon>
       </div>
@@ -9,40 +28,31 @@
       <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
     </div>
 
-    <!-- CYCLE -->
-    <div class="rowSelection" routerLinkActive="selected" routerLink="etat">
-      <div class="itemLine icon">
-        <fa-icon [icon]="faPoll" class="icon"></fa-icon>
-      </div>
-      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">reste à voter</div>
-      <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
-    </div>
 
-    <!-- CONTROLE -->
-    <div class="rowSelection" routerLinkActive="selected" routerLink="control">
-      <div class="itemLine icon">
-        <i class="fas times-alerte fa-lg"></i>
-      </div>
-      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">----</div>
-      <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
-    </div>
-
-    <!-- SIGNALEMENT -->
-    <div class="rowSelection" routerLinkActive="selected" routerLink="surveys">
+    <!-- sondage public -->
+    <div class="rowSelection" routerLink="surveys" routerLinkActive="public">
       <div class="itemLine icon">
         <fa-icon [icon]="faeuro" class="icon"></fa-icon>
       </div>
       <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">Sondage Public</div>
       <div [ngClass]="collapse ? 'hide' : 'itemLine'">10</div>
     </div>
+
+    <!-- SIGNALEMENT -->
+    <div class="rowSelection" routerLink="control" routerLinkActive="selected">
+      <div class="itemLine icon">
+      </div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">------------</div>
+    </div>
+
   </div>
 
   <div class="sections center">
     <div class="rowSelection">
       <div class="itemLine icon">
-        <i class="fas times-filtre fa-lg"></i>
+        <fa-icon [icon]="faTrash" class="icon"></fa-icon>
       </div>
-      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">Filtres personnalisés</div>
+      <div [ngClass]="collapse ? 'hide' : 'itemLine center text'">Sondages expirés</div>
       <div [ngClass]="collapse ? 'hide' : 'itemLine'">
         <i class="fas fa-cog fa-lg"></i>
       </div>
@@ -50,7 +60,7 @@
   </div>
 
   <div class="sections">
-    <div *appRight="['ADM_ACC']" class="rowSelection" routerLinkActive="selected" routerLink="admin">
+    <div *appRight="['ADM_ACC']" class="rowSelection" routerLink="admin" routerLinkActive="selected">
       <div class="itemLine icon">
         <i class="fas fa-cog fa-lg"></i>
       </div>
