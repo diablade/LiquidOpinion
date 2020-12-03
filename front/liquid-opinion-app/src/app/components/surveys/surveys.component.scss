@@ -1,0 +1,39 @@
+.survey {
+  height: 300px;
+  max-width: 732px;
+  margin-bottom: 20px;
+
+  .image {
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .topCenter {
+    margin-top: 5px;
+    padding: 5px;
+
+    .title {
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    .descr {
+      font-size: small;
+    }
+
+    .note {
+
+    }
+  }
+
+  .topRight {
+    margin-left: 5px;
+    height: 100px !important;
+    width: 100px !important;
+    min-height: 100px !important;
+    min-width: 100px !important;
+    border: 1px solid black;
+  }
+}

@@ -1,6 +1,19 @@
-<p>surveys works!</p>
-<div>
-  <div *ngFor="let survey of surveys">
-    <div>{{survey.title}}</div>
+<div class="row justify-content-center">
+  <div *ngFor="let survey of surveys"
+       class="col-12 survey">
+    <mat-card class="h-100 w-100">
+      <div class="d-flex flex-row">
+        <div class="image"><img alt="" [src]=survey.images>
+        </div>
+        <div class="flex-grow-1 topCenter">
+          <div class="title">{{survey.title}}</div>
+          <div class="descr">{{survey.description}}</div>
+        </div>
+        <div class="topRight">
+          la zegzedvsd zefGROSSE note
+        </div>
+      </div>
+
+    </mat-card>
   </div>
 </div>
