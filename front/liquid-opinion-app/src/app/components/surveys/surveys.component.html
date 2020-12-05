@@ -1,19 +1,36 @@
-<div class="row justify-content-center">
+<div class="row surveys">
   <div *ngFor="let survey of surveys"
-       class="col-12 survey">
-    <mat-card class="h-100 w-100">
-      <div class="d-flex flex-row">
-        <div class="image"><img alt="" [src]=survey.images>
+       class="d-flex survey">
+    <mat-card class=" h-100 w-100 d-flex flex-column">
+      <div class="header d-flex flex-row mb-3">
+        <div class="profil-photo mr-3">
+          <img [src]=survey.creator.photo alt="">
         </div>
-        <div class="flex-grow-1 topCenter">
-          <div class="title">{{survey.title}}</div>
-          <div class="descr">{{survey.description}}</div>
-        </div>
-        <div class="topRight">
-          la zegzedvsd zefGROSSE note
+        <div class="">
+          <div class="profil-name text-capitalize">{{survey.creator.username}}</div>
+          <div class="profil-date">créé le {{survey.created | date:'dd MMM yyyy'}}</div>
         </div>
       </div>
-
+      <div class="image">
+        <img [src]=survey.images alt="">
+      </div>
+      <div class="texts">
+        <div class="texts-title">{{survey.title}}</div>
+        <div class="texts-tags">tags tags tags</div>
+        <div class="texts-slogan">
+          {{survey.slogan}}
+        </div>
+      </div>
+      <div class="actions d-flex flex-row">
+        <button color="success" mat-raised-button>Participer</button>
+        <div class="flex-grow-1"></div>
+        <button (click)="onClick('like')" mat-icon-button color="danger" aria-label="like">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button (click)="onClick('share')" mat-icon-button color="danger" aria-label="share">
+          <mat-icon>share</mat-icon>
+        </button>
+      </div>
     </mat-card>
   </div>
 </div>

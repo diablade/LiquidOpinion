@@ -1,39 +1,84 @@
-.survey {
-  height: 300px;
-  max-width: 732px;
-  margin-bottom: 20px;
+.surveys {
+  justify-content: center;
+}
 
-  .image {
-    img {
+.survey {
+  //max-height: 450px;
+  margin: 0px 10px 20px 10px;
+  max-width: 400px;
+  min-width: 400px;
+
+  .profil {
+    &-photo {
+      img {
+        border-radius: 25px;
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    &-name {
+      font-size: medium;
+      white-space: nowrap;
+      //line-break: loose;
       width: 200px;
-      height: 200px;
+      //height: 30px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &-date {
+      font-size: smaller;
+      color: gray;
     }
   }
 
-  .topCenter {
-    margin-top: 5px;
-    padding: 5px;
+  .image {
+    margin-left: -16px;
+    margin-right: -16px;
+    min-height: 266px;
+    max-height: 266px;
+    max-width: inherit;
+    min-width: inherit;
+    overflow: hidden;
 
-    .title {
-      font-size: 25px;
+    img {
+      height: inherit;
+      width: inherit;
+    }
+  }
+
+  .texts {
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    &-title {
+      font-size: 20px;
       margin-bottom: 5px;
     }
 
-    .descr {
+    &-tags {
+      font-size: 10px;
+    }
+
+    &-slogan {
       font-size: small;
+      flex-grow: 1;
     }
 
-    .note {
+    .actions {
+      margin: 15px;
 
+      .but {
+        background: #52c234; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #061700, #52c234); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+
+      .icon {
+        font-size: 20px;
+        margin-right: 10px;
+      }
     }
-  }
-
-  .topRight {
-    margin-left: 5px;
-    height: 100px !important;
-    width: 100px !important;
-    min-height: 100px !important;
-    min-width: 100px !important;
-    border: 1px solid black;
   }
 }

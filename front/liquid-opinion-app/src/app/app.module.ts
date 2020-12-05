@@ -14,6 +14,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {SurveysComponent} from './components/surveys/surveys.component';
 import {NotfoundComponent} from './components/notfound/notfound.component';
 import {CandidateComponent} from './components/candidate/candidate.component';
+import {SurveyComponent} from './components/survey/survey.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {CandidateComponent} from './components/candidate/candidate.component';
     DashboardComponent,
     SurveysComponent,
     NotfoundComponent,
-    CandidateComponent
+    CandidateComponent,
+    SurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import {CandidateComponent} from './components/candidate/candidate.component';
     MatCardModule,
     MatToolbarModule,
     MatButtonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

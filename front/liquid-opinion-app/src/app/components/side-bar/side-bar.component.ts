@@ -12,7 +12,7 @@ export class SideBarComponent implements OnInit, OnChanges {
   faPoll = faPoll;
   faeuro = faGlobeEurope;
   faPlus = faPlus;
-  faTrash= faTrash;
+  faTrash = faTrash;
 
   constructor() {
   }

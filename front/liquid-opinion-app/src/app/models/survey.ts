@@ -2,6 +2,7 @@ export class Survey {
   id: string;
   title: string;
   creator: Member;
+  slogan: string;
   description: string;
   theme: string;
   tags: string[];
@@ -26,6 +27,7 @@ export class Survey {
 export class Member {
   id: string;
   username: string;
+  photo: string; // url
 }
 
 export class Image {

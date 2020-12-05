@@ -27,3 +27,32 @@
   box-shadow: 0.2em 0 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
+
+
+/* Success syling */
+
+.mat-button.mat-success,
+.mat-stroked-button.mat-success {
+  color: #155724;
+}
+
+.mat-button.mat-success:hover,
+.mat-stroked-button.mat-success:hover {
+  background-color: #1fdb44;
+  background: #52c234; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #061700, #52c234); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.mat-raised-button.mat-success,
+.mat-flat-button.mat-success,
+.mat-fab.mat-success,
+.mat-mini-fab.mat-success {
+  color: #217933;
+  background-color: #155724;
+}
+
+.mat-icon-button.mat-success {
+  color: #155724;
+}
