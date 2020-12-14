@@ -1,0 +1,25 @@
+.survey {
+  height: 400px;
+  max-height: 500px;
+  max-width: 732px;
+  margin-bottom: 30px;
+
+  .image {
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+
+  .title {
+    font-size: 25px;
+    margin-bottom: 5px;
+  }
+
+  .descr {
+    font-size: small;
+  }
+
+}
+
