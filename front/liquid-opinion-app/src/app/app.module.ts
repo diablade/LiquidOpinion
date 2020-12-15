@@ -16,6 +16,7 @@ import {NotfoundComponent} from './components/notfound/notfound.component';
 import {CandidateComponent} from './components/candidate/candidate.component';
 import {SurveyComponent} from './components/survey/survey.component';
 import {MatIconModule} from "@angular/material/icon";
+import {ProgressRingComponent} from "./components/progress-ring/progress-ring.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatIconModule} from "@angular/material/icon";
     SurveysComponent,
     NotfoundComponent,
     CandidateComponent,
-    SurveyComponent
+    SurveyComponent,
+    ProgressRingComponent
   ],
   imports: [
     BrowserModule,

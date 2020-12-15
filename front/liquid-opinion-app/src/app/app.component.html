@@ -1,12 +1,13 @@
+<app-progress-ring></app-progress-ring>
 <div class="main d-flex flex-column">
   <app-top-bar (btnClick)="onTopBtnClick($event)"></app-top-bar>
-  <div class="d-flex flex-grow-1">
-    <app-side-bar [collapse]=sideBarCollapse class="sideBar"></app-side-bar>
-    <div class="flex-grow-1 d-flex flex-column">
-      <div class="flex-grow-1 overflow-auto dashboard">
-        <router-outlet></router-outlet>
-      </div>
-      <!--      <app-footer></app-footer>-->
+  <div class="max d-flex flex-row flex-grow-1">
+    <div [ngClass]="sideBarCollapsed ? 'sideBar-collapsed':'sideBar-exp'" class="sideBar">
+      <app-side-bar [collapsed]=sideBarCollapsed></app-side-bar>
     </div>
+    <div class="flex-grow-1 overflow-auto dashboard">
+      <router-outlet></router-outlet>
+    </div>
+    <!--      <app-footer></app-footer>-->
   </div>
 </div>

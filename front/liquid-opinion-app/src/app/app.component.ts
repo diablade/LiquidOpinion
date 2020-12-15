@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'liquid-opinion-app';
-  sideBarCollapse: boolean = false;
+  sideBarCollapsed: boolean = false;
 
-  onTopBtnClick($event: any) {
-    this.sideBarCollapse = !this.sideBarCollapse;
+  onTopBtnClick(event: any) {
+    if (event == 'collapse') {
+      this.sideBarCollapsed = !this.sideBarCollapsed;
+    }
   }
 }

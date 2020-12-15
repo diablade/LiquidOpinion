@@ -7,7 +7,7 @@ import {faBriefcase, faPoll, faGlobeEurope, faPlus, faTrash} from '@fortawesome/
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit, OnChanges {
-  @Input() collapse: boolean = false;
+  @Input() collapsed: boolean = false;
   faBriefCase = faBriefcase;
   faPoll = faPoll;
   faeuro = faGlobeEurope;

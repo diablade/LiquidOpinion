@@ -1,13 +1,40 @@
 @import "../node_modules/@angular/material/theming";
 @include mat-core();
 
-$liquid-primary: mat-palette($mat-green,800);
-$liquid-accent: mat-palette($mat-amber,A200,A100,A400);
-$liquid-warn: mat-palette($mat-red,A200,A100,A400);
+$mat-adi-primary: (50: #EEF3F4, 100:#99C1CC, 200:#006580, 300:#003B53, contrast: (
+  50: $black-87-opacity,
+  100: $black-87-opacity,
+  200: white,
+  300: white,)
+);
+$mat-adi-secondary: (50: #f8f8f8, 100:#707070, 200:#4A4F54, 300:#22272B, contrast: (
+  50: $black-87-opacity,
+  100: white,
+  200: white,
+  300: white,)
+);
+$mat-adi-warning: (50: #FFF5E7, 100:#FFCF51, 200:#FF9E18, 300:#B95E04, contrast: (
+  50: $black-87-opacity,
+  100: $black-87-opacity,
+  200: white,
+  300: white,)
+);
+$mat-adi-danger: (50: #FFEBEE, 100:#FF605A, 200:#D22630, 300:#800008, contrast: (
+  50: $black-87-opacity,
+  100: white,
+  200: white,
+  300: white,)
+);
 
-$liquid-theme: mat-light-theme($liquid-primary,$liquid-accent,$liquid-warn);
+$primary: mat-palette($mat-adi-primary, 200, 300, 100, 50);
+$accent: mat-palette($mat-adi-secondary, 200, 300, 100, 50);
+$warn: mat-palette($mat-adi-warning, 200, 300, 100, 50);
+$danger: mat-palette($mat-adi-danger, 200, 300, 100, 50);
 
-@include angular-material-theme($liquid-theme);
+$adi-theme: mat-light-theme($primary, $accent, $warn);
+//$adi-dark-theme: mat-dark-theme($primary,$accent,$warn);
+
+@include angular-material-theme($adi-theme);
 
 //.alternative {
 //  $liquid-primary: mat-palette($mat-amber, 800);

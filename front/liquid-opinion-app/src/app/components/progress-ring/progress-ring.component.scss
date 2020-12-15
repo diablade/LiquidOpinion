@@ -1,14 +1,11 @@
-.progress-ring-times {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: flex;
-    z-index: 10000;
-    background: rgba(0, 0, 0, 0.5);
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    justify-content: center;
-    align-items: center;
+.progressRing {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.3);
+  user-select: none;
+  justify-content: center;
+  align-items: center;
 }
