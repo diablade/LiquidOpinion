@@ -34,8 +34,9 @@
   min-width: 330px;
   padding: 10px;
   width: 330px;
-  box-shadow: 0.2em 0 4px rgba(0, 0, 0, 0.2);
   transition: all 0.5s ease-out;
+  box-shadow: gray 0px 0px 5px 1px;
+  z-index: 2;
 
   &-collapsed {
     width: 100px;

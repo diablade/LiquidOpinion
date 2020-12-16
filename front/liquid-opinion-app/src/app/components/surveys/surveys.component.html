@@ -1,4 +1,4 @@
-<div class="row no-gutters surveys">
+<div class="row no-gutters surveys m-3">
   <div *ngFor="let survey of surveys"
        class="d-flex survey">
     <mat-card class=" h-100 w-100 d-flex flex-column">
@@ -22,12 +22,13 @@
         </div>
       </div>
       <div class="actions d-flex flex-row">
-        <button color="success" mat-raised-button>Participer</button>
+        <button [routerLink]="['/survey', survey.id]" color="success" mat-raised-button>Participer</button>
+        <!--        <button color="success" mat-raised-button [routerLink]="['/survey', survey.id, 'candidate', candidate.id ... ]">Vote ? U know </button>-->
         <div class="flex-grow-1"></div>
-        <button (click)="onClick('like')" mat-icon-button color="danger" aria-label="like">
+        <button (click)="onClick('like')" aria-label="like" color="danger" mat-icon-button>
           <mat-icon>favorite</mat-icon>
         </button>
-        <button (click)="onClick('share')" mat-icon-button color="danger" aria-label="share">
+        <button (click)="onClick('share')" aria-label="share" color="danger" mat-icon-button>
           <mat-icon>share</mat-icon>
         </button>
       </div>

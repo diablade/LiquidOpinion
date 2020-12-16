@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TopBarComponent} from './components/top-bar/top-bar.component';
@@ -15,8 +15,8 @@ import {SurveysComponent} from './components/surveys/surveys.component';
 import {NotfoundComponent} from './components/notfound/notfound.component';
 import {CandidateComponent} from './components/candidate/candidate.component';
 import {SurveyComponent} from './components/survey/survey.component';
-import {MatIconModule} from "@angular/material/icon";
-import {ProgressRingComponent} from "./components/progress-ring/progress-ring.component";
+import {MatIconModule} from '@angular/material/icon';
+import {ProgressRingComponent} from './components/progress-ring/progress-ring.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import {ProgressRingComponent} from "./components/progress-ring/progress-ring.co
     NotfoundComponent,
     CandidateComponent,
     SurveyComponent,
-    ProgressRingComponent
+    ProgressRingComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +39,10 @@ import {ProgressRingComponent} from "./components/progress-ring/progress-ring.co
     MatToolbarModule,
     MatButtonModule,
     FontAwesomeModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

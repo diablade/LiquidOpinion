@@ -134,8 +134,8 @@ export class SurveysComponent implements OnInit {
       modified: null,
       created: null,
     }, {
-      id: 'id survey2',
-      title: 'title2',
+      id: 'id survey3',
+      title: 'title3',
       creator: {
         id: 'id user',
         username: 'user name',

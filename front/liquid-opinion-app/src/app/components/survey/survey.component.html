@@ -1,6 +1,11 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center no-gutters survey">
+  <div class="col-12 header-photo">
+    <img src="https://tse4.mm.bing.net/th?id=OIP.qE8HSmTXq_mPe8_Tx3c7OAHaEK&pid=Api" alt="">
+  </div>
+  <div class="col-12 header-title"> TITLE
+  </div>
   <div *ngFor="let candidate of candidates"
-       class="col-12 survey">
+       class="col-12 candidate">
     <mat-card class="h-100 w-100">
       <div class="d-flex flex-row">
         <div class="image"><img alt="" [src]=candidate.images>

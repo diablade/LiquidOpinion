@@ -9,6 +9,7 @@ let vote = {
     date: {type: Date, default: Date.now}
 }
 
+
 let CandidateSchema = new Schema({
     title: {type: String, required: true},
     surveyId: {type: String, required: true},
