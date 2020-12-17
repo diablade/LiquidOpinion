@@ -1,6 +1,6 @@
 <app-progress-ring></app-progress-ring>
 <div class="main d-flex flex-column">
-  <app-top-bar (btnClick)="onTopBtnClick($event)"></app-top-bar>
+  <app-top-bar class="top-bar" (btnClick)="onTopBtnClick($event)"></app-top-bar>
   <div class="max d-flex flex-row flex-grow-1">
     <div [ngClass]="sideBarCollapsed ? 'sideBar-collapsed':'sideBar-exp'" class="sideBar">
       <app-side-bar [collapsed]=sideBarCollapsed></app-side-bar>

@@ -20,8 +20,12 @@
   overflow: hidden;
 }
 
+.top-bar{
+  //max-height: 56px;
+}
+
 .max {
-  height: calc(100% - 64px); // -64px for the top bar
+  height: calc(100% - 64px); // -56px for the top bar
   width: 100%;
 }
 

@@ -1,19 +1,32 @@
 <div class="row justify-content-center no-gutters survey">
-  <div class="col-12 header-photo">
-    <img src="https://tse4.mm.bing.net/th?id=OIP.qE8HSmTXq_mPe8_Tx3c7OAHaEK&pid=Api" alt="">
-  </div>
-  <div class="col-12 header-title"> TITLE
+  <div class="backBanner col-12"> Title</div>
+  <div class="col-12 no-gutters row header" [style.background-image]="'url(/assets/survey.jpg)'">
+    <div class="w-100 header-top d-flex flex-row">
+      <div class="flex-grow-1 header-title">Sondage de la mort qui tue </div>
+      <div class="d-flex header-author">
+        <div class="flex-column flex-grow-1">
+          <div class="header-author-name">créé par {{survey.creator.username}}</div>
+          <div class="header-author-date">le {{survey.created | date:'dd MMM yyyy'}}</div>
+        </div>
+        <img class=" rounded-circle" [src]=survey.creator.photo alt="">
+      </div>
+    </div>
+    <div class="no-gutters col-12 col-md-9 header-descr">  Lorem zet zet ztsrt ze zet zesgdver dgsdgvsdgr sgers gdf gf ger erfgdrfgdf sr rsgrefhbt dfm est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+    </div>
+    <div class="no-gutters col-12 header-action text-right">
+
+    </div>
   </div>
   <div *ngFor="let candidate of candidates"
        class="col-12 candidate">
     <mat-card class="h-100 w-100">
       <div class="d-flex flex-row">
-        <div class="image"><img alt="" [src]=candidate.images>
+        <div class="image"><img [src]=candidate.images alt="">
         </div>
         <div class="flex-grow-1 topCenter">
           <div class="title">{{candidate.title}}</div>
           <div class="descr">{{candidate.description}}</div>
-        </div>
+        </div>default
         <div class="topRight">
           la zegzedvsd zefGROSSE note
         </div>
