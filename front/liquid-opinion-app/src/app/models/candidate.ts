@@ -11,7 +11,7 @@ export class Candidate {
 }
 
 export class Vote {
-  hashUserId: string;
+  // hashUserId: string;
   note: number;
   noteMax: number;
   date: Date;
