@@ -15,7 +15,6 @@
   .header {
     position: sticky;
     top: 0;
-    margin-top: -60px;
     z-index: 3;
     height: 200px;
     margin-bottom: 20px;
@@ -68,34 +67,53 @@
       position: absolute;
       bottom: 0;
       right: 0;
+      z-index: 4;
     }
     &-action2 {
       position: absolute;
       bottom: -40px;
       right: 0;
+      z-index: 4;
     }
   }
 
   .candidate {
-    height: 400px;
+    height: 260px;
     max-height: 500px;
     max-width: 732px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    margin-left: 15px;
 
-    .image {
+    &-image {
+      margin-left: -16px;
+      margin-top: -16px;
+      margin-right: 16px;
+
       img {
         width: 200px;
         height: 200px;
+        object-fit: cover;
       }
     }
 
-    .title {
+    &-title {
       font-size: 25px;
       margin-bottom: 5px;
     }
 
-    .descr {
+    &-descr {
       font-size: small;
+      color: gray;
+    }
+
+    &-score {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      border: solid 1px gray;
+      margin-bottom: 10px;
+      line-height: 100px;
+      font-size: 35px;
     }
 
   }

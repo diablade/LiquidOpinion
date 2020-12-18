@@ -3,6 +3,7 @@ import {Survey} from '../../models/survey';
 import {Candidate, Vote} from '../../models/candidate';
 import {faVoteYea} from '@fortawesome/free-solid-svg-icons';
 import {FakeData} from '../../../assets/fake.data';
+import * as faker from 'faker'
 
 
 @Component({
@@ -17,6 +18,7 @@ export class SurveyComponent implements OnInit {
   faVoteYea = faVoteYea;
   notes: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
   choice: string;
+  score: number = faker.random.number(5);
 
   constructor() {
   }

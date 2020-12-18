@@ -16,10 +16,10 @@
     </div>
     <div class="header-action1">
       <button (click)="onClick('like')" aria-label="like" color="primary-constrat" mat-icon-button>
-        <mat-icon>favorite</mat-icon>
+        <mat-icon>favorite_border</mat-icon>
       </button>
       <button (click)="onClick('share')" aria-label="like" color="primary-contrast" mat-icon-button>
-        <mat-icon>share</mat-icon>
+        <mat-icon>share_border</mat-icon>
       </button>
     </div>
     <div class="no-gutters col-12 header-action2 text-right">
@@ -40,19 +40,21 @@
   <div *ngFor="let candidate of candidates" class="d-flex candidate">
     <mat-card class="d-flex flex-column">
       <div class="d-flex flex-row">
-        <div class="image">
+        <div class="candidate-image">
           <img [src]=candidate.images alt="">
         </div>
-        <div class="flex-grow-1 topCenter">
-          <div class="title">{{candidate.title}}</div>
-          <div class="descr">{{candidate.description}}</div>
+        <div class="flex-grow-1">
+          <div class="candidate-title">{{candidate.title}}</div>
+          <div class="candidate-descr">{{candidate.description}}</div>
         </div>
-        <div class="score">
-          note
+        <div class="flex-column">
+          <div class="candidate-score">
+            {{score}}
+          </div>
+          <button [routerLink]="['/survey', survey.id, '/candidate', candidate.id]" color="primary" mat-raised-button>
+            voir détails
+          </button>
         </div>
-        <button [routerLink]="['/survey', survey.id, '/candidate', candidate.id]" color="primary" mat-raised-button>
-          voir détails
-        </button>
       </div>
       <div class="d-flex flex-row">
         <div class="votes">
@@ -61,7 +63,7 @@
             [(ngModel)]="choice"
             aria-labelledby="note-radio-group-label"
             class="note-radio-group">
-            <mat-radio-button *ngFor="let note of notes" [value]="note" class="note-radio-button">
+            <mat-radio-button *ngFor="let note of candidate.notes" [value]="note" class="note-radio-button">
               {{note}}
             </mat-radio-button>
           </mat-radio-group>
