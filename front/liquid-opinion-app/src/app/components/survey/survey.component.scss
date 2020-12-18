@@ -10,13 +10,14 @@
     text-align: center;
     line-height: 60px;
     font-size: 33px;
-    text-transform: capitalize;
   }
 
   .header {
+    position: sticky;
+    top: 0;
     margin-top: -60px;
     z-index: 3;
-    height: 250px;
+    height: 200px;
     margin-bottom: 20px;
     background-size: cover;
     box-shadow: gray 0px 1px 3px;
@@ -53,17 +54,24 @@
     }
 
     &-descr {
-      height: 170px;
-      text-overflow: ellipsis;
+      max-height: 170px;
       overflow: auto;
       text-align: left;
-
+      position: absolute;
+      float: left;
+      bottom: 0;
+      margin: 20px;
     }
 
-    &-action {
-      position: sticky;
-      top:0;
-      margin-top: -20px;
+    &-action1 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    &-action2 {
+      position: absolute;
+      bottom: -40px;
+      right: 0;
     }
   }
 

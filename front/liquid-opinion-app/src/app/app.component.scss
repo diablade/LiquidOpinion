@@ -21,12 +21,10 @@
 }
 
 .top-bar{
-  //max-height: 56px;
-}
 
-.max {
-  height: calc(100% - 64px); // -56px for the top bar
-  width: 100%;
+}
+.content{
+ flex: 1;
 }
 
 .dashboard {
@@ -35,20 +33,10 @@
 
 .sideBar {
   height: 100%;
-  min-width: 330px;
+  min-width: 300px;
   padding: 10px;
-  width: 330px;
-  transition: all 0.5s ease-out;
-  box-shadow: gray 0px 0px 5px 1px;
+  width: 300px;
+  //transition: all 0.5s ease-out;
+  //box-shadow: gray 0px 0px 5px 1px;
   z-index: 2;
-
-  &-collapsed {
-    width: 100px;
-    min-width: 100px;
-  }
-
-  &-exp {
-    min-width: 250px;
-    width: 250px;
-  }
 }

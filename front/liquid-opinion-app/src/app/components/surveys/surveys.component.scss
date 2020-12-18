@@ -1,5 +1,5 @@
 .surveys {
-  justify-content: center;
+
 }
 
 .survey {
@@ -51,6 +51,7 @@
   .texts {
     margin-top: 15px;
     margin-bottom: 15px;
+    height: inherit;
 
     &-title {
       font-size: 20px;
@@ -59,21 +60,17 @@
 
     &-tags {
       font-size: 10px;
+      color: darkgray;
     }
 
     &-slogan {
       font-size: small;
       flex-grow: 1;
+      color: gray;
     }
 
     .actions {
       margin: 15px;
-
-      .but {
-        background: #52c234; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #061700, #52c234); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-      }
 
       .icon {
         font-size: 20px;

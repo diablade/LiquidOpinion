@@ -1,7 +1,6 @@
-<div class="row no-gutters surveys m-3">
-  <div *ngFor="let survey of surveys"
-       class="d-flex survey">
-    <mat-card class=" h-100 w-100 d-flex flex-column">
+<div class="row no-gutters justify-content-center surveys m-3">
+  <div *ngFor="let survey of surveys" class="d-flex survey">
+    <mat-card class="h-100 w-100 d-flex flex-column">
       <div class="header d-flex flex-row mb-3">
         <div class="profil-photo mr-3">
           <img [src]=survey.creator.photo alt="">
@@ -22,14 +21,13 @@
         </div>
       </div>
       <div class="actions d-flex flex-row">
-        <button [routerLink]="['/survey', survey.id]" color="success" mat-raised-button>Participer</button>
-        <!--        <button color="success" mat-raised-button [routerLink]="['/survey', survey.id, 'candidate', candidate.id ... ]">Vote ? U know </button>-->
+        <button [routerLink]="['/survey', survey.id]" color="primary" mat-raised-button>Participer</button>
         <div class="flex-grow-1"></div>
-        <button (click)="onClick('like')" aria-label="like" color="danger" mat-icon-button>
-          <mat-icon>favorite</mat-icon>
+        <button (click)="onClick('like')" aria-label="like" mat-icon-button>
+          <mat-icon color="primary">favorite</mat-icon>
         </button>
-        <button (click)="onClick('share')" aria-label="share" color="danger" mat-icon-button>
-          <mat-icon>share</mat-icon>
+        <button (click)="onClick('share')" aria-label="share" mat-icon-button>
+          <mat-icon color="primary">share</mat-icon>
         </button>
       </div>
     </mat-card>

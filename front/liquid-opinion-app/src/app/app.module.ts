@@ -17,6 +17,7 @@ import {CandidateComponent} from './components/candidate/candidate.component';
 import {SurveyComponent} from './components/survey/survey.component';
 import {MatIconModule} from '@angular/material/icon';
 import {ProgressRingComponent} from './components/progress-ring/progress-ring.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -38,8 +39,9 @@ import {ProgressRingComponent} from './components/progress-ring/progress-ring.co
     MatCardModule,
     MatToolbarModule,
     MatButtonModule,
-    FontAwesomeModule,
     MatIconModule,
+    MatSidenavModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

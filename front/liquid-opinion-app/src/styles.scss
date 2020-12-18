@@ -2,22 +2,27 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 
 html, body {
-  height: 100vh;
+  //height: 100vh;
 }
 
 body {
-  margin: 0;
+  //margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-expansion-panel-content > .mat-expansion-panel-body {
-  padding: 0 3px 3px 3px !important;
-}
+//.mat-expansion-panel-content > .mat-expansion-panel-body {
+//  padding: 0 3px 3px 3px !important;
+//}
 
 .mat-button-toggle-button:focus {
   outline: none;
 }
-
+*:focus{
+  outline: none;
+}
+button:focus{
+  outline: none;
+}
 .mat-icon-button:focus {
   outline: none;
 }
@@ -26,42 +31,51 @@ body {
   outline: none;
 }
 
-/* Success syling */
+/*  syling */
 
-.mat-button.mat-success,
-.mat-stroked-button.mat-success {
-  color: #155724;
-}
+//.fa-gradient {
+//  background:linear-gradient(to right bottom, #15518d, #4a00b0);
+//  -webkit-background-clip: text;
+//  -webkit-text-fill-color: transparent;
+//}
 
-.mat-button.mat-success:hover,
-.mat-stroked-button.mat-success:hover {
-  background-color: #f7fdf8;
-  background: #52c234; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #061700, #BBc234); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #061700, #BBc234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-
-.mat-flat-button.mat-success,
-.mat-fab.mat-success,
-.mat-mini-fab.mat-success,
-.mat-raised-button.mat-success,
-.mat-raised-button.mat-primary,
-.mat-flat-button.mat-primary,
-.mat-fab.mat-primary,
-.mat-toolbar.mat-primary,
-.mat-mini-fab.mat-primary {
-  color: #f1fff5;
-  //background-color: #155724;
-  background: #2E7D32; /* fallback for old browsers */
-  //background-image: linear-gradient(to right bottom, #0024ff, #0024ff, #0024ff, #b3a2ff, #000000, #000000, #000000, #f8d1fc, #ff0000, #ff0000, #ff0000, #ff0000);
-  //background-image: linear-gradient(to right bottom, #0024ff, #FFFFFF, #ff0000);
-  background-image: linear-gradient(to right bottom, #0024ff, #000000, #ff0000);
-  //background: -webkit-linear-gradient(to right, #2E7D32, #4DB6AC); /* Chrome 10-25, Safari 5.1-6 */
-  //background: linear-gradient(to right, #2E7D32, #4DB6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-
-.mat-icon-button.mat-success {
-  color: #155724;
-}
+//.mat-button.mat-success,
+//.mat-stroked-button.mat-success {
+//  color: #155724;
+//}
+//
+//.mat-button.mat-success:hover,
+//.mat-stroked-button.mat-success:hover {
+//  background-color: #f7fdf8;
+//  background: #52c234; /* fallback for old browsers */
+//  background: -webkit-linear-gradient(to right, #061700, #BBc234); /* Chrome 10-25, Safari 5.1-6 */
+//  background: linear-gradient(to right, #061700, #BBc234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+//
+//}
+//
+//.mat-flat-button.mat-success,
+//.mat-fab.mat-success,
+//.mat-mini-fab.mat-success,
+//.mat-raised-button.mat-success,
+//.mat-raised-button.mat-primary,
+//.mat-button.mat-primary,
+//.mat-flat-button.mat-primary,
+//.mat-fab.mat-primary,
+//.mat-toolbar.mat-primary,
+//.mat-mini-fab.mat-primary
+// {
+//  color: #f1fff5;
+//  //background-color: #155724;
+//  background: #2E7D32; /* fallback for old browsers */
+//  //background-image: linear-gradient(to right bottom, #0024ff, #0024ff, #0024ff, #b3a2ff, #000000, #000000, #000000, #f8d1fc, #ff0000, #ff0000, #ff0000, #ff0000);
+//  //background-image: linear-gradient(to right bottom, #0024ff, #FFFFFF, #ff0000);
+//  background-image: linear-gradient(to right bottom, #0024ff, #000000, #ff0000);
+//  background-image: linear-gradient(to right bottom, #1976D2, #6200EA);
+//  //background: -webkit-linear-gradient(to right, #2E7D32, #4DB6AC); /* Chrome 10-25, Safari 5.1-6 */
+//  //background: linear-gradient(to right, #2E7D32, #4DB6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+//
+//}
+//
+//.mat-icon-button.mat-primary {
+  //color: #155724;
+//}

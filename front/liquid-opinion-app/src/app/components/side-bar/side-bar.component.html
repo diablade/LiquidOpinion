@@ -1,10 +1,10 @@
-<div [ngClass]="collapsed ? 'sideMenu-collapsed':'sideMenu-exp'" class="sideMenu">
+<div class="sideMenu">
   <div class="sections">
     <div class="rowSelection" routerLink="not-found" routerLinkActive="selected">
-      <button class="w-100 radius" color="primary" mat-raised-button>
+      <button class="w-100 radius" (click)="createSurvey()" onClick="" color="primary" mat-raised-button>
         <div class="d-flex">
           <fa-icon [icon]="faPlus" class="icon"></fa-icon>
-          <div [ngClass]="collapsed ? 'hide' : ''">créer un sondage</div>
+          <div>créer un sondage</div>
         </div>
       </button>
     </div>
@@ -15,8 +15,8 @@
       <div class="itemLine icon">
         <fa-icon [icon]="faPoll" class="icon"></fa-icon>
       </div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine center text'">me concernant</div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine'">10</div>
+      <div class="itemLine center text">sondage que je participe</div>
+      <div class="itemLine">10</div>
     </div>
 
     <!-- mes sondages -->
@@ -24,8 +24,8 @@
       <div class="itemLine icon">
         <fa-icon [icon]="faBriefCase" class="icon"></fa-icon>
       </div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine center text'">mes sondages</div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine'">10</div>
+      <div class="itemLine center text">mes sondages preferer</div>
+      <div class="itemLine">10</div>
     </div>
 
 
@@ -34,15 +34,15 @@
       <div class="itemLine icon">
         <fa-icon [icon]="faeuro" class="icon"></fa-icon>
       </div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine center text'">Sondage Public</div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine'">10</div>
+      <div class="itemLine center text">sondage public</div>
+      <div class="itemLine">10</div>
     </div>
 
     <!-- SIGNALEMENT -->
     <div class="rowSelection" routerLink="control" routerLinkActive="selected">
       <div class="itemLine icon">
       </div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine center text'">------------</div>
+      <div class="itemLine center text">------------</div>
     </div>
 
   </div>
@@ -52,10 +52,9 @@
       <div class="itemLine icon">
         <fa-icon [icon]="faTrash" class="icon"></fa-icon>
       </div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine center text'">Sondages expirés</div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine'">
-        <i class="fas fa-cog fa-lg"></i>
-      </div>
+      <div class="itemLine center text">sondage expirés</div>
+      <div class="itemLine">10</div>
+      <i class="fas fa-cog fa-lg"></i>
     </div>
   </div>
 
@@ -64,7 +63,7 @@
       <div class="itemLine icon">
         <i class="fas fa-cog fa-lg"></i>
       </div>
-      <div [ngClass]="collapsed ? 'hide' : 'itemLine center text'">Administration</div>
+      <div class="itemLine center text">Administration</div>
     </div>
   </div>
 </div>

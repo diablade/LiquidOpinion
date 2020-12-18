@@ -7,7 +7,6 @@ import {faBriefcase, faPoll, faGlobeEurope, faPlus, faTrash} from '@fortawesome/
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit, OnChanges {
-  @Input() collapsed: boolean = false;
   faBriefCase = faBriefcase;
   faPoll = faPoll;
   faeuro = faGlobeEurope;
@@ -23,4 +22,7 @@ export class SideBarComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
+  createSurvey() {
+
+  }
 }
