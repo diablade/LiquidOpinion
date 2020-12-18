@@ -5,7 +5,7 @@ export class Candidate {
   description: string;
   votes: Vote[];
   noteMax: number;
-  images: string[];
+  images: string;
   modified: Date;
   created: Date;
 }

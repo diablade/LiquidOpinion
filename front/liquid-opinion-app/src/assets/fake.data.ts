@@ -20,7 +20,9 @@ export class FakeData {
       this.createFakeMember('3'),
       this.createFakeMember('4')];
     survey.candidatesIds = ['1', '2', '3', '4'];
-    survey.images = 'http://placeimg.com/800/200/any';
+    survey.images = [
+      {format: 'card', url: faker.image.image()},//'http://placeimg.com/266/400/any'},
+      {format: 'banner', url: 'http://placeimg.com/1600/200/any'}];
     survey.activate = true;
     survey.visibleBySearch = true;
     survey.isPrivate = false;
@@ -38,7 +40,7 @@ export class FakeData {
     const member = new Member();
     member.id = id;
     member.username = faker.internet.userName();
-    member.photo = faker.image.people();
+    member.photo = faker.image.image();
     return member;
   }
 

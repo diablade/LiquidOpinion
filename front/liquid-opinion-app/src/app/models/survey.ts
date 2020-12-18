@@ -10,8 +10,7 @@ export class Survey {
   editors: Member[];
   admins: Member[];
   candidatesIds: string[];
-  // images: Image[]; //TODO ???
-  images: string; // TODO ???
+  images: Image[];
   activate: boolean;
   visibleBySearch: boolean;
   isPrivate: boolean;
