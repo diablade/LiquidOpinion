@@ -67,16 +67,17 @@
     &-slogan {
       font-size: small;
       flex-grow: 1;
-      color: gray;
-    }
+      max-height: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
-    .actions {
-      margin: 15px;
-
-      .icon {
-        font-size: 20px;
-        margin-right: 10px;
-      }
+      display: -webkit-box;
+      -webkit-line-clamp: 4; /* number of lines to show */
+      -webkit-box-orient: vertical;
     }
+  }
+
+  .actions {
+    line-height: 40px;
   }
 }
