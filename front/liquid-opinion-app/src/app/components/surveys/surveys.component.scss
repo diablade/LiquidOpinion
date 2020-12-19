@@ -1,83 +1,80 @@
 .surveys {
+  .survey {
+    margin: 0px 10px 20px 10px;
+    max-width: 400px;
+    min-width: 400px;
 
-}
+    .profil {
+      &-photo {
+        img {
+          border-radius: 25px;
+          height: 40px;
+          width: 40px;
+          object-fit: cover;
+        }
+      }
 
-.survey {
-  //max-height: 450px;
-  margin: 0px 10px 20px 10px;
-  max-width: 400px;
-  min-width: 400px;
+      &-name {
+        font-size: medium;
+        white-space: nowrap;
+        //line-break: loose;
+        width: 200px;
+        //height: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-  .profil {
-    &-photo {
-      img {
-        border-radius: 25px;
-        height: 40px;
-        width: 40px;
-        object-fit: cover;
+      &-date {
+        font-size: smaller;
+        color: gray;
       }
     }
 
-    &-name {
-      font-size: medium;
-      white-space: nowrap;
-      //line-break: loose;
-      width: 200px;
-      //height: 30px;
+    .image {
+      margin-left: -16px;
+      margin-right: -16px;
+      min-height: 266px;
+      max-height: 266px;
+      max-width: inherit;
+      min-width: inherit;
       overflow: hidden;
-      text-overflow: ellipsis;
+
+      img {
+        height: inherit;
+        width: inherit;
+      }
     }
 
-    &-date {
-      font-size: smaller;
-      color: gray;
-    }
-  }
-
-  .image {
-    margin-left: -16px;
-    margin-right: -16px;
-    min-height: 266px;
-    max-height: 266px;
-    max-width: inherit;
-    min-width: inherit;
-    overflow: hidden;
-
-    img {
+    .texts {
+      margin-top: 15px;
+      margin-bottom: 15px;
       height: inherit;
-      width: inherit;
+
+      &-title {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      &-tags {
+        font-size: 10px;
+        color: darkgray;
+      }
+
+      &-slogan {
+        font-size: small;
+        flex-grow: 1;
+        max-height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* number of lines to show */
+        -webkit-box-orient: vertical;
+      }
     }
-  }
 
-  .texts {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    height: inherit;
-
-    &-title {
-      font-size: 20px;
-      margin-bottom: 5px;
+    .actions {
+      line-height: 40px;
     }
-
-    &-tags {
-      font-size: 10px;
-      color: darkgray;
-    }
-
-    &-slogan {
-      font-size: small;
-      flex-grow: 1;
-      max-height: 100px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      display: -webkit-box;
-      -webkit-line-clamp: 4; /* number of lines to show */
-      -webkit-box-orient: vertical;
-    }
-  }
-
-  .actions {
-    line-height: 40px;
   }
 }

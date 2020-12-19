@@ -11,6 +11,8 @@
 //  | B |####################################
 //  | A |####################################
 //  | R |---------- FOOTER ------------------
+
+
 @import "src/theme.scss";
 
 .main {
@@ -20,27 +22,26 @@
   overflow: hidden;
 }
 
-.top-bar{
+.top-bar {
 
 }
-.content{
- flex: 1;
+
+.content {
+  flex: 1;
 }
 
 .dashboard {
   //background: #a7a7a7 linear-gradient(rgba(25, 84, 123, 0.73), rgba(255, 216, 155, 0.7)) repeat scroll 0% 0%;
-  background: #ffd89b;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #19547b, #ffd89b);  /* Chrome 10-25, Safari 5.1-6 */
+  background: #ffd89b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #19547b, #ffd89b); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #19547b, #ffd89b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
 .sideBar {
   height: 100%;
-  min-width: 300px;
+  min-width: 333px;
   padding: 10px;
-  width: 300px;
-  //transition: all 0.5s ease-out;
-  //box-shadow: gray 0px 0px 5px 1px;
+  width: 333px;
   z-index: 2;
 }

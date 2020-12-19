@@ -1,4 +1,19 @@
 <div class="sideMenu">
+  <div class="sections header d-flex flex-row">
+    <div class="profil-photo mr-2">
+      <img [src]=user.photo alt="">
+    </div>
+    <div class="flex-grow-1">
+      <div class="profil-name text-capitalize font-weight-bold">{{user.username}}</div>
+      <div class="profil-email">{{user.email}}</div>
+    </div>
+    <button (click)="onClick('logout')" aria-label="logout" mat-icon-button>
+      <mat-icon color="primary">logout</mat-icon>
+    </button>
+    <button (click)="onClick('settings')" aria-label="settings" mat-icon-button>
+      <mat-icon color="primary">settings_outlined</mat-icon>
+    </button>
+  </div>
   <div class="sections">
     <div class="rowSelection" routerLink="not-found" routerLinkActive="selected">
       <button class="w-100 radius" (click)="createSurvey()" onClick="" color="primary" mat-raised-button>

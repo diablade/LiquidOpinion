@@ -3,7 +3,7 @@
   <app-top-bar (btnClick)="snav.toggle()" class="top-bar"></app-top-bar>
   <mat-sidenav-container class="content">
     <mat-sidenav #snav [fixedInViewport]="!mobileQuery.matches" [opened]="!mobileQuery.matches"
-                 [mode]="mobileQuery.matches ? 'over' : 'side'" fixedTopGap="56">
+                 [mode]="mobileQuery.matches ? 'over' : 'side'" fixedTopGap="64">
       <div class="sideBar">
         <app-side-bar></app-side-bar>
       </div>

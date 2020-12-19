@@ -9,6 +9,10 @@
     flex-grow: 1;
   }
 
+  .header{
+    margin: 10px 0;
+  }
+
   .sections {
     *:focus {
       outline: none;
@@ -52,6 +56,28 @@
   }
   .radius{
     border-radius: 25px;
+  }
+  .profil {
+    &-photo {
+      img {
+        border-radius: 25px;
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
+      }
+    }
+
+    &-name {
+      font-size: medium;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &-email {
+      font-size: smaller;
+      color: gray;
+    }
   }
 }
 

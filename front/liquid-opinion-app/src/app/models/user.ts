@@ -9,4 +9,5 @@ export class User {
   description: string;
   modified: Date;
   created: Date;
+  photo: string;
 }

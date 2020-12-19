@@ -1,6 +1,7 @@
 import * as faker from 'faker';
 import {Member, Survey} from '../app/models/survey';
 import {Candidate, Vote} from '../app/models/candidate';
+import {User} from "../app/models/user";
 
 export class FakeData {
 
@@ -44,8 +45,17 @@ export class FakeData {
     return member;
   }
 
-  public static createFakeUser(): void {
+  public static createFakeUser(): User {
+    const user = new User();
+    user.created = new Date();
+    user.description = faker.lorem.paragraph();
+    user.email = faker.internet.email();
+    user.first_name = faker.name.firstName();
+    user.last_name = faker.name.lastName();
+    user.username = faker.internet.userName();
+    user.photo = faker.image.abstract();
 
+    return user;
   }
 
   // tslint:disable-next-line:typedef
