@@ -9,8 +9,36 @@
     flex-grow: 1;
   }
 
-  .header{
+  .header {
     margin: 10px 0;
+
+    &-photo {
+      img {
+        border-radius: 25px;
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
+      }
+    }
+
+    .profil {
+      width: 170px;
+
+      &-name {
+        font-size: medium;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &-email {
+        font-size: smaller;
+        color: gray;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   }
 
   .sections {
@@ -54,30 +82,10 @@
       cursor: pointer;
     }
   }
-  .radius{
+
+  .radius {
     border-radius: 25px;
   }
-  .profil {
-    &-photo {
-      img {
-        border-radius: 25px;
-        height: 40px;
-        width: 40px;
-        object-fit: cover;
-      }
-    }
 
-    &-name {
-      font-size: medium;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &-email {
-      font-size: smaller;
-      color: gray;
-    }
-  }
 }
 
