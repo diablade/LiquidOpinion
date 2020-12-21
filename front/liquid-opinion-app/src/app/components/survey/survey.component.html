@@ -44,33 +44,43 @@
           <img [src]=candidate.images alt="">
         </div>
         <div class="flex-grow-1">
-          <div class="candidate-title">{{candidate.title}}</div>
-          <div class="candidate-descr">{{candidate.description}}</div>
+          <mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
+            <mat-drawer #chart [mode]="'over'" [opened]="true" class="w-100 h-100">
+              <app-chart-candidate></app-chart-candidate>
+            </mat-drawer>
+            <mat-drawer-content>
+              <div class="candidate-title">{{candidate.title}}</div>
+              <div class="candidate-descr">{{candidate.description}}</div>
+            </mat-drawer-content>
+          </mat-drawer-container>
         </div>
         <div class="flex-column">
           <div class="candidate-score">
             {{score}}
           </div>
+          <button (click)="chart.toggle()" color="primary" mat-raised-button>
+            graphique
+          </button>
           <button [routerLink]="['/survey', survey.id, '/candidate', candidate.id]" color="primary" mat-raised-button>
-            voir détails
+            voir le débat
           </button>
         </div>
       </div>
       <div class="d-flex flex-row">
-        <div class="votes">
-          <label id="note-radio-group-label">Quelle est votre opinion du jour ?</label>
-          <mat-radio-group
-            [(ngModel)]="choice"
-            aria-labelledby="note-radio-group-label"
-            class="note-radio-group">
-            <mat-radio-button *ngFor="let note of candidate.notes" [value]="note" class="note-radio-button">
-              {{note}}
-            </mat-radio-button>
-          </mat-radio-group>
+        <div class="votes flex-grow-1 d-flex flex-column justify-content-center">
+          <label id="votes-radio-group-label">Quelle est votre opinion du jour ?</label>
+          <div class="votes-radio-border">
+            <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
+              <mat-radio-button *ngFor="let note of survey.noteLabels" [value]="note"
+                                class="justify-content-center votes-radio-button">
+                {{note}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
         </div>
-        <div class="vote">
+        <div class="votes-vote">
           <button (click)="onClick('vote')" aria-label="vote" mat-raised-button>
-            je choisie : {{choice}}
+            je choisis : {{candidate.choice}}
             <fa-icon [icon]="faVoteYea" class="icon"></fa-icon>
           </button>
         </div>

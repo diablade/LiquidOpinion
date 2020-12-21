@@ -28,7 +28,7 @@ export class FakeData {
     survey.visibleBySearch = true;
     survey.isPrivate = false;
     survey.typeOfVote = 'label';
-    survey.noteLabels = ['rejeter', 'mauvais', 'bon', 'tres bien', 'excellent'];
+    survey.noteLabels = ['rejeter', 'mauvais', 'neutre', 'bien', 'excellent'];
     survey.reVoteDelay = '1D';
     survey.expireAt = new Date();
     survey.selfDestruct = new Date();
@@ -78,5 +78,21 @@ export class FakeData {
     candidate.modified = new Date();
     candidate.created = new Date();
     return candidate;
+  }
+
+  public static createFakeOneDayStat() {
+    const reject = faker.random.number(10000);
+    const good = faker.random.number(10000);
+    const bad = faker.random.number(10000);
+    const neutral = faker.random.number(10000);
+    const excellent = faker.random.number(10000);
+
+    const total = reject + good + bad + neutral + excellent;
+    const pR = (reject / total) * 100;
+    const pG = (good / total) * 100;
+    const pB = (bad / total) * 100;
+    const pN = (neutral / total) * 100;
+    const pE = (excellent / total) * 100;
+    return [pE, pG, pN, pB, pR];
   }
 }

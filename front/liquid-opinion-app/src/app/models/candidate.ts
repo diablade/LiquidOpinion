@@ -8,6 +8,7 @@ export class Candidate {
   images: string;
   modified: Date;
   created: Date;
+  choice: any;
 }
 
 export class Vote {

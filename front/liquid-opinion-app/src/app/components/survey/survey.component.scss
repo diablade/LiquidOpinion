@@ -78,8 +78,8 @@
   }
 
   .candidate {
-    height: 260px;
-    max-height: 500px;
+    //height: 260px;
+    //max-height: 500px;
     max-width: 732px;
     margin-bottom: 15px;
     margin-left: 15px;
@@ -95,6 +95,9 @@
         object-fit: cover;
       }
     }
+    .drawer-container{
+
+    }
 
     &-title {
       font-size: 25px;
@@ -104,6 +107,8 @@
     &-descr {
       font-size: small;
       color: gray;
+      max-height: 158px;
+      overflow: auto;
     }
 
     &-score {
@@ -116,6 +121,28 @@
       font-size: 35px;
     }
 
+  }
+  .votes{
+    &-radio{
+      &-border{
+        //background: linear-gradient(to right,#ee4035,#f37736,#fdf498,#7bc043,#0392cf);
+        //background: linear-gradient(to right,#eb3b5a,#fa8231,#f7b731,#20bf6b,#0fb9b1);
+        //background: linear-gradient(to right,#e8554e,#f19c65,#ffd265,#2aa876,#0a7b83);
+        padding: 1px;
+        width: fit-content;
+        margin: 0 auto;
+        border-radius: 25px;
+      }
+      &-group{
+        padding: 3px;
+        background: white;
+        max-height: 26px;
+        border-radius: 25px;
+      }
+      &-button{
+        margin-right: 10px;
+      }
+    }
   }
 }
 

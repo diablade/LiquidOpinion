@@ -1,0 +1,205 @@
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Color, Label} from 'ng2-charts';
+import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
+import {FakeData} from '../../../assets/fake.data';
+import * as moment from 'moment';
+// import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+
+@Component({
+  selector: 'app-chart-candidate',
+  templateUrl: './chart-candidate.component.html',
+  styleUrls: ['./chart-candidate.component.scss']
+})
+export class ChartCandidateComponent implements OnInit, AfterViewInit {
+  @ViewChild('candidateChart') canvas: ElementRef;
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    scales: {
+      yAxes: [{
+        display: false,
+        stacked: true,
+        ticks: {
+          beginAtZero: true,
+        },
+        gridLines: {
+          display: false
+        }
+
+      }],
+      xAxes: [{
+        stacked: true,
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          // padding: 20,
+          // fontColor: 'rgba(0,0,0,0.5)',
+          // fontStyle: "bold"
+        }
+      }]
+    },
+    plugins: {
+      // datalabels: {
+      //   anchor: 'end',
+      //   align: 'end',
+      // }
+    }
+  };
+  public barChartLabels: Label[] = [
+    moment().subtract(14, 'days').format('DD/MM'),
+    moment().subtract(13, 'days').format('DD/MM'),
+    moment().subtract(12, 'days').format('DD/MM'),
+    moment().subtract(11, 'days').format('DD/MM'),
+    moment().subtract(10, 'days').format('DD/MM'),
+    moment().subtract(9, 'days').format('DD/MM'),
+    moment().subtract(8, 'days').format('DD/MM'),
+    moment().subtract(7, 'days').format('DD/MM'),
+    moment().subtract(6, 'days').format('DD/MM'),
+    moment().subtract(5, 'days').format('DD/MM'),
+    moment().subtract(4, 'days').format('DD/MM'),
+    moment().subtract(3, 'days').format('DD/MM'),
+    moment().subtract(2, 'days').format('DD/MM'),
+    moment().subtract(1, 'days').format('DD/MM'),
+  ];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = false;
+  public barChartColors;
+  // public barChartPlugins = [pluginDataLabels];
+
+  public barChartData: ChartDataSets[];
+
+
+  constructor() {
+    const d1 = FakeData.createFakeOneDayStat();
+    const d2 = FakeData.createFakeOneDayStat();
+    const d3 = FakeData.createFakeOneDayStat();
+    const d4 = FakeData.createFakeOneDayStat();
+    const d5 = FakeData.createFakeOneDayStat();
+    const d6 = FakeData.createFakeOneDayStat();
+    const d7 = FakeData.createFakeOneDayStat();
+    const d8 = FakeData.createFakeOneDayStat();
+    const d9 = FakeData.createFakeOneDayStat();
+    const d10 = FakeData.createFakeOneDayStat();
+    const d11 = FakeData.createFakeOneDayStat();
+    const d12 = FakeData.createFakeOneDayStat();
+    const d13 = FakeData.createFakeOneDayStat();
+    const d14 = FakeData.createFakeOneDayStat();
+    this.barChartData = [
+      {
+        label: 'excellent',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[0], d2[0], d3[0], d4[0], d5[0], d6[0], d7[0], d8[0], d9[0], d10[0], d11[0], d12[0], d13[0], d14[0]]
+      }, {
+        label: 'bien',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[1], d2[1], d3[1], d4[1], d5[1], d6[1], d7[1], d8[1], d9[1], d10[1], d11[1], d12[1], d13[1], d14[1]]
+      }, {
+        label: 'neutre',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[2], d2[2], d3[2], d4[2], d5[2], d6[2], d7[2], d8[2], d9[2], d10[2], d11[2], d12[2], d13[2], d14[2]]
+      }, {
+        label: 'mauvais',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[3], d2[3], d3[3], d4[3], d5[3], d6[3], d7[3], d8[3], d9[3], d10[3], d11[3], d12[3], d13[3], d14[3]]
+      }, {
+        label: 'à rejeter',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[4], d2[4], d3[4], d4[4], d5[4], d6[4], d7[4], d8[4], d9[4], d10[4], d11[4], d12[4], d13[4], d14[4]]
+      }
+    ];
+  }
+
+  ngAfterViewInit(): void {
+    // const gradient1 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
+    // gradient1.addColorStop(0, '#a40000');
+    // gradient1.addColorStop(1, '#ee4035');
+    // const gradient2 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
+    // gradient2.addColorStop(0, '#ab4b00');
+    // gradient2.addColorStop(1, '#f37736');
+    // const gradient3 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
+    // gradient3.addColorStop(0, '#969600');
+    // gradient3.addColorStop(1, '#fdf498');
+    // const gradient4 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
+    // gradient4.addColorStop(0, '#669600');
+    // gradient4.addColorStop(1, '#7bc043');
+    // const gradient5 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
+    // gradient5.addColorStop(0, '#009100');
+    // gradient5.addColorStop(1, '#0392cf');
+
+    // const gradient1 = '#ee4035';
+    // const gradient2 = '#f37736';
+    // const gradient3 = '#fdf498';
+    // const gradient4 = '#7bc043';
+    // const gradient5 = '#0392cf';
+
+    // const gradient1 = '#ee4035';
+    // const gradient2 = '#fa8231';
+    // const gradient3 = '#f7b731';
+    // const gradient4 = '#20bf6b';
+    // const gradient5 = '#0fb9b1';
+    //
+    const gradient1 = '#e8554e';
+    const gradient2 = '#f19c65';
+    const gradient3 = '#ffd265';
+    const gradient4 = '#2aa876';
+    const gradient5 = '#0a7b83';
+    this.barChartColors = [
+      { // grey
+        borderColor: gradient1,
+        backgroundColor: gradient1,
+        pointBorderColor: gradient1,
+        pointBackgroundColor: gradient1,
+        pointHoverBackgroundColor: gradient1,
+        pointHoverBorderColor: gradient1,
+      },
+      { // dark grey
+        borderColor: gradient2,
+        backgroundColor: gradient2,
+        pointBorderColor: gradient2,
+        pointBackgroundColor: gradient2,
+        pointHoverBackgroundColor: gradient2,
+        pointHoverBorderColor: gradient2,
+      },
+      { // red
+        borderColor: gradient3,
+        backgroundColor: gradient3,
+        pointBorderColor: gradient3,
+        pointBackgroundColor: gradient3,
+        pointHoverBackgroundColor: gradient3,
+        pointHoverBorderColor: gradient3,
+      },
+      { // red
+        borderColor: gradient4,
+        backgroundColor: gradient4,
+        pointBorderColor: gradient3,
+        pointBackgroundColor: gradient3,
+        pointHoverBackgroundColor: gradient3,
+        pointHoverBorderColor: gradient3,
+      },
+      { // red
+        borderColor: gradient5,
+        backgroundColor: gradient5,
+        pointBorderColor: gradient3,
+        pointBackgroundColor: gradient3,
+        pointHoverBackgroundColor: gradient3,
+        pointHoverBorderColor: gradient3,
+      }
+    ];
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  // events
+  // public chartClicked({event, active}: { event: MouseEvent, active: {}[] }): void {
+  // }
+
+  // public chartHovered({event, active}: { event: MouseEvent, active: {}[] }): void {
+  // }
+}

@@ -18,6 +18,10 @@ import {SurveyComponent} from './components/survey/survey.component';
 import {MatIconModule} from '@angular/material/icon';
 import {ProgressRingComponent} from './components/progress-ring/progress-ring.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatRadioModule} from '@angular/material/radio';
+import {FormsModule} from '@angular/forms';
+import {ChartsModule} from 'ng2-charts';
+import { ChartCandidateComponent } from './components/chart-candidate/chart-candidate.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     CandidateComponent,
     SurveyComponent,
     ProgressRingComponent,
+    ChartCandidateComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
+    MatRadioModule,
     FontAwesomeModule,
+    ChartsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
