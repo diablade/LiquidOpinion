@@ -87,12 +87,14 @@ export class FakeData {
     const neutral = faker.random.number(10000);
     const excellent = faker.random.number(10000);
 
+
     const total = reject + good + bad + neutral + excellent;
-    const pR = (reject / total) * 100;
-    const pG = (good / total) * 100;
-    const pB = (bad / total) * 100;
-    const pN = (neutral / total) * 100;
-    const pE = (excellent / total) * 100;
-    return [pE, pG, pN, pB, pR];
+    const pR = ((reject / total) * 100).toFixed(2);
+    const pG = ((good / total) * 100).toFixed(2);
+    const pB = ((bad / total) * 100).toFixed(2);
+    const pN = ((neutral / total) * 100).toFixed(2);
+    const pE = ((excellent / total) * 100).toFixed(2);
+    const moy = ((excellent * 5 + good * 4 + neutral * 3 + bad * 2 + reject) / total).toFixed(2);
+    return [pE, pG, pN, pB, pR, moy];
   }
 }

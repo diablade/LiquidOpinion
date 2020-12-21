@@ -3,6 +3,7 @@ import {Color, Label} from 'ng2-charts';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {FakeData} from '../../../assets/fake.data';
 import * as moment from 'moment';
+
 // import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
@@ -19,23 +20,20 @@ export class ChartCandidateComponent implements OnInit, AfterViewInit {
         display: false,
         stacked: true,
         ticks: {
-          beginAtZero: true,
+          min: 0,
+          max: 100,
         },
-        gridLines: {
-          display: false
+      }, {
+        id: 'moyenne',
+        display: false,
+        ticks: {
+          min: 0,
+          max: 5,
         }
-
       }],
       xAxes: [{
+        gridLines: {display: false},
         stacked: true,
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          // padding: 20,
-          // fontColor: 'rgba(0,0,0,0.5)',
-          // fontStyle: "bold"
-        }
       }]
     },
     plugins: {
@@ -67,7 +65,12 @@ export class ChartCandidateComponent implements OnInit, AfterViewInit {
   // public barChartPlugins = [pluginDataLabels];
 
   public barChartData: ChartDataSets[];
-
+  gradient1 = '#e8554e';
+  gradient2 = '#f19c65';
+  gradient3 = '#ffd265';
+  gradient4 = '#2aa876';
+  gradient5 = '#0a7b83';
+  gradient6 = '#7a7a7a';
 
   constructor() {
     const d1 = FakeData.createFakeOneDayStat();
@@ -86,30 +89,76 @@ export class ChartCandidateComponent implements OnInit, AfterViewInit {
     const d14 = FakeData.createFakeOneDayStat();
     this.barChartData = [
       {
-        label: 'excellent',
-        barPercentage: 1.0,
-        categoryPercentage: 1.0,
-        data: [d1[0], d2[0], d3[0], d4[0], d5[0], d6[0], d7[0], d8[0], d9[0], d10[0], d11[0], d12[0], d13[0], d14[0]]
-      }, {
-        label: 'bien',
-        barPercentage: 1.0,
-        categoryPercentage: 1.0,
-        data: [d1[1], d2[1], d3[1], d4[1], d5[1], d6[1], d7[1], d8[1], d9[1], d10[1], d11[1], d12[1], d13[1], d14[1]]
-      }, {
-        label: 'neutre',
-        barPercentage: 1.0,
-        categoryPercentage: 1.0,
-        data: [d1[2], d2[2], d3[2], d4[2], d5[2], d6[2], d7[2], d8[2], d9[2], d10[2], d11[2], d12[2], d13[2], d14[2]]
-      }, {
-        label: 'mauvais',
-        barPercentage: 1.0,
-        categoryPercentage: 1.0,
-        data: [d1[3], d2[3], d3[3], d4[3], d5[3], d6[3], d7[3], d8[3], d9[3], d10[3], d11[3], d12[3], d13[3], d14[3]]
+        label: 'moyenne',
+        data: [d1[5], d2[5], d3[5], d4[5], d5[5], d6[5], d7[5], d8[5], d9[5], d10[5], d11[5], d12[5], d13[5], d14[5]],
+        type: 'line',
+        yAxisID: 'moyenne',
+        borderColor: this.gradient6,
+        pointBorderColor: this.gradient6,
+        pointBackgroundColor: this.gradient6,
+        pointHoverBackgroundColor: this.gradient6,
+        pointHoverBorderColor: this.gradient6,
+        pointBorderWidth: 5,
+        pointHoverRadius: 5,
+        pointHoverBorderWidth: 1,
+        pointRadius: 1,
+        fill: false,
+        borderWidth: 2,
       }, {
         label: 'à rejeter',
         barPercentage: 1.0,
         categoryPercentage: 1.0,
-        data: [d1[4], d2[4], d3[4], d4[4], d5[4], d6[4], d7[4], d8[4], d9[4], d10[4], d11[4], d12[4], d13[4], d14[4]]
+        data: [d1[4], d2[4], d3[4], d4[4], d5[4], d6[4], d7[4], d8[4], d9[4], d10[4], d11[4], d12[4], d13[4], d14[4]],
+        borderColor: this.gradient1,
+        backgroundColor: this.gradient1,
+        pointBorderColor: this.gradient1,
+        pointBackgroundColor: this.gradient1,
+        pointHoverBackgroundColor: this.gradient1,
+        pointHoverBorderColor: this.gradient1,
+      }, {
+        label: 'mauvais',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[3], d2[3], d3[3], d4[3], d5[3], d6[3], d7[3], d8[3], d9[3], d10[3], d11[3], d12[3], d13[3], d14[3]],
+        borderColor: this.gradient2,
+        backgroundColor: this.gradient2,
+        pointBorderColor: this.gradient2,
+        pointBackgroundColor: this.gradient2,
+        pointHoverBackgroundColor: this.gradient2,
+        pointHoverBorderColor: this.gradient2,
+      }, {
+        label: 'neutre',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[2], d2[2], d3[2], d4[2], d5[2], d6[2], d7[2], d8[2], d9[2], d10[2], d11[2], d12[2], d13[2], d14[2]],
+        borderColor: this.gradient3,
+        backgroundColor: this.gradient3,
+        pointBorderColor: this.gradient3,
+        pointBackgroundColor: this.gradient3,
+        pointHoverBackgroundColor: this.gradient3,
+        pointHoverBorderColor: this.gradient3,
+      }, {
+        label: 'bien',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[1], d2[1], d3[1], d4[1], d5[1], d6[1], d7[1], d8[1], d9[1], d10[1], d11[1], d12[1], d13[1], d14[1]],
+        borderColor: this.gradient4,
+        backgroundColor: this.gradient4,
+        pointBorderColor: this.gradient4,
+        pointBackgroundColor: this.gradient4,
+        pointHoverBackgroundColor: this.gradient4,
+        pointHoverBorderColor: this.gradient4,
+      }, {
+        label: 'excellent',
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        data: [d1[0], d2[0], d3[0], d4[0], d5[0], d6[0], d7[0], d8[0], d9[0], d10[0], d11[0], d12[0], d13[0], d14[0]],
+        borderColor: this.gradient5,
+        backgroundColor: this.gradient5,
+        pointBorderColor: this.gradient5,
+        pointBackgroundColor: this.gradient5,
+        pointHoverBackgroundColor: this.gradient5,
+        pointHoverBorderColor: this.gradient5,
       }
     ];
   }
@@ -143,53 +192,6 @@ export class ChartCandidateComponent implements OnInit, AfterViewInit {
     // const gradient4 = '#20bf6b';
     // const gradient5 = '#0fb9b1';
     //
-    const gradient1 = '#e8554e';
-    const gradient2 = '#f19c65';
-    const gradient3 = '#ffd265';
-    const gradient4 = '#2aa876';
-    const gradient5 = '#0a7b83';
-    this.barChartColors = [
-      { // grey
-        borderColor: gradient1,
-        backgroundColor: gradient1,
-        pointBorderColor: gradient1,
-        pointBackgroundColor: gradient1,
-        pointHoverBackgroundColor: gradient1,
-        pointHoverBorderColor: gradient1,
-      },
-      { // dark grey
-        borderColor: gradient2,
-        backgroundColor: gradient2,
-        pointBorderColor: gradient2,
-        pointBackgroundColor: gradient2,
-        pointHoverBackgroundColor: gradient2,
-        pointHoverBorderColor: gradient2,
-      },
-      { // red
-        borderColor: gradient3,
-        backgroundColor: gradient3,
-        pointBorderColor: gradient3,
-        pointBackgroundColor: gradient3,
-        pointHoverBackgroundColor: gradient3,
-        pointHoverBorderColor: gradient3,
-      },
-      { // red
-        borderColor: gradient4,
-        backgroundColor: gradient4,
-        pointBorderColor: gradient3,
-        pointBackgroundColor: gradient3,
-        pointHoverBackgroundColor: gradient3,
-        pointHoverBorderColor: gradient3,
-      },
-      { // red
-        borderColor: gradient5,
-        backgroundColor: gradient5,
-        pointBorderColor: gradient3,
-        pointBackgroundColor: gradient3,
-        pointHoverBackgroundColor: gradient3,
-        pointHoverBorderColor: gradient3,
-      }
-    ];
   }
 
   ngOnInit(): void {

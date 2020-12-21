@@ -39,12 +39,12 @@
   </div>
   <div *ngFor="let candidate of candidates" class="d-flex candidate">
     <mat-card class="d-flex flex-column">
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-row candidate-header">
         <div class="candidate-image">
           <img [src]=candidate.images alt="">
         </div>
-        <div class="flex-grow-1">
-          <mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
+        <div class="flex-grow-1 h-100">
+          <mat-drawer-container [hasBackdrop]="false" class="drawer-container h-100 w-100">
             <mat-drawer #chart [mode]="'over'" [opened]="true" class="w-100 h-100">
               <app-chart-candidate></app-chart-candidate>
             </mat-drawer>
@@ -54,8 +54,8 @@
             </mat-drawer-content>
           </mat-drawer-container>
         </div>
-        <div class="flex-column">
-          <div class="candidate-score">
+        <div class="flex-column candidate-header-action">
+          <div class="candidate-header-score">
             {{score}}
           </div>
           <button (click)="chart.toggle()" color="primary" mat-raised-button>
