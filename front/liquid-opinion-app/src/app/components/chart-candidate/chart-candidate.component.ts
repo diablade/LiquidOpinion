@@ -12,7 +12,6 @@ import * as moment from 'moment';
   styleUrls: ['./chart-candidate.component.scss']
 })
 export class ChartCandidateComponent implements OnInit, AfterViewInit {
-  @ViewChild('candidateChart') canvas: ElementRef;
   public barChartOptions: ChartOptions = {
     responsive: true,
     scales: {
@@ -70,7 +69,7 @@ export class ChartCandidateComponent implements OnInit, AfterViewInit {
   gradient3 = '#ffd265';
   gradient4 = '#2aa876';
   gradient5 = '#0a7b83';
-  gradient6 = '#7a7a7a';
+  gradient6 = '#353535';
 
   constructor() {
     const d1 = FakeData.createFakeOneDayStat();
@@ -164,38 +163,9 @@ export class ChartCandidateComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // const gradient1 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
-    // gradient1.addColorStop(0, '#a40000');
-    // gradient1.addColorStop(1, '#ee4035');
-    // const gradient2 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
-    // gradient2.addColorStop(0, '#ab4b00');
-    // gradient2.addColorStop(1, '#f37736');
-    // const gradient3 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
-    // gradient3.addColorStop(0, '#969600');
-    // gradient3.addColorStop(1, '#fdf498');
-    // const gradient4 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
-    // gradient4.addColorStop(0, '#669600');
-    // gradient4.addColorStop(1, '#7bc043');
-    // const gradient5 = this.canvas.nativeElement.getContext('2d').createLinearGradient(100, 0, 500, 0);
-    // gradient5.addColorStop(0, '#009100');
-    // gradient5.addColorStop(1, '#0392cf');
-
-    // const gradient1 = '#ee4035';
-    // const gradient2 = '#f37736';
-    // const gradient3 = '#fdf498';
-    // const gradient4 = '#7bc043';
-    // const gradient5 = '#0392cf';
-
-    // const gradient1 = '#ee4035';
-    // const gradient2 = '#fa8231';
-    // const gradient3 = '#f7b731';
-    // const gradient4 = '#20bf6b';
-    // const gradient5 = '#0fb9b1';
-    //
   }
 
   ngOnInit(): void {
-
   }
 
   // events

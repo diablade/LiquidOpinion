@@ -1,13 +1,9 @@
+@import "src/theme.scss";
+
 .sideMenu {
   position: relative;
   width: inherit;
   height: inherit;
-  display: flex;
-  flex-direction: column;
-
-  .center {
-    flex-grow: 1;
-  }
 
   .header {
     margin: 10px 0;
@@ -41,51 +37,34 @@
     }
   }
 
+  .radius {
+    border-radius: 25px;
+  }
+
   .sections {
     *:focus {
       outline: none;
     }
 
-    .rowSelection {
-      align-items: center;
-      display: flex;
-      flex-direction: row;
-      padding: 0.4em 0 0.4em 0;
-
-      .itemLine {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .icon {
-        text-align: center;
-        width: 30px;
-      }
-
-      .text {
-        margin-left: 0.8em;
-      }
-
-      .twoElementLayout {
-        margin-left: -3em;
-      }
-
-      .hide {
-        display: none;
-      }
+    .icon {
+      text-align: center;
+      width: 30px;
     }
 
-    .rowSelection:hover, .selected {
-      color: blue;
-      background-color: white;
-      border-radius: 15px 0 0 15px;
+    .item {
       cursor: pointer;
+      padding: 10px 16px;
+      margin: 0 -10px;
+    }
+
+    .item:hover {
+      color: mat-color($primary, 200);
+    }
+
+    .itemSelected {
+      border-right: solid 5px mat-color($primary, 200);
+      color: mat-color($primary, 200);
     }
   }
-
-  .radius {
-    border-radius: 25px;
-  }
-
 }
 

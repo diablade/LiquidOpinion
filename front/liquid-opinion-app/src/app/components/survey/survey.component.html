@@ -32,56 +32,58 @@
       <button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
         <mat-icon>view_module</mat-icon>
       </button>
-      <button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
-        <mat-icon>analytics</mat-icon>
+      <button (click)="showAllGraph()" aria-label="like" color="primary" mat-icon-button>
+        <mat-icon>insights</mat-icon>
       </button>
     </div>
   </div>
   <div *ngFor="let candidate of candidates" class="d-flex candidate">
-    <mat-card class="d-flex flex-column">
+    <mat-card class="bgWhite d-flex flex-column">
       <div class="d-flex flex-row candidate-header">
-        <div class="candidate-image">
+        <div class="candidate-header-image">
           <img [src]=candidate.images alt="">
         </div>
-        <div class="flex-grow-1 h-100">
-          <mat-drawer-container [hasBackdrop]="false" class="drawer-container h-100 w-100">
-            <mat-drawer #chart [mode]="'over'" [opened]="true" class="w-100 h-100">
+        <div class="flex-grow-1">
+          <mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
+            <mat-drawer #chart [mode]="'over'" [opened]="candidate.graphOpened">
               <app-chart-candidate></app-chart-candidate>
             </mat-drawer>
             <mat-drawer-content>
-              <div class="candidate-title">{{candidate.title}}</div>
-              <div class="candidate-descr">{{candidate.description}}</div>
+              <div class="candidate-header-title">{{candidate.title}}</div>
+              <div class="candidate-header-descr">{{candidate.description}}</div>
             </mat-drawer-content>
           </mat-drawer-container>
         </div>
         <div class="flex-column candidate-header-action">
-          <div class="candidate-header-score">
-            {{score}}
+          <div [style.border-color]="getColorFromScore(candidate.score)" class="candidate-header-score">
+            {{candidate.score}}
           </div>
-          <button (click)="chart.toggle()" color="primary" mat-raised-button>
-            graphique
+          <button (click)="chart.toggle()" color="excellent" mat-raised-button>
+            opinions
+            <mat-icon>insights</mat-icon>
           </button>
-          <button [routerLink]="['/survey', survey.id, '/candidate', candidate.id]" color="primary" mat-raised-button>
-            voir le débat
+          <button [routerLink]="['/survey/'+survey.id+'/candidate/'+candidate.id]" color="primary" mat-raised-button>
+            détails
           </button>
         </div>
       </div>
-      <div class="d-flex flex-row">
-        <div class="votes flex-grow-1 d-flex flex-column justify-content-center">
-          <label id="votes-radio-group-label">Quelle est votre opinion du jour ?</label>
-          <div class="votes-radio-border">
-            <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
-              <mat-radio-button *ngFor="let note of survey.noteLabels" [value]="note"
-                                class="justify-content-center votes-radio-button">
-                {{note}}
+      <div class="">
+        <div class="votes flex-grow-1 d-flex flex-row">
+          <div class="votes-question font-size2">Votre opinion du jour ?</div>
+          <div class="flex-grow-1 d-flex flex-row votes-radio-container">
+            <mat-radio-group class="votes-radio-group" [(ngModel)]="candidate.choice">
+              <mat-radio-button *ngFor="let opinion of survey.opinionsDefault" [value]="opinion"
+                                class="votes-radio-button">
+                <div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">
+                  {{opinion.label}}
+                </div>
               </mat-radio-button>
             </mat-radio-group>
           </div>
-        </div>
-        <div class="votes-vote">
-          <button (click)="onClick('vote')" aria-label="vote" mat-raised-button>
-            je choisis : {{candidate.choice}}
-            <fa-icon [icon]="faVoteYea" class="icon"></fa-icon>
+          <button (click)="onClick('vote')" [disabled]="!candidate.choice" aria-label="vote" mat-raised-button>
+            envoyer : {{candidate.choice ? candidate.choice.label : ""}}
+            <fa-icon [icon]="faVoteYea" [style.color]="candidate.choice ? candidate.choice.color : ''"
+                     class="icon"></fa-icon>
           </button>
         </div>
       </div>

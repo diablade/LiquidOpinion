@@ -1,4 +1,4 @@
-<div class="sideMenu">
+<div class="sideMenu d-flex flex-column">
   <div class="sections header d-flex flex-row">
     <div class="header-photo mr-2">
       <img [src]=user.photo alt="">
@@ -7,77 +7,54 @@
       <div class="profil-name text-capitalize font-weight-bold">{{user.username}}</div>
       <div class="profil-email">{{user.email}}</div>
     </div>
-    <button class="float-right" (click)="onClick('logout')" aria-label="logout" mat-icon-button>
+    <button (click)="onClick('logout')" aria-label="logout" class="float-right" mat-icon-button>
       <mat-icon color="primary">logout</mat-icon>
     </button>
-    <button class="float-right" (click)="onClick('settings')" aria-label="settings" mat-icon-button>
+    <button (click)="onClick('settings')" aria-label="settings" class="float-right" mat-icon-button>
       <mat-icon color="primary">settings</mat-icon>
     </button>
   </div>
   <div class="sections">
-    <div class="rowSelection" routerLink="not-found" routerLinkActive="selected">
-      <button class="w-100 radius" (click)="createSurvey()" onClick="" color="primary" mat-raised-button>
-        <div class="d-flex">
-          <fa-icon [icon]="faPlus" class="icon"></fa-icon>
-          <div>créer un sondage</div>
-        </div>
-      </button>
-    </div>
+    <button (click)="createSurvey()" class="w-100 d-flex flex-row radius" color="primary" mat-raised-button>
+      <div class="font-size2"><fa-icon [icon]="faPlus" class="icon mr-1"></fa-icon> créer un sondage</div>
+    </button>
   </div>
   <div class="sections">
     <!-- me concernant -->
-    <div class="rowSelection" routerLink="not-found" routerLinkActive="selected">
-      <div class="itemLine icon">
-        <fa-icon [icon]="faPoll" class="icon"></fa-icon>
-      </div>
-      <div class="itemLine center text">sondage que je participe</div>
-      <div class="itemLine">10</div>
+    <div class="item d-flex flex-row" routerLink="surveys-participate" routerLinkActive="itemSelected">
+      <fa-icon [icon]="faPoll" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1 font-size2">sondage que je participe</div>
+      <div class="number">10</div>
     </div>
 
     <!-- mes sondages -->
-    <div class="rowSelection" routerLink="surveys" routerLinkActive="my-survey">
-      <div class="itemLine icon">
-        <fa-icon [icon]="faBriefCase" class="icon"></fa-icon>
-      </div>
-      <div class="itemLine center text">mes sondages preferer</div>
-      <div class="itemLine">10</div>
+    <div class="item d-flex flex-row" routerLink="surveys-favorites" routerLinkActive="itemSelected">
+      <fa-icon [icon]="faHeart" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1 font-size2">mes sondages préférés</div>
+      <div class="number">10</div>
     </div>
-
 
     <!-- sondage public -->
-    <div class="rowSelection" routerLink="surveys" routerLinkActive="public">
-      <div class="itemLine icon">
-        <fa-icon [icon]="faeuro" class="icon"></fa-icon>
-      </div>
-      <div class="itemLine center text">sondage public</div>
-      <div class="itemLine">10</div>
+    <div class="item d-flex flex-row" routerLink="surveys-public" routerLinkActive="itemSelected">
+      <fa-icon [icon]="faeuro" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1 font-size2">sondage public</div>
+      <div class="">10</div>
     </div>
-
-    <!-- SIGNALEMENT -->
-    <div class="rowSelection" routerLink="control" routerLinkActive="selected">
-      <div class="itemLine icon">
-      </div>
-      <div class="itemLine center text">------------</div>
-    </div>
-
   </div>
 
-  <div class="sections center">
-    <div class="rowSelection">
-      <div class="itemLine icon">
-        <fa-icon [icon]="faTrash" class="icon"></fa-icon>
-      </div>
-      <div class="itemLine center text">sondage expirés</div>
-      <div class="itemLine">10</div>
-      <i class="fas fa-cog fa-lg"></i>
+  <mat-divider></mat-divider>
+
+  <div class="sections">
+    <div class="item d-flex flex-row">
+      <fa-icon [icon]="faTrash" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1">sondage expirés</div>
+      <div class="number">10</div>
     </div>
   </div>
 
   <div class="sections">
     <div *appRight="['ADM_ACC']" class="rowSelection" routerLink="admin" routerLinkActive="selected">
-      <div class="itemLine icon">
-        <i class="fas fa-cog fa-lg"></i>
-      </div>
+      <fa-icon [icon]="faCog" class="icon" size="lg"></fa-icon>
       <div class="itemLine center text">Administration</div>
     </div>
   </div>

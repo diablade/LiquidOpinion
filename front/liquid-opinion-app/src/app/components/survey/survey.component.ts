@@ -4,6 +4,8 @@ import {Candidate, Vote} from '../../models/candidate';
 import {faVoteYea} from '@fortawesome/free-solid-svg-icons';
 import {FakeData} from '../../../assets/fake.data';
 import * as faker from 'faker';
+import * as _ from 'lodash';
+import {ColorStyle} from '../../utils/colorStyle';
 
 
 @Component({
@@ -16,9 +18,8 @@ export class SurveyComponent implements OnInit {
   survey: Survey = FakeData.createFakeSurvey('1');
   candidates: Candidate[];
   faVoteYea = faVoteYea;
-  notes: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
   choice: any;
-  score: number = faker.random.number(5);
+  score: number;
 
   constructor() {
   }
@@ -33,5 +34,13 @@ export class SurveyComponent implements OnInit {
 
   onClick(action: string) {
 
+  }
+
+  showAllGraph() {
+    this.candidates.forEach(cand => cand.graphOpened = true);
+  }
+
+  getColorFromScore(score: number) {
+    return ColorStyle.getColorFromScore(score, this.survey.opinionsDefault);
   }
 }

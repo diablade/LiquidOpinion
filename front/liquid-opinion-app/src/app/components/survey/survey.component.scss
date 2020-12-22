@@ -1,17 +1,4 @@
 .survey {
-  //.backBanner {
-  //  z-index: 2;
-  //  height: 60px;
-  //  position: sticky;
-  //  top: 0;
-  //  background: white;
-  //  box-shadow: gray 0px 1px 3px;
-  //  color: black;
-  //  text-align: center;
-  //  line-height: 60px;
-  //  font-size: 33px;
-  //}
-
   .header {
     position: sticky;
     top: 0;
@@ -79,11 +66,10 @@
       right: 0;
       z-index: 4;
     }
+
   }
 
   .candidate {
-    //height: 260px;
-    //max-height: 500px;
     max-width: 732px;
     margin-bottom: 15px;
     margin-left: 15px;
@@ -92,75 +78,77 @@
       margin-left: -16px;
       margin-top: -16px;
 
-      &-action {
-        margin-top: 16px;
-        width: 100px;
-        button{
-          align-content: center;
+      &-image {
+        img {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
         }
+      }
+
+      &-title {
+        font-size: 25px;
+        margin-bottom: 5px;
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-top: 16px;
+      }
+
+      &-descr {
+        margin-left: 16px;
+        margin-right: 16px;
+        font-size: small;
+        color: gray;
+        max-height: 158px;
+        overflow: auto;
       }
 
       &-score {
         width: 100px;
         height: 100px;
         text-align: center;
-        border: solid 1px gray;
+        border: solid 4px gray;
         margin-bottom: 10px;
         line-height: 100px;
         font-size: 35px;
       }
-    }
 
-    &-image {
-      img {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
+      &-action {
+        margin-top: 16px;
+        width: 100px;
+
+        button {
+          align-content: center;
+        }
       }
     }
 
-    .drawer-container {
-    }
-
-    &-title {
-      font-size: 25px;
-      margin-bottom: 5px;
-      margin-left: 16px;
-      margin-right: 16px;
-      margin-top: 16px;
-    }
-
-    &-descr {
-      margin-left: 16px;
-      margin-right: 16px;
-      font-size: small;
-      color: gray;
-      max-height: 158px;
-      overflow: auto;
-    }
-  }
-
-  .votes {
-    &-radio {
-      &-border {
-        //background: linear-gradient(to right,#ee4035,#f37736,#fdf498,#7bc043,#0392cf);
-        //background: linear-gradient(to right,#eb3b5a,#fa8231,#f7b731,#20bf6b,#0fb9b1);
-        //background: linear-gradient(to right,#e8554e,#f19c65,#ffd265,#2aa876,#0a7b83);
-        padding: 1px;
-        width: fit-content;
+    .votes {
+      margin-top: 13px;
+      &-question {
+        //max-width: 200px;
+        padding-top: 9px;
         margin: 0 auto;
-        border-radius: 25px;
       }
 
-      &-group {
-        padding: 3px;
-        background: white;
-        max-height: 26px;
-        border-radius: 25px;
-      }
+      &-radio {
+        &-container {
+          line-height: 15px;
+          padding-top: 10px;
+          width: fit-content;
+          margin: 0 auto;
+        }
+        &-group{
+          margin: 0 auto;
+        }
 
-      &-button {
-        margin-right: 10px;
+        &-button {
+          margin-right: 10px;
+
+          &-label {
+            margin-left: -4px;
+          }
+        }
       }
     }
   }

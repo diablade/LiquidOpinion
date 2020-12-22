@@ -15,7 +15,7 @@ export class Survey {
   visibleBySearch: boolean;
   isPrivate: boolean;
   typeOfVote: string;
-  noteLabels: string[];
+  opinionsDefault: Opinion[];
   reVoteDelay: string;
   expireAt: Date;
   selfDestruct: Date;
@@ -32,4 +32,10 @@ export class Member {
 export class Image {
   format: string;
   url: string;
+}
+
+export class Opinion {
+  label: string;
+  color: string;
+  id: string;
 }

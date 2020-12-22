@@ -22,6 +22,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
 import {ChartsModule} from 'ng2-charts';
 import { ChartCandidateComponent } from './components/chart-candidate/chart-candidate.component';
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ChartCandidateComponent } from './components/chart-candidate/chart-cand
     FontAwesomeModule,
     ChartsModule,
     FormsModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

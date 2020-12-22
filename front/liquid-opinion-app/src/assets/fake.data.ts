@@ -28,7 +28,12 @@ export class FakeData {
     survey.visibleBySearch = true;
     survey.isPrivate = false;
     survey.typeOfVote = 'label';
-    survey.noteLabels = ['rejeter', 'mauvais', 'neutre', 'bien', 'excellent'];
+    survey.opinionsDefault = [
+      {label: 'rejeter', id: 'rejected', color: '#e8554e'},
+      {label: 'mauvais', id: 'bad', color: '#f19c65'},
+      {label: 'neutre', id: 'neutral', color: '#ffd265'},
+      {label: 'bien', id: 'good', color: '#2aa876'},
+      {label: 'excellent', id: 'excellent', color: '#0a7b83'},];
     survey.reVoteDelay = '1D';
     survey.expireAt = new Date();
     survey.selfDestruct = new Date();
@@ -65,15 +70,8 @@ export class FakeData {
     candidate.title = faker.lorem.words();
     candidate.surveyId = idS;
     candidate.description = faker.lorem.paragraph();
-    candidate.votes = [
-      {note: 5, noteMax: 5, date: new Date()},
-      {note: 4, noteMax: 5, date: new Date()},
-      {note: 4, noteMax: 5, date: new Date()},
-      {note: 3, noteMax: 5, date: new Date()},
-      {note: 1, noteMax: 5, date: new Date()},
-      {note: 2, noteMax: 5, date: new Date()},
-      {note: 5, noteMax: 5, date: new Date()}];
     candidate.noteMax = 5;
+    candidate.score = faker.random.number({min:0,max:5,precision:0.01});
     candidate.images = faker.image.image();
     candidate.modified = new Date();
     candidate.created = new Date();

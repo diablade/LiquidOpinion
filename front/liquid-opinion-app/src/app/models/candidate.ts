@@ -8,7 +8,10 @@ export class Candidate {
   images: string;
   modified: Date;
   created: Date;
+
+  score: number;
   choice: any;
+  graphOpened: boolean;
 }
 
 export class Vote {

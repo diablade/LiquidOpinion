@@ -8,9 +8,11 @@ import {CandidateComponent} from './components/candidate/candidate.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
-  {path: 'surveys', component: SurveysComponent},
-  {path: 'survey/:id', component: SurveyComponent},
-  {path: 'survey/:id/candidate/:id', component: CandidateComponent},
+  {path: 'surveys-favorites', component: SurveysComponent},
+  {path: 'surveys-participate', component: SurveysComponent},
+  {path: 'surveys-public', component: SurveysComponent},
+  {path: 'survey/:slug', component: SurveyComponent},
+  {path: 'survey/:slug/candidate/:id', component: CandidateComponent},
   {path: 'not-found', component: NotfoundComponent},
   {path: '**', redirectTo: '/not-found'},
 ];

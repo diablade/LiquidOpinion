@@ -1,4 +1,5 @@
 @import "../node_modules/@angular/material/theming";
+
 @include mat-core();
 
 $mat-lo-primary: (50: #EEF3F4, 100:#99C1CC, 200:#006580, 300:#003B53, contrast: (
@@ -26,10 +27,28 @@ $mat-lo-danger: (50: #FFEBEE, 100:#FF605A, 200:#D22630, 300:#800008, contrast: (
   300: white,)
 );
 
+
+$ex: #0a7b83;
+$gd: #2aa876;
+$nt: #ffd265;
+$bd: #f19c65;
+$rj: #e8554e;
+
+$mat-ex: (200:#0a7b83, contrast:(200:white));
+$mat-gd: (200:#2aa876, contrast:(200:white));
+$mat-nt: (200:#ffd265, contrast:(200:#353535));
+$mat-bd: (200:#f19c65, contrast:(200:white));
+$mat-rj: (200:#e8554e, contrast:(200:white));
+
 $primary: mat-palette($mat-lo-primary, 200);
 $accent: mat-palette($mat-lo-secondary, 200);
 $warn: mat-palette($mat-lo-warning, 200);
 $danger: mat-palette($mat-lo-danger, 200);
+$excellent: mat-palette($mat-ex, 200);
+$good: mat-palette($mat-gd, 200);
+$neutral: mat-palette($mat-nt, 200);
+$bad: mat-palette($mat-bd, 200);
+$rejected: mat-palette($mat-rj, 200);
 
 $theme: mat-light-theme($primary, $accent, $warn);
 //$lo-dark-theme: mat-dark-theme($primary,$accent,$warn);
@@ -43,3 +62,54 @@ $theme: mat-light-theme($primary, $accent, $warn);
 //  $liquid-theme: mat-light-theme($liquid-primary, $liquid-accent, $liquid-warn);
 //  @include angular-material-theme($liquid-theme);
 //}
+
+.borderBottomExcellent {
+  .mat-radio-label-content {
+    border-bottom: solid $ex 2px;
+
+  }
+}
+
+.borderBottomGood {
+  .mat-radio-label-content {
+    border-bottom: solid $gd 2px;
+
+  }
+}
+
+.borderBottomNeutral {
+  .mat-radio-label-content {
+    border-bottom: solid $nt 2px;
+
+  }
+}
+
+.borderBottomBad {
+  .mat-radio-label-content {
+    border-bottom: solid $bd 2px;
+
+  }
+}
+
+.borderBottomRejected {
+  .mat-radio-label-content {
+    border-bottom: solid $rj 2px;
+
+  }
+}
+
+.colorRejected{
+  color: $rj;
+}
+.colorBad{
+  color: $bd;
+}
+.colorNeutral{
+  color: $nt;
+}
+.colorGood{
+  color: $gd;
+}
+.colorExcellent{
+  color: $ex;
+}
