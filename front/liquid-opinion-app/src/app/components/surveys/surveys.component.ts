@@ -27,7 +27,15 @@ export class SurveysComponent implements OnInit {
       FakeData.createFakeSurvey('2'),
       FakeData.createFakeSurvey('3'),
       FakeData.createFakeSurvey('4'),
-      FakeData.createFakeSurvey('5')];
+      FakeData.createFakeSurvey('5'),
+      FakeData.createFakeSurvey('6'),
+      FakeData.createFakeSurvey('7'),
+      FakeData.createFakeSurvey('8'),
+      FakeData.createFakeSurvey('9'),
+      FakeData.createFakeSurvey('10'),
+      FakeData.createFakeSurvey('11'),
+      FakeData.createFakeSurvey('12'),
+    ];
     // this.subSurvey = this.surveyService.getPublicSurveys.subscribe(
     //   (data: any) => {
     //     console.log(data);

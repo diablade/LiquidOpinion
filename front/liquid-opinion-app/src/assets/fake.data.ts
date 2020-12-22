@@ -1,7 +1,7 @@
 import * as faker from 'faker';
 import {Member, Survey} from '../app/models/survey';
 import {Candidate, Vote} from '../app/models/candidate';
-import {User} from "../app/models/user";
+import {User} from '../app/models/user';
 
 export class FakeData {
 
@@ -71,7 +71,7 @@ export class FakeData {
     candidate.surveyId = idS;
     candidate.description = faker.lorem.paragraph();
     candidate.noteMax = 5;
-    candidate.score = faker.random.number({min:0,max:5,precision:0.01});
+    candidate.score = faker.random.number({min: 0, max: 5, precision: 0.01});
     candidate.images = faker.image.image();
     candidate.modified = new Date();
     candidate.created = new Date();
@@ -79,20 +79,20 @@ export class FakeData {
   }
 
   public static createFakeOneDayStat() {
-    const reject = faker.random.number(10000);
-    const good = faker.random.number(10000);
-    const bad = faker.random.number(10000);
-    const neutral = faker.random.number(10000);
-    const excellent = faker.random.number(10000);
+    const reject: number = faker.random.number(10000);
+    const good: number = faker.random.number(10000);
+    const bad: number = faker.random.number(10000);
+    const neutral: number = faker.random.number(10000);
+    const excellent: number = faker.random.number(10000);
 
 
-    const total = reject + good + bad + neutral + excellent;
-    const pR = ((reject / total) * 100).toFixed(2);
-    const pG = ((good / total) * 100).toFixed(2);
-    const pB = ((bad / total) * 100).toFixed(2);
-    const pN = ((neutral / total) * 100).toFixed(2);
-    const pE = ((excellent / total) * 100).toFixed(2);
-    const moy = ((excellent * 5 + good * 4 + neutral * 3 + bad * 2 + reject) / total).toFixed(2);
+    const total: number = reject + good + bad + neutral + excellent;
+    const pR: number = Number(((reject / total) * 100).toFixed(2));
+    const pG: number = Number(((good / total) * 100).toFixed(2));
+    const pB: number = Number(((bad / total) * 100).toFixed(2));
+    const pN: number = Number(((neutral / total) * 100).toFixed(2));
+    const pE: number = Number(((excellent / total) * 100).toFixed(2));
+    const moy: number = Number(((excellent * 5 + good * 4 + neutral * 3 + bad * 2 + reject) / total).toFixed(2));
     return [pE, pG, pN, pB, pR, moy];
   }
 }

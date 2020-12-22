@@ -86,6 +86,9 @@ export class ChartCandidateComponent implements OnInit, AfterViewInit {
     const d12 = FakeData.createFakeOneDayStat();
     const d13 = FakeData.createFakeOneDayStat();
     const d14 = FakeData.createFakeOneDayStat();
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     this.barChartData = [
       {
         label: 'moyenne',
