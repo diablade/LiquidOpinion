@@ -18,6 +18,6 @@ export class CandidateComponent implements OnInit {
   }
 
   getColorFromScore(score: any) {
-    ColorStyle.getColorFromScore(score,this.candidateopinionsDefault);
+    // return ColorStyle.getColorFromScore(score, this.candidate.opinionsDefault);
   }
 }

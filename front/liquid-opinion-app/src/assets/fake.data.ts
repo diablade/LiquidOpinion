@@ -28,12 +28,6 @@ export class FakeData {
     survey.visibleBySearch = true;
     survey.isPrivate = false;
     survey.typeOfVote = 'label';
-    survey.opinionsDefault = [
-      {label: 'rejeter', id: 'rejected', color: '#e8554e'},
-      {label: 'mauvais', id: 'bad', color: '#f19c65'},
-      {label: 'neutre', id: 'neutral', color: '#ffd265'},
-      {label: 'bien', id: 'good', color: '#2aa876'},
-      {label: 'excellent', id: 'excellent', color: '#0a7b83'},];
     survey.reVoteDelay = '1D';
     survey.expireAt = new Date();
     survey.selfDestruct = new Date();
@@ -73,6 +67,12 @@ export class FakeData {
     candidate.noteMax = 5;
     candidate.score = faker.random.number({min: 0, max: 5, precision: 0.01});
     candidate.images = faker.image.image();
+    candidate.opinions = [
+      {label: 'rejeter', id: 'rejected', color: '#e8554e'},
+      {label: 'mauvais', id: 'bad', color: '#f19c65'},
+      {label: 'neutre', id: 'neutral', color: '#ffd265'},
+      {label: 'bien', id: 'good', color: '#2aa876'},
+      {label: 'excellent', id: 'excellent', color: '#0a7b83'}, ];
     candidate.modified = new Date();
     candidate.created = new Date();
     return candidate;

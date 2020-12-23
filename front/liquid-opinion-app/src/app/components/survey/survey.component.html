@@ -76,7 +76,7 @@
           <div class="votes-question font-size2">Votre opinion du jour ?</div>
           <div class="flex-grow-1 d-flex flex-row votes-radio-container">
             <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
-              <mat-radio-button *ngFor="let opinion of survey.opinionsDefault" [value]="opinion"
+              <mat-radio-button *ngFor="let opinion of candidate.opinions" [value]="opinion"
                                 class="votes-radio-button">
                 <div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">
                   {{opinion.label}}

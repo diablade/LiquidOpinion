@@ -1,3 +1,5 @@
+import {Opinion} from "./survey";
+
 export class Candidate {
   id: string;
   title: string;
@@ -8,7 +10,7 @@ export class Candidate {
   images: string;
   modified: Date;
   created: Date;
-
+  opinions: Opinion[];
   score: number;
   choice: any;
   graphOpened: boolean;

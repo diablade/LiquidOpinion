@@ -15,7 +15,12 @@ export class Survey {
   visibleBySearch: boolean;
   isPrivate: boolean;
   typeOfVote: string;
-  opinionsDefault: Opinion[];
+  opinionsDefault: Opinion[] = [
+    {label: 'rejeter', id: 'rejected', color: '#e8554e'},
+    {label: 'mauvais', id: 'bad', color: '#f19c65'},
+    {label: 'neutre', id: 'neutral', color: '#ffd265'},
+    {label: 'bien', id: 'good', color: '#2aa876'},
+    {label: 'excellent', id: 'excellent', color: '#0a7b83'},];
   reVoteDelay: string;
   expireAt: Date;
   selfDestruct: Date;

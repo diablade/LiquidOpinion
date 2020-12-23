@@ -25,8 +25,13 @@ export class SurveyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let fk2 = FakeData.createFakeCandidate('2', this.survey.id);
+    fk2.opinions = [
+      {label: 'mauvais', id: 'bad', color: '#f19c65'},
+      {label: 'neutre', id: 'neutral', color: '#ffd265'},
+      {label: 'bien', id: 'good', color: '#2aa876'}, ];
     this.candidates = [FakeData.createFakeCandidate('1', this.survey.id),
-      FakeData.createFakeCandidate('2', this.survey.id),
+      fk2,
       FakeData.createFakeCandidate('3', this.survey.id),
       FakeData.createFakeCandidate('4', this.survey.id),
       FakeData.createFakeCandidate('5', this.survey.id)];
