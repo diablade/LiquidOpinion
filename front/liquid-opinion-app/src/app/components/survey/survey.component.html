@@ -55,23 +55,24 @@
           </mat-drawer-container>
         </div>
         <div class="flex-column candidate-header-action">
-          <div [style.border-color]="getColorFromScore(candidate.score)" class="candidate-header-score">
+          <div (click)="chart.toggle()" [style.border-color]="getColorFromScore(candidate.score)" class="candidate-header-score">
             {{candidate.score}}
           </div>
-          <button (click)="chart.toggle()" color="excellent" mat-raised-button>
-            opinions
-            <mat-icon>insights</mat-icon>
-          </button>
-          <button [routerLink]="['/survey/'+survey.id+'/candidate/'+candidate.id]" color="primary" mat-raised-button>
-            détails
-          </button>
+          <div class="d-flex justify-content-center flex-row">
+            <button (click)="chart.toggle()" mat-icon-button>
+              <mat-icon color="primary">insights</mat-icon>
+            </button>
+            <button [routerLink]="['/survey/'+survey.id+'/candidate/'+candidate.id]" mat-icon-button>
+              <mat-icon color="primary">chat</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
       <div class="">
         <div class="votes flex-grow-1 d-flex flex-row">
           <div class="votes-question font-size2">Votre opinion du jour ?</div>
           <div class="flex-grow-1 d-flex flex-row votes-radio-container">
-            <mat-radio-group class="votes-radio-group" [(ngModel)]="candidate.choice">
+            <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
               <mat-radio-button *ngFor="let opinion of survey.opinionsDefault" [value]="opinion"
                                 class="votes-radio-button">
                 <div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">

@@ -1,1 +1,42 @@
-<p>candidate works!</p>
+<div class="candidate row justify-content-center">
+  <mat-card class="bgWhite row">
+    <div class="candidate-image col-lg-2">
+      <img [src]=candidate.images alt="">
+    </div>
+    <div class="col-lg-5">
+      <div class="d-flex flex-row">
+        <div class="flex-grow-1">
+          <div class="candidate-title">{{candidate.title}}</div>
+          <div class="candidate-descr">{{candidate.description}}</div>
+        </div>
+        <div [style.border-color]="getColorFromScore(candidate.score)"
+             class="candidate-score">
+          {{candidate.score}}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 col-12">
+      <app-chart-candidate></app-chart-candidate>
+    </div>
+    <div class="col-12 votes d-flex flex-row">
+      <div class="votes-question font-size2">Votre opinion du jour ?</div>
+      <div class="flex-grow-1 d-flex flex-row votes-radio-container">
+        <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
+          <mat-radio-button *ngFor="let opinion of survey.opinionsDefault" [value]="opinion"
+                            class="votes-radio-button">
+            <div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">
+              {{opinion.label}}
+            </div>
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <button [disabled]="!candidate.choice" aria-label="vote" mat-raised-button>
+        envoyer : {{candidate.choice ? candidate.choice.label : ""}}
+        <fa-icon [icon]="faVoteYea" [style.color]="candidate.choice ? candidate.choice.color : ''" class="icon"></fa-icon>
+      </button>
+    </div>
+  </mat-card>
+  <div class="comments col-12 ">
+    comments TODO
+  </div>
+</div>

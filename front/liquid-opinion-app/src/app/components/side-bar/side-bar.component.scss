@@ -18,7 +18,7 @@
     }
 
     .profil {
-      width: 170px;
+      max-width: 140px;
 
       &-name {
         font-size: medium;
@@ -28,7 +28,6 @@
       }
 
       &-email {
-        font-size: smaller;
         color: gray;
         white-space: nowrap;
         overflow: hidden;

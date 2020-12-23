@@ -3,14 +3,14 @@
     <div class="header-photo mr-2">
       <img [src]=user.photo alt="">
     </div>
-    <div class="profil">
-      <div class="profil-name text-capitalize font-weight-bold">{{user.username}}</div>
-      <div class="profil-email">{{user.email}}</div>
+    <div class="profil flex-grow-1">
+      <div class="profil-name text-capitalize font-weight-bold" title="{{user.username}}">{{user.username}}</div>
+      <div class="profil-email small" title="{{user.email}}">{{user.email}}</div>
     </div>
-    <button (click)="onClick('logout')" aria-label="logout" class="float-right" mat-icon-button>
+    <button (click)="onClick('logout')" aria-label="logout" mat-icon-button>
       <mat-icon color="primary">logout</mat-icon>
     </button>
-    <button (click)="onClick('settings')" aria-label="settings" class="float-right" mat-icon-button>
+    <button (click)="onClick('settings')" aria-label="settings" mat-icon-button>
       <mat-icon color="primary">settings</mat-icon>
     </button>
   </div>

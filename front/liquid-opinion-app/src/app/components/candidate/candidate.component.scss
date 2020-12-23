@@ -1,0 +1,20 @@
+.candidate {
+  margin: 16px;
+
+  mat-card {
+    min-width: 300px;
+    max-width: 1000px;
+  }
+
+  &-image {
+    img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+    }
+  }
+
+  .comments {
+    margin-top: 16px;
+  }
+}

@@ -21,7 +21,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
 import {ChartsModule} from 'ng2-charts';
-import { ChartCandidateComponent } from './components/chart-candidate/chart-candidate.component';
+import {ChartCandidateComponent} from './components/chart-candidate/chart-candidate.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 // import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
@@ -48,9 +50,11 @@ import { ChartCandidateComponent } from './components/chart-candidate/chart-cand
     MatIconModule,
     MatSidenavModule,
     MatRadioModule,
+    // MatTooltipModule,
     FontAwesomeModule,
     ChartsModule,
     FormsModule,
+
     // MatDividerModule,
   ],
   providers: [],
