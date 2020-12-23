@@ -59,8 +59,11 @@
             {{candidate.score}}
           </div>
           <div class="d-flex justify-content-center flex-row">
-            <button (click)="chart.toggle()" mat-icon-button>
-              <mat-icon color="primary">insights</mat-icon>
+            <button *ngIf="!chart.opened" (click)="chart.toggle()" color="primary" mat-icon-button>
+              <mat-icon>insights</mat-icon>
+            </button>
+            <button *ngIf="chart.opened" (click)="chart.toggle()" color="primary" mat-mini-fab>
+              <mat-icon>insights</mat-icon>
             </button>
             <button [routerLink]="['/survey/'+survey.id+'/candidate/'+candidate.id]" mat-icon-button>
               <mat-icon color="primary">chat</mat-icon>
