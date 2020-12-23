@@ -1,42 +1,50 @@
-<div class="candidate row justify-content-center">
-  <mat-card class="bgWhite row">
-    <div class="candidate-image col-lg-2">
-      <img [src]=candidate.images alt="">
-    </div>
-    <div class="col-lg-5">
-      <div class="d-flex flex-row">
-        <div class="flex-grow-1">
-          <div class="candidate-title">{{candidate.title}}</div>
-          <div class="candidate-descr">{{candidate.description}}</div>
+<div class="candidate w-100">
+  <div class="row no-gutters">
+    <div class="col-xl-6 col-lg-12 pr-xl-3">
+      <mat-card class="bgWhite d-flex flex-row">
+          <div class="candidate-image">
+            <img [src]=candidate.images alt="">
+          </div>
+          <div class="flex-grow-1">
+            <div class="candidate-title font-size1">{{candidate.title}}</div>
+            <div class="candidate-descr font-size2">{{candidate.description}}</div>
+          </div>
+          <div [style.border-color]="getColorFromScore(candidate.score)"
+               class="candidate-score">
+            {{candidate.score}}
+          </div>
+      </mat-card>
+      <mat-card class="bgWhite">
+        <div class="col-12 votes d-flex flex-row">
+          <div class="votes-question font-size2">Votre opinion du jour ?</div>
+          <div class="flex-grow-1 d-flex flex-row votes-radio-container">
+            <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
+              <mat-radio-button *ngFor="let opinion of candidate.opinions" [value]="opinion"
+                                class="votes-radio-button">
+                <div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">
+                  {{opinion.label}}
+                </div>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <button [disabled]="!candidate.choice" aria-label="vote" mat-raised-button>
+            envoyer : {{candidate.choice ? candidate.choice.label : ""}}
+            <fa-icon [icon]="faVoteYea" [style.color]="candidate.choice ? candidate.choice.color : ''"
+                     class="icon"></fa-icon>
+          </button>
         </div>
-        <div [style.border-color]="getColorFromScore(candidate.score)"
-             class="candidate-score">
-          {{candidate.score}}
+      </mat-card>
+      <mat-card class="bgWhite">
+        <app-chart-candidate></app-chart-candidate>
+      </mat-card>
+    </div>
+    <div class="col-xl-6 col-lg-12">
+      <mat-card class="bgWhite">
+        <div class="comments">
+          <disqus [identifier]="pageId" [url]="url" [category]="catId" [language]="'en'"
+                  (newComment)="onComment($event)" (ready)="onReady($event)" (paginate)="onPaginate($event)"></disqus>
         </div>
-      </div>
+      </mat-card>
     </div>
-    <div class="col-lg-5 col-12">
-      <app-chart-candidate></app-chart-candidate>
-    </div>
-    <div class="col-12 votes d-flex flex-row">
-      <div class="votes-question font-size2">Votre opinion du jour ?</div>
-      <div class="flex-grow-1 d-flex flex-row votes-radio-container">
-        <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
-          <mat-radio-button *ngFor="let opinion of candidate.opinionsDefault" [value]="opinion"
-                            class="votes-radio-button">
-            <div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">
-              {{opinion.label}}
-            </div>
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <button [disabled]="!candidate.choice" aria-label="vote" mat-raised-button>
-        envoyer : {{candidate.choice ? candidate.choice.label : ""}}
-        <fa-icon [icon]="faVoteYea" [style.color]="candidate.choice ? candidate.choice.color : ''" class="icon"></fa-icon>
-      </button>
-    </div>
-  </mat-card>
-  <div class="comments col-12 ">
-    comments TODO
   </div>
 </div>

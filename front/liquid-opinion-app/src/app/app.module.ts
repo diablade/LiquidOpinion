@@ -23,6 +23,7 @@ import {FormsModule} from '@angular/forms';
 import {ChartsModule} from 'ng2-charts';
 import {ChartCandidateComponent} from './components/chart-candidate/chart-candidate.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {DisqusModule} from 'ngx-disqus';
 
 // import {MatDividerModule} from '@angular/material/divider';
 
@@ -54,6 +55,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     FontAwesomeModule,
     ChartsModule,
     FormsModule,
+    DisqusModule.forRoot('liquidopinion'),
 
     // MatDividerModule,
   ],

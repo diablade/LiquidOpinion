@@ -1,11 +1,14 @@
 .candidate {
-  margin: 16px;
+  padding: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
 
   mat-card {
-    min-width: 300px;
-    max-width: 1000px;
+    margin-bottom: 16px;
+  //  min-width: 300px;
+  //  max-width: 1000px;
   }
-
+  //
   &-image {
     img {
       width: 250px;
