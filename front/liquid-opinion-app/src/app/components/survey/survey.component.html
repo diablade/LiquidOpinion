@@ -40,7 +40,7 @@
   <div *ngFor="let candidate of candidates" class="d-flex candidate">
     <mat-card class="bgWhite d-flex flex-column">
       <div class="d-flex flex-row candidate-header">
-        <div class="candidate-header-image">
+        <div class="candidate-header-image finger" [routerLink]="['/survey/'+survey.id+'/candidate/'+candidate.id]">
           <img [src]=candidate.images alt="">
         </div>
         <div class="flex-grow-1">
@@ -49,12 +49,12 @@
               <app-chart-candidate></app-chart-candidate>
             </mat-drawer>
             <mat-drawer-content>
-              <div class="candidate-header-title">{{candidate.title}}</div>
+              <div class="candidate-header-title finger" [routerLink]="['/survey/'+survey.id+'/candidate/'+candidate.id]">{{candidate.title}}</div>
               <div class="candidate-header-descr">{{candidate.description}}</div>
             </mat-drawer-content>
           </mat-drawer-container>
         </div>
-        <div class="flex-column candidate-header-action">
+        <div class="flex-column candidate-header-action finger">
           <div (click)="chart.toggle()" [style.border-color]="getColorFromScore(candidate.score)" class="candidate-header-score">
             {{candidate.score}}
           </div>
