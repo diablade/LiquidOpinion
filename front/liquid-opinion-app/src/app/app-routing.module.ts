@@ -7,7 +7,8 @@ import {SurveyComponent} from './components/survey/survey.component';
 import {CandidateComponent} from './components/candidate/candidate.component';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent},
+  // {path: '', component: DashboardComponent},
+  {path: '', component: SurveysComponent},
   {path: 'surveys-favorites', component: SurveysComponent},
   {path: 'surveys-participate', component: SurveysComponent},
   {path: 'surveys-public', component: SurveysComponent},

@@ -99,6 +99,9 @@
           "configurations": {
             "production": {
               "browserTarget": "liquid-opinion-app:build:production"
+            },
+            "recette": {
+              "browserTarget": "liquid-opinion-app:build:recette"
             }
           }
         },
