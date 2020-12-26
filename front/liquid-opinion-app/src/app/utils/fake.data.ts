@@ -61,10 +61,10 @@ export class FakeData {
   public static createFakeCandidate(id: string, idS: string): Candidate {
     const candidate = new Candidate();
     candidate.id = id;
-    candidate.title = faker.lorem.words();
+    candidate.title = faker.lorem.words(4);
     candidate.surveyId = idS;
     candidate.description = faker.lorem.paragraph();
-    candidate.longDescription = faker.lorem.paragraphs(3);
+    candidate.longDescription = faker.lorem.paragraphs(6);
     candidate.noteMax = 5;
     candidate.score = faker.random.number({min: 0, max: 5, precision: 0.01});
     candidate.images = faker.image.image();
