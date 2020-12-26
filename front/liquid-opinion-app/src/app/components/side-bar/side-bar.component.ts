@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {faHeart, faCog, faPoll, faGlobeEurope, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faHeart, faUserFriends, faCog, faPoll, faGlobeEurope, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {User} from '../../models/user';
 import {FakeData} from '../../utils/fake.data';
 
@@ -15,6 +15,7 @@ export class SideBarComponent implements OnInit, OnChanges {
   faTrash = faTrash;
   faHeart = faHeart;
   faCog = faCog;
+  faShare= faUserFriends;
   user: User;
 
   constructor() {

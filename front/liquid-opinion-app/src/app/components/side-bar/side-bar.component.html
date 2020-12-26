@@ -20,17 +20,26 @@
     </button>
   </div>
   <div class="sections">
-    <!-- me concernant -->
-    <div class="item d-flex flex-row" routerLink="surveys-participate" routerLinkActive="itemSelected">
-      <fa-icon [icon]="faPoll" class="icon" size="lg"></fa-icon>
-      <div class="flex-grow-1 ml-1 font-size2">sondage que je participe</div>
-      <div class="number">10</div>
-    </div>
 
     <!-- mes sondages -->
     <div class="item d-flex flex-row" routerLink="surveys-favorites" routerLinkActive="itemSelected">
       <fa-icon [icon]="faHeart" class="icon" size="lg"></fa-icon>
       <div class="flex-grow-1 ml-1 font-size2">mes sondages préférés</div>
+      <div class="number">10</div>
+    </div>
+
+
+    <!-- me concernant -->
+    <div class="item d-flex flex-row" routerLink="surveys-participate" routerLinkActive="itemSelected">
+      <fa-icon [icon]="faPoll" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1 font-size2">participés</div>
+      <div class="number">10</div>
+    </div>
+
+    <!-- me concernant -->
+    <div class="item d-flex flex-row" routerLink="surveys-participate" routerLinkActive="itemSelected">
+      <fa-icon [icon]="faShare" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1 font-size2">partagés avec moi </div>
       <div class="number">10</div>
     </div>
 
