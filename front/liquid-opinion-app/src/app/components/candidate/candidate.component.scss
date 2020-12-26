@@ -6,16 +6,66 @@
   mat-card {
     margin-bottom: 16px;
   }
+  &-header{
+    //position: sticky;
+    //top: 0;
+  }
+
+  &-title{
+
+  }
+
+  &-share{
+    text-align: center;
+  }
 
   &-image {
+    text-align: center;
     img {
-      width: 250px;
-      height: 250px;
+      max-width: 100%;
       object-fit: cover;
     }
   }
 
+  &-score {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: solid 4px gray;
+    margin-bottom: 10px;
+    line-height: 100px;
+    font-size: 35px;
+  }
+
   .comments {
     margin-top: 16px;
+  }
+
+  .votes {
+    margin-top: 13px;
+    &-question {
+      padding-top: 9px;
+      margin: 0 auto;
+    }
+
+    &-radio {
+      &-container {
+        line-height: 15px;
+        padding-top: 10px;
+        width: fit-content;
+        margin: 0 auto;
+      }
+      &-group{
+        margin: 0 auto;
+      }
+
+      &-button {
+        margin-right: 10px;
+
+        &-label {
+          margin-left: -4px;
+        }
+      }
+    }
   }
 }

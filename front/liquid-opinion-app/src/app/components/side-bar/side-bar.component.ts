@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {faHeart, faCog, faPoll, faGlobeEurope, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {User} from '../../models/user';
-import {FakeData} from '../../../assets/fake.data';
+import {FakeData} from '../../utils/fake.data';
 
 @Component({
   selector: 'app-side-bar',

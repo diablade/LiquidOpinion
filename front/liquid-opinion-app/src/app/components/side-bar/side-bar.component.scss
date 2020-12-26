@@ -1,9 +1,11 @@
 @import "src/theme.scss";
 
 .sideMenu {
-  position: relative;
   width: inherit;
   height: inherit;
+  min-width: 280px;
+  padding: 10px;
+  overflow: auto;
 
   .header {
     margin: 10px 0;

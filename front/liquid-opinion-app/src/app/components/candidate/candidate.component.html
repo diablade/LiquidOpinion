@@ -1,21 +1,57 @@
 <div class="candidate w-100">
   <div class="row no-gutters">
-    <div class="col-xl-6 col-lg-12 pr-xl-3">
-      <mat-card class="bgWhite d-flex flex-row">
-          <div class="candidate-image">
-            <img [src]=candidate.images alt="">
+    <div class="col-xl-6 col-lg-12 pr-xl-3 overflow-auto">
+      <mat-card class="bgWhite candidate-header d-flex flex-row">
+        <div class="flex-grow-1 d-flex flex-column">
+          <div class="flex-grow-1 candidate-title font-size0">
+            esgsegrsgfx efzefsrdgdr gsrg sdg fxg fg
+            {{candidate.title}}
           </div>
-          <div class="flex-grow-1">
-            <div class="candidate-title font-size1">{{candidate.title}}</div>
-            <div class="candidate-descr font-size2">{{candidate.description}}</div>
+          <div class="candidate-share font-size3">
+            <button mat-icon-button>
+              <mat-icon color="primary">share</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon color="primary">facebook</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon color="primary">facebook</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon color="primary">email</mat-icon>
+            </button>
           </div>
-          <div [style.border-color]="getColorFromScore(candidate.score)"
-               class="candidate-score">
-            {{candidate.score}}
-          </div>
+        </div>
+        <div [style.border-color]="getColorFromScore(candidate.score)"
+             class="candidate-score">
+          {{candidate.score}}
+        </div>
+      </mat-card>
+      <mat-card class="bgWhite candidate-image">
+        <img [src]=candidate.images alt="">
+      </mat-card>
+      <mat-card class="bgWhite w-100">
+        <div class="candidate-descr font-size2">
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          efzefezsfze zef zefozeuzeof zejpizel zepilr nfez
+          {{candidate.description}}</div>
+      </mat-card>
+    </div>
+    <div class="col-xl-6 col-lg-12 overflow-auto">
+      <mat-card class="bgWhite">
+        <app-chart-candidate></app-chart-candidate>
       </mat-card>
       <mat-card class="bgWhite">
-        <div class="col-12 votes d-flex flex-row">
+        <div class="votes d-flex flex-row">
           <div class="votes-question font-size2">Votre opinion du jour ?</div>
           <div class="flex-grow-1 d-flex flex-row votes-radio-container">
             <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
@@ -35,14 +71,10 @@
         </div>
       </mat-card>
       <mat-card class="bgWhite">
-        <app-chart-candidate></app-chart-candidate>
-      </mat-card>
-    </div>
-    <div class="col-xl-6 col-lg-12">
-      <mat-card class="bgWhite">
         <div class="comments">
-          <disqus [identifier]="pageId" [url]="url" [category]="catId" [language]="'fr'"
-                  (newComment)="onComment($event)" (ready)="onReady($event)" (paginate)="onPaginate($event)"></disqus>
+          <disqus (newComment)="onComment($event)" (paginate)="onPaginate($event)" (ready)="onReady($event)"
+                  [category]="catId"
+                  [identifier]="pageId" [language]="'fr'" [url]="url"></disqus>
         </div>
       </mat-card>
     </div>

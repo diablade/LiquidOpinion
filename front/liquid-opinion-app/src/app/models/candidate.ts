@@ -1,10 +1,11 @@
-import {Opinion} from "./survey";
+import {Opinion} from './survey';
 
 export class Candidate {
   id: string;
   title: string;
   surveyId: string;
   description: string;
+  longDescription: string;
   votes: Vote[];
   noteMax: number;
   images: string;

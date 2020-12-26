@@ -1,7 +1,7 @@
 import * as faker from 'faker';
-import {Member, Survey} from '../app/models/survey';
-import {Candidate, Vote} from '../app/models/candidate';
-import {User} from '../app/models/user';
+import {Member, Survey} from '../models/survey';
+import {Candidate, Vote} from '../models/candidate';
+import {User} from '../models/user';
 
 export class FakeData {
 
@@ -64,6 +64,7 @@ export class FakeData {
     candidate.title = faker.lorem.words();
     candidate.surveyId = idS;
     candidate.description = faker.lorem.paragraph();
+    candidate.longDescription = faker.lorem.paragraphs(3);
     candidate.noteMax = 5;
     candidate.score = faker.random.number({min: 0, max: 5, precision: 0.01});
     candidate.images = faker.image.image();

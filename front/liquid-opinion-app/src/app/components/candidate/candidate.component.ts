@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FakeData} from '../../../assets/fake.data';
 import {faVoteYea} from '@fortawesome/free-solid-svg-icons';
 import {ColorStyle} from '../../utils/colorStyle';
 import {DisqusComment, DisqusReady} from 'ngx-disqus';
+import {FakeData} from '../../utils/fake.data';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class CandidateComponent implements OnInit {
   }
 
   getColorFromScore(score: any) {
-    // return ColorStyle.getColorFromScore(score, this.candidate.opinionsDefault);
+    return ColorStyle.getColorFromScore(score, this.candidate.opinions);
   }
 
   onComment($event: DisqusComment) {

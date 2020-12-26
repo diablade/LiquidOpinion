@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Survey} from '../../models/survey';
 import {Candidate, Vote} from '../../models/candidate';
 import {faVoteYea} from '@fortawesome/free-solid-svg-icons';
-import {FakeData} from '../../../assets/fake.data';
+import {FakeData} from '../../utils/fake.data';
 import * as faker from 'faker';
 import * as _ from 'lodash';
 import {ColorStyle} from '../../utils/colorStyle';

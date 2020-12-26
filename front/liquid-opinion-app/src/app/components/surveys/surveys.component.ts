@@ -3,7 +3,7 @@ import {SurveyService} from '../../services/survey.service';
 import {Image, Member, Survey} from '../../models/survey';
 import {Subscription} from 'rxjs';
 import {faShareAlt, faHeart} from '@fortawesome/free-solid-svg-icons';
-import {FakeData} from '../../../assets/fake.data';
+import {FakeData} from '../../utils/fake.data';
 // import * as moment from 'moment';
 
 @Component({

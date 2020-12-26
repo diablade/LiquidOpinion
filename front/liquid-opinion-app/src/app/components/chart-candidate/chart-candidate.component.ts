@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Color, Label} from 'ng2-charts';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
-import {FakeData} from '../../../assets/fake.data';
+import {FakeData} from '../../utils/fake.data';
 import * as moment from 'moment';
 
 // import * as pluginDataLabels from 'chartjs-plugin-datalabels';
