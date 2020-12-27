@@ -11,7 +11,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {SurveysComponent} from './components/surveys/surveys.component';
+import {ListSurveyComponent} from './components/list-survey/list-survey.component';
 import {NotfoundComponent} from './components/notfound/notfound.component';
 import {CandidateComponent} from './components/candidate/candidate.component';
 import {SurveyComponent} from './components/survey/survey.component';
@@ -24,6 +24,7 @@ import {ChartsModule} from 'ng2-charts';
 import {ChartCandidateComponent} from './components/chart-candidate/chart-candidate.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DisqusModule} from 'ngx-disqus';
+import {MatDividerModule} from '@angular/material/divider';
 
 // import {MatDividerModule} from '@angular/material/divider';
 
@@ -34,7 +35,7 @@ import {DisqusModule} from 'ngx-disqus';
     TopBarComponent,
     SideBarComponent,
     DashboardComponent,
-    SurveysComponent,
+    ListSurveyComponent,
     NotfoundComponent,
     CandidateComponent,
     SurveyComponent,
@@ -56,6 +57,7 @@ import {DisqusModule} from 'ngx-disqus';
     ChartsModule,
     FormsModule,
     DisqusModule.forRoot('liquidopinion'),
+    MatDividerModule,
 
     // MatDividerModule,
   ],

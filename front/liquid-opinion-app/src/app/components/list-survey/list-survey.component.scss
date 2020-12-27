@@ -38,8 +38,9 @@
       overflow: hidden;
 
       img {
-        height: inherit;
-        width: inherit;
+        height: 266px;
+        width: 400px;
+        object-fit: cover;
       }
     }
 

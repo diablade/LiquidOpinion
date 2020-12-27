@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="actions d-flex flex-row">
-        <button [routerLink]="['/survey', survey.id]" color="primary" mat-raised-button>Participer</button>
+        <button [routerLink]="['/survey', survey.slug]" color="primary" mat-raised-button>Participer</button>
         <div class="flex-grow-1">
           <span class="font-weight-bold ml-2">
             {{survey.members.length}}

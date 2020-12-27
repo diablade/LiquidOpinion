@@ -33,12 +33,10 @@
         height: 40px;
       }
 
-      &-name::first-letter {
-        text-transform: uppercase;
+      &-name {
       }
 
-      &-date::first-letter {
-        text-transform: uppercase;
+      &-date {
       }
 
     }

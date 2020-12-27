@@ -16,47 +16,67 @@
   </div>
   <div class="sections">
     <button (click)="createSurvey()" class="w-100 d-flex flex-row radius" color="primary" mat-raised-button>
-      <div class="font-size2"><fa-icon [icon]="faPlus" class="icon mr-1"></fa-icon> créer un sondage</div>
+      <div class="font-size2 firstCap"><fa-icon [icon]="faPlus" class="icon mr-1"></fa-icon> créer un sondage</div>
     </button>
   </div>
   <div class="sections">
 
+    <!-- sepcial event -->
+    <div class="item d-flex flex-row" routerLink="event" routerLinkActive="itemSelected">
+      <fa-icon [icon]="faHorn" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1 font-size2 firstCap">Spécial évenements</div>
+      <div class="number">10</div>
+    </div>
+
     <!-- mes sondages -->
-    <div class="item d-flex flex-row" routerLink="surveys-favorites" routerLinkActive="itemSelected">
+    <div class="item d-flex flex-row" routerLink="favorites" routerLinkActive="itemSelected">
       <fa-icon [icon]="faHeart" class="icon" size="lg"></fa-icon>
-      <div class="flex-grow-1 ml-1 font-size2">mes sondages préférés</div>
+      <div class="flex-grow-1 ml-1 font-size2 firstCap">Mes sondages préférés</div>
       <div class="number">10</div>
     </div>
 
-
-    <!-- me concernant -->
-    <div class="item d-flex flex-row" routerLink="surveys-participate" routerLinkActive="itemSelected">
+    <!-- mes sondages créés -->
+    <div class="item d-flex flex-row" routerLink="created" routerLinkActive="itemSelected">
       <fa-icon [icon]="faPoll" class="icon" size="lg"></fa-icon>
-      <div class="flex-grow-1 ml-1 font-size2">participés</div>
+      <div class="flex-grow-1 ml-1 font-size2 firstCap">Mes sondages créés</div>
+      <div class="number">10</div>
+    </div>
+
+
+    <!-- me concernant -->
+    <div class="item d-flex flex-row" routerLink="participate" routerLinkActive="itemSelected">
+      <fa-icon [icon]="faVoteYea" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1 font-size2 firstCap">participés</div>
       <div class="number">10</div>
     </div>
 
     <!-- me concernant -->
-    <div class="item d-flex flex-row" routerLink="surveys-participate" routerLinkActive="itemSelected">
+    <div class="item d-flex flex-row" routerLink="shared" routerLinkActive="itemSelected">
       <fa-icon [icon]="faShare" class="icon" size="lg"></fa-icon>
-      <div class="flex-grow-1 ml-1 font-size2">partagés avec moi </div>
+      <div class="flex-grow-1 ml-1 font-size2 firstCap">partagés avec moi </div>
       <div class="number">10</div>
     </div>
 
     <!-- sondage public -->
-    <div class="item d-flex flex-row" routerLink="surveys-public" routerLinkActive="itemSelected">
+    <div class="item d-flex flex-row" routerLink="official" routerLinkActive="itemSelected">
+      <fa-icon [icon]="faAward" class="icon" size="lg"></fa-icon>
+      <div class="flex-grow-1 ml-1 font-size2 firstCap">sondage officiel</div>
+      <div class="">10</div>
+    </div>
+    <!-- sondage public -->
+    <div class="item d-flex flex-row" routerLink="public" routerLinkActive="itemSelected">
       <fa-icon [icon]="faeuro" class="icon" size="lg"></fa-icon>
-      <div class="flex-grow-1 ml-1 font-size2">sondage public</div>
+      <div class="flex-grow-1 ml-1 font-size2 firstCap">sondage public</div>
       <div class="">10</div>
     </div>
   </div>
 
-<!--  <mat-divider></mat-divider>-->
+  <mat-divider class="m-1"></mat-divider>
 
   <div class="sections">
-    <div class="item d-flex flex-row">
+    <div class="item d-flex flex-row" routerLink="expired" routerLinkActive="itemSelected">
       <fa-icon [icon]="faTrash" class="icon" size="lg"></fa-icon>
-      <div class="flex-grow-1 ml-1">sondage expirés</div>
+      <div class="flex-grow-1 ml-1 firstCap">sondage expirés</div>
       <div class="number">10</div>
     </div>
   </div>
@@ -64,7 +84,7 @@
   <div class="sections">
     <div *appRight="['ADM_ACC']" class="rowSelection" routerLink="admin" routerLinkActive="selected">
       <fa-icon [icon]="faCog" class="icon" size="lg"></fa-icon>
-      <div class="itemLine center text">Administration</div>
+      <div class="">Administration</div>
     </div>
   </div>
 </div>

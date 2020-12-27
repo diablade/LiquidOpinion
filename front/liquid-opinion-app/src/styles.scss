@@ -11,12 +11,15 @@ body {
 .mat-button-toggle-button:focus {
   outline: none;
 }
-*:focus{
+
+*:focus {
   outline: none;
 }
-button:focus{
+
+button:focus {
   outline: none;
 }
+
 .mat-icon-button:focus {
   outline: none;
 }
@@ -25,24 +28,32 @@ button:focus{
   outline: none;
 }
 
-.bgWhite{
+.bgWhite {
   background-color: #fafafa !important;
   color: rgba(0, 0, 0, 0.87) !important;
 }
-.finger{
+
+.finger {
   cursor: pointer;
 }
 
-.font-size0{
+.firstCap::first-letter {
+  text-transform: uppercase;
+}
+
+.font-size0 {
   font-size: 25px;
 }
-.font-size1{
+
+.font-size1 {
   font-size: 20px;
 }
-.font-size2{
+
+.font-size2 {
   font-size: 15px;
 }
-.font-size3{
+
+.font-size3 {
   font-size: 10px;
 }
 
@@ -92,5 +103,5 @@ button:focus{
 //}
 //
 //.mat-icon-button.mat-primary {
-  //color: #155724;
+//color: #155724;
 //}

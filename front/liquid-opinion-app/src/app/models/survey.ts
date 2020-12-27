@@ -1,6 +1,7 @@
 export class Survey {
   id: string;
   title: string;
+  slug: string;
   creator: Member;
   slogan: string;
   description: string;

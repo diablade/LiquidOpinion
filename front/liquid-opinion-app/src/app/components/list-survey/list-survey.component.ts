@@ -7,11 +7,11 @@ import {FakeData} from '../../utils/fake.data';
 // import * as moment from 'moment';
 
 @Component({
-  selector: 'app-surveys',
-  templateUrl: './surveys.component.html',
-  styleUrls: ['./surveys.component.scss']
+  selector: 'app-list-survey',
+  templateUrl: './list-survey.component.html',
+  styleUrls: ['./list-survey.component.scss']
 })
-export class SurveysComponent implements OnInit {
+export class ListSurveyComponent implements OnInit {
   surveys: Survey[] = [];
 
   subSurvey: Subscription;

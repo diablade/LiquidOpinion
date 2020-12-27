@@ -9,6 +9,7 @@ export class FakeData {
     const survey = new Survey();
     survey.id = id;
     survey.title = faker.lorem.sentence();
+    survey.slug = faker.lorem.slug();
     survey.creator = this.createFakeMember('1');
     survey.slogan = faker.lorem.sentences();
     survey.description = faker.lorem.paragraph();
