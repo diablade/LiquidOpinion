@@ -1,13 +1,14 @@
 <div class="chart">
-  <canvas baseChart #candidateChart width="416" height="197"
+  <!--          width="416" height="197"-->
+  <canvas baseChart #candidateChart
           [datasets]="barChartData"
           [labels]="barChartLabels"
           [options]="barChartOptions"
           [colors]="barChartColors"
           [legend]="barChartLegend"
           [chartType]="barChartType">
-<!--          (chartHover)="chartHovered($event)"-->
-<!--          (chartClick)="chartClicked($event)">-->
-<!--          [plugins]="barChartPlugins"-->
+    <!--          (chartHover)="chartHovered($event)"-->
+    <!--          (chartClick)="chartClicked($event)">-->
+    <!--          [plugins]="barChartPlugins"-->
   </canvas>
 </div>

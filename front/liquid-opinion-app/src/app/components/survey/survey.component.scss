@@ -77,6 +77,10 @@
       margin-left: -16px;
       margin-top: -16px;
 
+      &-mini {
+        margin-right: -16px;
+      }
+
       &-image {
         img {
           width: 200px;
@@ -91,15 +95,30 @@
         margin-left: 16px;
         margin-right: 16px;
         margin-top: 16px;
+
+        &-mini {
+          font-size: 25px;
+          margin-bottom: 5px;
+          margin-top: 16px;
+        }
       }
 
       &-descr {
         margin-left: 16px;
         margin-right: 16px;
-        font-size: small;
         color: gray;
         max-height: 158px;
         overflow: auto;
+
+        &-mini {
+          color: gray;
+          max-height: 100px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
       }
 
       &-score {
@@ -120,6 +139,7 @@
 
     .votes {
       margin-top: 13px;
+
       &-question {
         padding-top: 9px;
         margin: 0 auto;
@@ -132,7 +152,8 @@
           width: fit-content;
           margin: 0 auto;
         }
-        &-group{
+
+        &-group {
           margin: 0 auto;
         }
 
