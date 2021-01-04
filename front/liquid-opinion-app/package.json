@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build-recette": "ng build --progress=true --base-href / --configuration=production",
+    "build-recette": "ng build --progress=true --base-href / --configuration=recette",
     "build-prod": "ng build --progress=true --base-href / --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
