@@ -15,7 +15,6 @@
       }
 
       &-name {
-        font-size: medium;
         white-space: nowrap;
         width: 200px;
         overflow: hidden;
@@ -23,7 +22,6 @@
       }
 
       &-date {
-        font-size: smaller;
         color: gray;
       }
     }
@@ -49,17 +47,14 @@
       margin-bottom: 15px;
 
       &-title {
-        font-size: 20px;
         margin-bottom: 5px;
       }
 
       &-tags {
-        font-size: 10px;
         color: gray;
       }
 
       &-slogan {
-        font-size: small;
         flex-grow: 1;
         max-height: 100px;
         overflow: hidden;

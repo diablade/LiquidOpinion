@@ -6,17 +6,17 @@
           <img [src]=survey.creator.photo alt="">
         </div>
         <div class="">
-          <div class="profil-name text-capitalize">{{survey.creator.username}}</div>
-          <div class="profil-date">créé le {{survey.created | date:'dd MMM yyyy'}}</div>
+          <div class="profil-name font-size2 text-capitalize">{{survey.creator.username}}</div>
+          <div class="profil-date font-size3 ">créé le {{survey.created | date:'dd MMM yyyy'}}</div>
         </div>
       </div>
       <div class="image">
         <img [src]=survey.images[0].url alt="">
       </div>
       <div class="texts flex-grow-1">
-        <div class="texts-title">{{survey.title}}</div>
-        <div class="texts-tags">tags tags tags</div>
-        <div class="texts-slogan">
+        <div class="texts-title font-size1">{{survey.title}}</div>
+        <div class="texts-tags font-size3">tags tags tags</div>
+        <div class="texts-slogan font-size2">
           {{survey.slogan}}
         </div>
       </div>
