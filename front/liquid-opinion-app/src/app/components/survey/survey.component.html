@@ -70,13 +70,13 @@
 		</div>
 	</div>
 	<div *ngFor="let candidate of candidates" class="d-flex candidate">
-		<mat-card class="bgWhite d-none d-md-flex flex-column">
+		<mat-card class="bgWhite d-flex flex-column">
 			<div class="d-flex flex-row candidate-header">
 				<div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
 					 class="candidate-header-image finger">
 					<img [src]=candidate.images alt="">
 				</div>
-				<div class="flex-grow-1">
+				<div class="flex-grow-1 d-none d-md-block">
 					<mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
 						<mat-drawer #chart [mode]="'over'" [opened]="candidate.graphOpened" class="mat-draw-chart">
 							<app-chart-candidate></app-chart-candidate>
@@ -88,7 +88,7 @@
 						</mat-drawer-content>
 					</mat-drawer-container>
 				</div>
-				<div class="flex-column candidate-header-action finger">
+				<div class="flex-column m-auto candidate-header-action finger">
 					<div (click)="chart.toggle()" [style.border-color]="getColorFromScore(candidate.score)"
 						 class="candidate-header-score font-size00">
 						{{candidate.score}}
@@ -106,45 +106,12 @@
 					</div>
 				</div>
 			</div>
-			<app-vote [candidateId]="candidate.id" [opinions]="candidate.opinions"></app-vote>
-		</mat-card>
-		<mat-card class="bgWhite d-flex d-md-none flex-column">
-			<div class="d-flex flex-row candidate-header candidate-header-mini">
+			<div class="d-block d-md-none">
 				<div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
-					 class="candidate-header-image finger">
-					<img [src]=candidate.images alt="">
-				</div>
-				<div class="flex-column m-auto candidate-header-action-mini finger">
-					<div (click)="chartMini.toggle()" [style.border-color]="getColorFromScore(candidate.score)"
-						 class="candidate-header-score font-size00">
-						{{candidate.score}}
-					</div>
-					<div class="d-flex justify-content-center flex-row">
-						<button (click)="chartMini.toggle()" *ngIf="!chartMini.opened" color="primary" mat-icon-button>
-							<mat-icon>insights</mat-icon>
-						</button>
-						<button (click)="chartMini.toggle()" *ngIf="chartMini.opened" color="primary" mat-mini-fab>
-							<mat-icon>insights</mat-icon>
-						</button>
-						<button [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]" mat-icon-button>
-							<mat-icon color="primary">chat</mat-icon>
-						</button>
-					</div>
-				</div>
+					 class="candidate-header-title font-size0 finger">{{candidate.title}}</div>
+				<div class="candidate-header-descr">{{candidate.description}}</div>
 			</div>
-			<div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
-				 class="candidate-header-title-mini font-size1 finger">{{candidate.title}}</div>
-			<div class="flex-grow-1">
-				<mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
-					<mat-drawer #chartMini [mode]="'over'" [opened]="candidate.graphOpened">
-						<app-chart-candidate></app-chart-candidate>
-					</mat-drawer>
-					<mat-drawer-content>
-						<div class="candidate-header-descr-mini font-size3 ">{{candidate.description}}</div>
-						<app-vote [candidateId]="candidate.id" [opinions]="candidate.opinions"></app-vote>
-					</mat-drawer-content>
-				</mat-drawer-container>
-			</div>
+			<app-vote [candidateId]="candidate.id" [opinions]="candidate.opinions"></app-vote>
 		</mat-card>
 	</div>
 </div>

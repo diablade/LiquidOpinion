@@ -28,7 +28,14 @@ export class SurveyComponent implements OnInit {
 			fk2,
 			FakeData.createFakeCandidate('3', this.survey.id),
 			FakeData.createFakeCandidate('4', this.survey.id),
-			FakeData.createFakeCandidate('5', this.survey.id)];
+			FakeData.createFakeCandidate('5', this.survey.id),
+			FakeData.createFakeCandidate('6', this.survey.id),
+			FakeData.createFakeCandidate('7', this.survey.id),
+			FakeData.createFakeCandidate('8', this.survey.id),
+			FakeData.createFakeCandidate('9', this.survey.id),
+			FakeData.createFakeCandidate('10', this.survey.id),
+			FakeData.createFakeCandidate('11', this.survey.id),
+			FakeData.createFakeCandidate('12', this.survey.id)];
 	}
 
 	showAllGraph() {
