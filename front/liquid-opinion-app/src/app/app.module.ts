@@ -5,62 +5,69 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TopBarComponent} from './components/top-bar/top-bar.component';
-import {MatCardModule} from '@angular/material/card';
 import {SideBarComponent} from './components/side-bar/side-bar.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ListSurveyComponent} from './components/list-survey/list-survey.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {NotfoundComponent} from './components/notfound/notfound.component';
 import {CandidateComponent} from './components/candidate/candidate.component';
 import {SurveyComponent} from './components/survey/survey.component';
-import {MatIconModule} from '@angular/material/icon';
 import {ProgressRingComponent} from './components/progress-ring/progress-ring.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {ChartCandidateComponent} from './components/chart-candidate/chart-candidate.component';
+import {ChartDialogComponent} from './components/dialogs/chart-dialog/chart-dialog.component';
+
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
+
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {ChartsModule} from 'ng2-charts';
-import {ChartCandidateComponent} from './components/chart-candidate/chart-candidate.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import {DisqusModule} from 'ngx-disqus';
-import {MatDividerModule} from '@angular/material/divider';
-import { VoteComponent } from './components/vote/vote.component';
+import {VoteComponent} from './components/vote/vote.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TopBarComponent,
-    TopBarComponent,
-    SideBarComponent,
-    DashboardComponent,
-    ListSurveyComponent,
-    NotfoundComponent,
-    CandidateComponent,
-    SurveyComponent,
-    ProgressRingComponent,
-    ChartCandidateComponent,
-    VoteComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatRadioModule,
-    MatDividerModule,
-    // MatTooltipModule,
-    FontAwesomeModule,
-    ChartsModule,
-    FormsModule,
-    DisqusModule.forRoot('liquidopinion'),
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		TopBarComponent,
+		TopBarComponent,
+		SideBarComponent,
+		DashboardComponent,
+		ListSurveyComponent,
+		NotfoundComponent,
+		CandidateComponent,
+		SurveyComponent,
+		ProgressRingComponent,
+		ChartCandidateComponent,
+		VoteComponent,
+		ChartDialogComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MatCardModule,
+		MatToolbarModule,
+		MatButtonModule,
+		MatIconModule,
+		MatSidenavModule,
+		MatRadioModule,
+		MatDividerModule,
+		// MatTooltipModule,
+		MatDialogModule,
+
+		FontAwesomeModule,
+		ChartsModule,
+		FormsModule,
+		DisqusModule.forRoot('liquidopinion'),
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule {
 }

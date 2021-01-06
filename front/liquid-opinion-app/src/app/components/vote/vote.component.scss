@@ -1,19 +1,21 @@
-.votes {
+.vote {
   margin-top: 13px;
+  //align-items: center;
+  //height: 100%;
 
   &-question {
-	padding-top: 9px;
-	margin: 0 auto;
+	//padding: px;
+	//margin: 0 auto;
   }
 
   &-radio {
 	&-container {
+	  //justify-content: center;
+	  //align-items: center;
 	  //line-height: 15px;
 	  //padding-top: 10px;
 	  //width: fit-content;
 	  //margin: 0 auto;
-	  justify-content: center;
-	  align-items: center;
 	}
 
 	&-group {
@@ -24,8 +26,12 @@
 	  margin-right: 10px;
 
 	  &-label {
-		margin-left: -4px;
+		//margin-left: -4px;
 	  }
 	}
+  }
+
+  &-validate {
+	text-align: end;
   }
 }

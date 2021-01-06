@@ -3,6 +3,8 @@ import {Survey} from '../../models/survey';
 import {Candidate} from '../../models/candidate';
 import {FakeData} from '../../utils/fake.data';
 import {ColorStyle} from '../../utils/colorStyle';
+import {MatDialog} from '@angular/material/dialog';
+import {ChartDialogComponent} from "../dialogs/chart-dialog/chart-dialog.component";
 
 
 @Component({
@@ -15,7 +17,7 @@ export class SurveyComponent implements OnInit {
 	candidates: Candidate[];
 	score: number;
 
-	constructor() {
+	constructor(public dialog: MatDialog) {
 	}
 
 	ngOnInit(): void {
@@ -47,6 +49,11 @@ export class SurveyComponent implements OnInit {
 	}
 
 	onClick(share: string) {
+
+	}
+
+	showDialogGraph() {
+		this.dialog.open(ChartDialogComponent);
 
 	}
 }

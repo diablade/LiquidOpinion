@@ -1,6 +1,6 @@
 <div class="row justify-content-center no-gutters survey">
 	<div class="backBanner col-12 d-flex flex-column d-md-none bgWhite">
-		<div class="flex-grow-1 m-auto pt-2 font-size2">
+		<div class="flex-grow-1 m-auto p-2 font-size2">
 			{{survey.title}}
 		</div>
 		<div class="backBanner-action m-auto bgWhite">
@@ -43,7 +43,7 @@
 				<img [src]=survey.creator.photo alt="" class="ml-2 rounded-circle">
 			</div>
 		</div>
-		<div class="no-gutters col-12 col-md-8 header-descr ">
+		<div class="no-gutters col-12 col-md-8 header-descr">
 			{{survey.description}}
 		</div>
 		<div class="header-action1 bgWhite">
@@ -88,16 +88,23 @@
 						</mat-drawer-content>
 					</mat-drawer-container>
 				</div>
-				<div class="flex-column m-auto candidate-header-action finger">
+				<div class="d-flex flex-column candidate-header-action finger">
 					<div (click)="chart.toggle()" [style.border-color]="getColorFromScore(candidate.score)"
-						 class="candidate-header-score font-size00">
+						 class="d-none d-md-block candidate-header-score font-size00">
+						{{candidate.score}}
+					</div>
+					<div (click)="showDialogGraph()" [style.border-color]="getColorFromScore(candidate.score)"
+						 class="d-block d-md-none candidate-header-score font-size00">
 						{{candidate.score}}
 					</div>
 					<div class="d-flex justify-content-center flex-row">
-						<button (click)="chart.toggle()" *ngIf="!chart.opened" color="primary" mat-icon-button>
+						<button class="d-none d-md-block" (click)="chart.toggle()" *ngIf="!chart.opened" color="primary" mat-icon-button>
 							<mat-icon>insights</mat-icon>
 						</button>
-						<button (click)="chart.toggle()" *ngIf="chart.opened" color="primary" mat-mini-fab>
+						<button class="d-none d-md-block" (click)="chart.toggle()" *ngIf="chart.opened" color="primary" mat-mini-fab>
+							<mat-icon>insights</mat-icon>
+						</button>
+						<button class="d-block d-md-none" (click)="showDialogGraph()" color="primary" mat-mini-fab>
 							<mat-icon>insights</mat-icon>
 						</button>
 						<button [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]" mat-icon-button>
@@ -108,8 +115,8 @@
 			</div>
 			<div class="d-block d-md-none">
 				<div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
-					 class="candidate-header-title font-size0 finger">{{candidate.title}}</div>
-				<div class="candidate-header-descr">{{candidate.description}}</div>
+					 class="candidate-header-title-mini font-size0 finger">{{candidate.title}}</div>
+				<div class="candidate-header-descr-mini overflow-auto">{{candidate.description}}</div>
 			</div>
 			<app-vote [candidateId]="candidate.id" [opinions]="candidate.opinions"></app-vote>
 		</mat-card>

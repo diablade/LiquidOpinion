@@ -4,13 +4,9 @@
   }
 
   .backBanner {
-    position: sticky;
-    top: 0;
+    position: fixed;
     z-index: 2;
     box-shadow: gray 0px 1px 3px;
-    height: 96px;
-    min-height: 96px;
-    max-height: 96px;
   }
 
   .header {
@@ -32,7 +28,6 @@
       box-shadow: gray 0px 1px 3px;
       color: white;
       text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-      margin-top: -96px;
     }
 
     &-top {
@@ -97,11 +92,7 @@
     margin-right: 15px;
 
     &-header {
-      margin-left: -16px;
-      margin-top: -16px;
-
       &-mini {
-        margin-right: -16px;
       }
 
       &-image {
@@ -109,7 +100,7 @@
           width: 200px;
           height: 200px;
           object-fit: cover;
-          padding: 16px 0 16px 16px;
+          padding: 0 0 0px 0px;
         }
       }
 
@@ -117,7 +108,6 @@
         margin-bottom: 5px;
         margin-left: 16px;
         margin-right: 16px;
-        margin-top: 16px;
 
         &-mini {
           margin-bottom: 5px;
@@ -134,12 +124,12 @@
 
         &-mini {
           color: gray;
-          max-height: 100px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
+          max-height: 91px;
+          //overflow: hidden;
+          //text-overflow: ellipsis;
+          //display: -webkit-box;
+          //-webkit-line-clamp: 3;
+          //-webkit-box-orient: vertical;
         }
       }
 
@@ -153,8 +143,8 @@
       }
 
       &-action {
-        margin-top: 16px;
         width: 100px;
+        margin: 0 auto;
       }
     }
   }
