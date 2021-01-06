@@ -1,0 +1,31 @@
+.votes {
+  margin-top: 13px;
+
+  &-question {
+	padding-top: 9px;
+	margin: 0 auto;
+  }
+
+  &-radio {
+	&-container {
+	  //line-height: 15px;
+	  //padding-top: 10px;
+	  //width: fit-content;
+	  //margin: 0 auto;
+	  justify-content: center;
+	  align-items: center;
+	}
+
+	&-group {
+	  //margin: 0 auto;
+	}
+
+	&-button {
+	  margin-right: 10px;
+
+	  &-label {
+		margin-left: -4px;
+	  }
+	}
+  }
+}

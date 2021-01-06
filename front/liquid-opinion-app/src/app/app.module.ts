@@ -25,6 +25,7 @@ import {ChartCandidateComponent} from './components/chart-candidate/chart-candid
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DisqusModule} from 'ngx-disqus';
 import {MatDividerModule} from '@angular/material/divider';
+import { VoteComponent } from './components/vote/vote.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {MatDividerModule} from '@angular/material/divider';
     SurveyComponent,
     ProgressRingComponent,
     ChartCandidateComponent,
+    VoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,12 +52,12 @@ import {MatDividerModule} from '@angular/material/divider';
     MatIconModule,
     MatSidenavModule,
     MatRadioModule,
+    MatDividerModule,
     // MatTooltipModule,
     FontAwesomeModule,
     ChartsModule,
     FormsModule,
     DisqusModule.forRoot('liquidopinion'),
-    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

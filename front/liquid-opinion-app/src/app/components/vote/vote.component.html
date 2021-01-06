@@ -1,0 +1,23 @@
+<div class="w-100">
+	<div class="votes flex-grow-1 d-flex flex-row">
+		<div class="votes-question font-size2">Votre opinion du jour ?</div>
+		<div class="flex-grow-1 d-flex flex-row votes-radio-container">
+			<mat-radio-group [(ngModel)]="choice" class="votes-radio-group">
+				<mat-radio-button *ngFor="let opinion of opinions" [value]="opinion"
+								  class="votes-radio-button">
+					<div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">
+						{{opinion.label}}
+					</div>
+				</mat-radio-button>
+			</mat-radio-group>
+		</div>
+		<button (click)="onClick('vote')"
+				[disabled]="!choice"
+				[style.backgroundColor]="choice ? choice.color : ''" aria-label="vote" mat-raised-button>
+			envoyer :
+			{{choice ? choice.label : ""}}
+			<!--			<fa-icon [icon]="faVoteYea"-->
+			<!--					 class="icon"></fa-icon>-->
+		</button>
+	</div>
+</div>

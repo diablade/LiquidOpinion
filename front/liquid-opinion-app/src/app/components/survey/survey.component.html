@@ -1,184 +1,150 @@
 <div class="row justify-content-center no-gutters survey">
-    <div class="backBanner col-12 d-flex flex-column d-md-none bgWhite">
-        <div class="flex-grow-1 m-auto pt-2 font-size2">
-            {{survey.title}}
-        </div>
-        <div class="backBanner-action m-auto bgWhite">
-            <button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>content_copy</mat-icon>
-            </button>
-            <button (click)="showAllGraph()" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>insights</mat-icon>
-            </button>
-            <button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>favorite_border</mat-icon>
-            </button>
-            <button (click)="onClick('share')" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>share</mat-icon>
-            </button>
-        </div>
-    </div>
-    <div [style.background-image]="'url('+survey.images[1].url+')'" class="col-12 d-flex d-md-none no-gutters header-mini">
-        <div class="header-top w-100 d-flex flex-column">
-            <div class=" header-title-mini font-size1 flex-grow-1">{{survey.title}}</div>
-            <div class="justify-content-end d-flex header-author">
-                <div class="flex-column">
-                    <div class="font-size2 firstCap">créé par {{survey.creator.username}}</div>
-                    <div class="font-size3 firstCap">le {{survey.created | date:'dd MMM yyyy'}}</div>
-                </div>
-                <img [src]=survey.creator.photo alt="" class="ml-2 rounded-circle">
-            </div>
-        </div>
-    </div>
-    <div [style.background-image]="'url('+survey.images[1].url+')'" class="col-12 d-none d-md-flex no-gutters row header">
-        <div class="w-100 header-top d-flex flex-row">
-            <div class="flex-grow-1 header-title font-size0">{{survey.title}}</div>
-            <div class="d-flex header-author">
-                <div class="flex-column flex-grow-1">
-                    <div class="firstCap">créé par {{survey.creator.username}}</div>
-                    <div class="firstCap">le {{survey.created | date:'dd MMM yyyy'}}</div>
-                </div>
-                <img [src]=survey.creator.photo alt="" class="ml-2 rounded-circle">
-            </div>
-        </div>
-        <div class="no-gutters col-12 col-md-8 header-descr ">
-            {{survey.description}}
-        </div>
-        <div class="header-action1 bgWhite">
-            <button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>view_stream</mat-icon>
-            </button>
-            <button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>view_module</mat-icon>
-            </button>
-            <button (click)="showAllGraph()" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>insights</mat-icon>
-            </button>
-            <button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>content_copy</mat-icon>
-            </button>
-            <button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>favorite_border</mat-icon>
-            </button>
-            <button (click)="onClick('share')" aria-label="like" color="primary" mat-icon-button>
-                <mat-icon>share</mat-icon>
-            </button>
-        </div>
-        <div class="no-gutters col-12 header-action2 text-right">
-        </div>
-    </div>
-    <div *ngFor="let candidate of candidates" class="d-flex candidate">
-        <mat-card class="bgWhite d-none d-md-flex flex-column">
-            <div class="d-flex flex-row candidate-header">
-                <div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]" class="candidate-header-image finger">
-                    <img [src]=candidate.images alt="">
-                </div>
-                <div class="flex-grow-1">
-                    <mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
-                        <mat-drawer class="mat-draw-chart" #chart [mode]="'over'" [opened]="candidate.graphOpened">
-                            <app-chart-candidate></app-chart-candidate>
-                        </mat-drawer>
-                        <mat-drawer-content>
-                            <div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
-                                 class="candidate-header-title font-size0 finger">{{candidate.title}}</div>
-                            <div class="candidate-header-descr">{{candidate.description}}</div>
-                        </mat-drawer-content>
-                    </mat-drawer-container>
-                </div>
-                <div class="flex-column candidate-header-action finger">
-                    <div (click)="chart.toggle()" [style.border-color]="getColorFromScore(candidate.score)"
-                         class="candidate-header-score font-size00">
-                        {{candidate.score}}
-                    </div>
-                    <div class="d-flex justify-content-center flex-row">
-                        <button (click)="chart.toggle()" *ngIf="!chart.opened" color="primary" mat-icon-button>
-                            <mat-icon>insights</mat-icon>
-                        </button>
-                        <button (click)="chart.toggle()" *ngIf="chart.opened" color="primary" mat-mini-fab>
-                            <mat-icon>insights</mat-icon>
-                        </button>
-                        <button [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]" mat-icon-button>
-                            <mat-icon color="primary">chat</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="">
-                <div class="votes flex-grow-1 d-flex flex-row">
-                    <div class="votes-question font-size2">Votre opinion du jour ?</div>
-                    <div class="flex-grow-1 d-flex flex-row votes-radio-container">
-                        <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
-                            <mat-radio-button *ngFor="let opinion of candidate.opinions" [value]="opinion"
-                                              class="votes-radio-button">
-                                <div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">
-                                    {{opinion.label}}
-                                </div>
-                            </mat-radio-button>
-                        </mat-radio-group>
-                    </div>
-                    <button (click)="onClick('vote')" [disabled]="!candidate.choice" aria-label="vote" mat-raised-button>
-                        envoyer : {{candidate.choice ? candidate.choice.label : ""}}
-                        <fa-icon [icon]="faVoteYea" [style.color]="candidate.choice ? candidate.choice.color : ''"
-                                 class="icon"></fa-icon>
-                    </button>
-                </div>
-            </div>
-        </mat-card>
-        <mat-card class="bgWhite d-flex d-md-none flex-column">
-            <div class="d-flex flex-row candidate-header candidate-header-mini">
-                <div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]" class="candidate-header-image finger">
-                    <img [src]=candidate.images alt="">
-                </div>
-                <div class="flex-column m-auto candidate-header-action-mini finger">
-                    <div (click)="chartMini.toggle()" [style.border-color]="getColorFromScore(candidate.score)"
-                         class="candidate-header-score font-size00">
-                        {{candidate.score}}
-                    </div>
-                    <div class="d-flex justify-content-center flex-row">
-                        <button (click)="chartMini.toggle()" *ngIf="!chartMini.opened" color="primary" mat-icon-button>
-                            <mat-icon>insights</mat-icon>
-                        </button>
-                        <button (click)="chartMini.toggle()" *ngIf="chartMini.opened" color="primary" mat-mini-fab>
-                            <mat-icon>insights</mat-icon>
-                        </button>
-                        <button [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]" mat-icon-button>
-                            <mat-icon color="primary">chat</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
-                 class="candidate-header-title-mini font-size1 finger">{{candidate.title}}</div>
-            <div class="flex-grow-1">
-                <mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
-                    <mat-drawer #chartMini [mode]="'over'" [opened]="candidate.graphOpened">
-                        <app-chart-candidate></app-chart-candidate>
-                    </mat-drawer>
-                    <mat-drawer-content>
-                        <div class="candidate-header-descr-mini font-size3 ">{{candidate.description}}</div>
-                        <div class="">
-                            <div class="votes flex-grow-1 d-flex flex-row">
-                                <div class="votes-question font-size2">Votre opinion du jour ?</div>
-                                <div class="flex-grow-1 d-flex flex-row votes-radio-container">
-                                    <mat-radio-group [(ngModel)]="candidate.choice" class="votes-radio-group">
-                                        <mat-radio-button *ngFor="let opinion of candidate.opinions" [value]="opinion"
-                                                          class="votes-radio-button">
-                                            <div [style.border-bottom]="'3px solid'+opinion.color" class="votes-radio-button-label">
-                                                {{opinion.label}}
-                                            </div>
-                                        </mat-radio-button>
-                                    </mat-radio-group>
-                                </div>
-                                <button (click)="onClick('vote')" [disabled]="!candidate.choice" aria-label="vote" mat-raised-button>
-                                    envoyer : {{candidate.choice ? candidate.choice.label : ""}}
-                                    <fa-icon [icon]="faVoteYea" [style.color]="candidate.choice ? candidate.choice.color : ''"
-                                             class="icon"></fa-icon>
-                                </button>
-                            </div>
-                        </div>
-                    </mat-drawer-content>
-                </mat-drawer-container>
-            </div>
-        </mat-card>
-    </div>
+	<div class="backBanner col-12 d-flex flex-column d-md-none bgWhite">
+		<div class="flex-grow-1 m-auto pt-2 font-size2">
+			{{survey.title}}
+		</div>
+		<div class="backBanner-action m-auto bgWhite">
+			<button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>content_copy</mat-icon>
+			</button>
+			<button (click)="showAllGraph()" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>insights</mat-icon>
+			</button>
+			<button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>favorite_border</mat-icon>
+			</button>
+			<button (click)="onClick('share')" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>share</mat-icon>
+			</button>
+		</div>
+	</div>
+	<div [style.background-image]="'url('+survey.images[1].url+')'"
+		 class="col-12 d-flex d-md-none no-gutters header-mini">
+		<div class="header-top w-100 d-flex flex-column">
+			<div class=" header-title-mini font-size1 flex-grow-1">{{survey.title}}</div>
+			<div class="justify-content-end d-flex header-author">
+				<div class="flex-column">
+					<div class="font-size2 firstCap">créé par {{survey.creator.username}}</div>
+					<div class="font-size3 firstCap">le {{survey.created | date:'dd MMM yyyy'}}</div>
+				</div>
+				<img [src]=survey.creator.photo alt="" class="ml-2 rounded-circle">
+			</div>
+		</div>
+	</div>
+	<div [style.background-image]="'url('+survey.images[1].url+')'"
+		 class="col-12 d-none d-md-flex no-gutters row header">
+		<div class="w-100 header-top d-flex flex-row">
+			<div class="flex-grow-1 header-title font-size0">{{survey.title}}</div>
+			<div class="d-flex header-author">
+				<div class="flex-column flex-grow-1">
+					<div class="firstCap">créé par {{survey.creator.username}}</div>
+					<div class="firstCap">le {{survey.created | date:'dd MMM yyyy'}}</div>
+				</div>
+				<img [src]=survey.creator.photo alt="" class="ml-2 rounded-circle">
+			</div>
+		</div>
+		<div class="no-gutters col-12 col-md-8 header-descr ">
+			{{survey.description}}
+		</div>
+		<div class="header-action1 bgWhite">
+			<button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>view_stream</mat-icon>
+			</button>
+			<button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>view_module</mat-icon>
+			</button>
+			<button (click)="showAllGraph()" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>insights</mat-icon>
+			</button>
+			<button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>content_copy</mat-icon>
+			</button>
+			<button (click)="onClick('like')" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>favorite_border</mat-icon>
+			</button>
+			<button (click)="onClick('share')" aria-label="like" color="primary" mat-icon-button>
+				<mat-icon>share</mat-icon>
+			</button>
+		</div>
+		<div class="no-gutters col-12 header-action2 text-right">
+		</div>
+	</div>
+	<div *ngFor="let candidate of candidates" class="d-flex candidate">
+		<mat-card class="bgWhite d-none d-md-flex flex-column">
+			<div class="d-flex flex-row candidate-header">
+				<div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
+					 class="candidate-header-image finger">
+					<img [src]=candidate.images alt="">
+				</div>
+				<div class="flex-grow-1">
+					<mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
+						<mat-drawer #chart [mode]="'over'" [opened]="candidate.graphOpened" class="mat-draw-chart">
+							<app-chart-candidate></app-chart-candidate>
+						</mat-drawer>
+						<mat-drawer-content>
+							<div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
+								 class="candidate-header-title font-size0 finger">{{candidate.title}}</div>
+							<div class="candidate-header-descr">{{candidate.description}}</div>
+						</mat-drawer-content>
+					</mat-drawer-container>
+				</div>
+				<div class="flex-column candidate-header-action finger">
+					<div (click)="chart.toggle()" [style.border-color]="getColorFromScore(candidate.score)"
+						 class="candidate-header-score font-size00">
+						{{candidate.score}}
+					</div>
+					<div class="d-flex justify-content-center flex-row">
+						<button (click)="chart.toggle()" *ngIf="!chart.opened" color="primary" mat-icon-button>
+							<mat-icon>insights</mat-icon>
+						</button>
+						<button (click)="chart.toggle()" *ngIf="chart.opened" color="primary" mat-mini-fab>
+							<mat-icon>insights</mat-icon>
+						</button>
+						<button [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]" mat-icon-button>
+							<mat-icon color="primary">chat</mat-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+			<app-vote [candidateId]="candidate.id" [opinions]="candidate.opinions"></app-vote>
+		</mat-card>
+		<mat-card class="bgWhite d-flex d-md-none flex-column">
+			<div class="d-flex flex-row candidate-header candidate-header-mini">
+				<div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
+					 class="candidate-header-image finger">
+					<img [src]=candidate.images alt="">
+				</div>
+				<div class="flex-column m-auto candidate-header-action-mini finger">
+					<div (click)="chartMini.toggle()" [style.border-color]="getColorFromScore(candidate.score)"
+						 class="candidate-header-score font-size00">
+						{{candidate.score}}
+					</div>
+					<div class="d-flex justify-content-center flex-row">
+						<button (click)="chartMini.toggle()" *ngIf="!chartMini.opened" color="primary" mat-icon-button>
+							<mat-icon>insights</mat-icon>
+						</button>
+						<button (click)="chartMini.toggle()" *ngIf="chartMini.opened" color="primary" mat-mini-fab>
+							<mat-icon>insights</mat-icon>
+						</button>
+						<button [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]" mat-icon-button>
+							<mat-icon color="primary">chat</mat-icon>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div [routerLink]="['/survey/'+survey.slug+'/candidate/'+candidate.id]"
+				 class="candidate-header-title-mini font-size1 finger">{{candidate.title}}</div>
+			<div class="flex-grow-1">
+				<mat-drawer-container [hasBackdrop]="false" class="h-100 w-100">
+					<mat-drawer #chartMini [mode]="'over'" [opened]="candidate.graphOpened">
+						<app-chart-candidate></app-chart-candidate>
+					</mat-drawer>
+					<mat-drawer-content>
+						<div class="candidate-header-descr-mini font-size3 ">{{candidate.description}}</div>
+						<app-vote [candidateId]="candidate.id" [opinions]="candidate.opinions"></app-vote>
+					</mat-drawer-content>
+				</mat-drawer-container>
+			</div>
+		</mat-card>
+	</div>
 </div>

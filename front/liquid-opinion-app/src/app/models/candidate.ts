@@ -13,7 +13,6 @@ export class Candidate {
   created: Date;
   opinions: Opinion[];
   score: number;
-  choice: any;
   graphOpened: boolean;
 }
 
