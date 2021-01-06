@@ -26,8 +26,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {DisqusModule} from 'ngx-disqus';
 import {MatDividerModule} from '@angular/material/divider';
 
-// import {MatDividerModule} from '@angular/material/divider';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,8 +56,6 @@ import {MatDividerModule} from '@angular/material/divider';
     FormsModule,
     DisqusModule.forRoot('liquidopinion'),
     MatDividerModule,
-
-    // MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

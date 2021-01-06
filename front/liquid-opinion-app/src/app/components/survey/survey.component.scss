@@ -1,4 +1,18 @@
 .survey {
+  .mat-draw-chart {
+    width: 390px;
+  }
+
+  .backBanner {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    box-shadow: gray 0px 1px 3px;
+    height: 96px;
+    min-height: 96px;
+    max-height: 96px;
+  }
+
   .header {
     position: sticky;
     top: 0;
@@ -10,6 +24,17 @@
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
+    &-mini {
+      z-index: 3;
+      height: 200px;
+      margin-bottom: 20px;
+      background-size: cover;
+      box-shadow: gray 0px 1px 3px;
+      color: white;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+      margin-top: -96px;
+    }
+
     &-top {
       padding: 20px;
     }
@@ -19,25 +44,23 @@
       height: 30px;
       line-height: 40px;
       font-weight: bold;
+
+      &-mini {
+        text-transform: uppercase;
+        line-height: 40px;
+        font-weight: bold;
+      }
     }
 
     &-author {
       text-align: end;
-      width: 250px;
+      min-width: 250px;
 
       img {
         border: solid 2px white;
-        margin-left: 10px;
         width: 40px;
         height: 40px;
       }
-
-      &-name {
-      }
-
-      &-date {
-      }
-
     }
 
     &-descr {
@@ -55,6 +78,7 @@
       bottom: 0;
       right: 0;
       z-index: 4;
+      border-radius: 25px 0px 0px 25px;
     }
 
     &-action2 {
@@ -85,6 +109,7 @@
           width: 200px;
           height: 200px;
           object-fit: cover;
+          padding: 16px 0 16px 16px;
         }
       }
 
