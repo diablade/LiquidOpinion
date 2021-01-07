@@ -22,7 +22,6 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -30,44 +29,52 @@ import {FormsModule} from '@angular/forms';
 import {ChartsModule} from 'ng2-charts';
 import {DisqusModule} from 'ngx-disqus';
 import {VoteComponent} from './components/vote/vote.component';
+import {LoginDialogComponent} from './components/dialogs/login-dialog/login-dialog.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		TopBarComponent,
-		TopBarComponent,
-		SideBarComponent,
-		DashboardComponent,
-		ListSurveyComponent,
-		NotfoundComponent,
-		CandidateComponent,
-		SurveyComponent,
-		ProgressRingComponent,
-		ChartCandidateComponent,
-		VoteComponent,
-		ChartDialogComponent,
-	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		MatCardModule,
-		MatToolbarModule,
-		MatButtonModule,
-		MatIconModule,
-		MatSidenavModule,
-		MatRadioModule,
-		MatDividerModule,
-		// MatTooltipModule,
-		MatDialogModule,
+    declarations: [
+        AppComponent,
+        TopBarComponent,
+        TopBarComponent,
+        SideBarComponent,
+        DashboardComponent,
+        ListSurveyComponent,
+        NotfoundComponent,
+        CandidateComponent,
+        SurveyComponent,
+        ProgressRingComponent,
+        ChartCandidateComponent,
+        VoteComponent,
+        ChartDialogComponent,
+        LoginDialogComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatRadioModule,
+        MatDividerModule,
+        // MatTooltipModule,
+        MatDialogModule,
+        MatTabsModule,
+        MatFormFieldModule,
+        MatInputModule,
 
-		FontAwesomeModule,
-		ChartsModule,
-		FormsModule,
-		DisqusModule.forRoot('liquidopinion'),
-	],
-	providers: [],
-	bootstrap: [AppComponent]
+        FontAwesomeModule,
+        ChartsModule,
+        FormsModule,
+        DisqusModule.forRoot('liquidopinion'),
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

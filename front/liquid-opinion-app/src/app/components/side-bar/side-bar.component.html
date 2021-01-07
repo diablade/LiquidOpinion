@@ -1,5 +1,5 @@
 <div class="sideMenu d-flex flex-column">
-  <div class="sections header d-flex flex-row">
+  <div *ngIf="userConnected" class="sections header d-flex flex-row">
     <div class="header-photo mr-2">
       <img [src]=user.photo alt="">
     </div>
@@ -14,6 +14,9 @@
     <button (click)="onClick('settings')" aria-label="settings" mat-icon-button>
       <mat-icon color="primary">settings</mat-icon>
     </button>
+  </div>
+  <div *ngIf="!userConnected" class="sections header firstCap">
+    <button mat-raised-button (click)="login()" color="primary">connectez vous</button>
   </div>
   <div class="sections">
     <button (click)="createSurvey()" class="w-100 d-flex flex-row radius" color="primary" mat-raised-button>

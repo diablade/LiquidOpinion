@@ -54,6 +54,5 @@ export class SurveyComponent implements OnInit {
 
 	showDialogGraph() {
 		this.dialog.open(ChartDialogComponent);
-
 	}
 }
