@@ -4,6 +4,7 @@ const surveyController = require('./survey.controller');
 const {authUser} = require('../tools/auth');
 
 router.get('/:id', authUser, surveyController.getSurvey);
+router.get('/alltest', surveyController.getAllSurveys);
 router.get('/public', authUser, surveyController.getPublicSurveys);
 router.get('/filtered', authUser, surveyController.getFilteredSurveys);
 router.put('/update/:id', authUser,  surveyController.updateSurvey);

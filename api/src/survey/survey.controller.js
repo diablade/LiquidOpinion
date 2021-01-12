@@ -171,4 +171,8 @@ module.exports = {
             }
         }
     },
+    getAllSurveys() {
+        const surveys = SurveyModel.find();
+        res.status(200).json(surveys);
+    }
 };

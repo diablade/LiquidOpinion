@@ -5,7 +5,7 @@ export class Survey {
   creator: Member;
   slogan: string;
   description: string;
-  theme: string;
+  themes: string[];
   tags: string[];
   members: Member[];
   editors: Member[];
@@ -32,7 +32,7 @@ export class Survey {
 export class Member {
   id: string;
   username: string;
-  photo: string; // url
+  photo: string; // url small photo
 }
 
 export class Image {
