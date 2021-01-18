@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   fakeLogin: true,
 
-  API_HOST: 'https://api.liquidopinion.fr:7890/',
+  API_HOST: 'http://localhost:3000/',
 
   /**
    * Endpoints du service (WebApi)
@@ -14,8 +14,6 @@ export const environment = {
     DELETE: 'delete/',
     PROFILE: 'profile/',
     GET_ALL: 'all/',
-    PUBLIC: 'public/',
-    FILTERED: 'filtered/',
     USER: 'me/',
     LOGIN: 'login/',
     LOGOUT: 'logout',
@@ -26,7 +24,7 @@ export const environment = {
    * Controlleur de l'API pour se connecter au service Times
    */
   API_CONTROLLEURS: {
-    USER: 'users/',
+    USER: 'user/',
     SURVEY: 'survey/',
     CANDIDATE: 'candidate/',
     VOTE: 'vote/',

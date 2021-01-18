@@ -1,40 +1,41 @@
-<div class="row no-gutters justify-content-center surveys p-3">
-  <div *ngFor="let survey of surveys" class="d-flex survey">
-    <mat-card class="h-100 w-100 bgWhite d-flex flex-column">
-      <div class="header d-flex flex-row mb-3">
-        <div class="profil-photo mr-3">
-          <img [src]=survey.creator.photo alt="">
-        </div>
-        <div class="">
-          <div class="profil-name font-size2 text-capitalize">{{survey.creator.username}}</div>
-          <div class="profil-date font-size3 ">créé le {{survey.created | date:'dd MMM yyyy'}}</div>
-        </div>
-      </div>
-      <div class="image">
-        <img [src]=survey.images[0].url alt="">
-      </div>
-      <div class="texts flex-grow-1">
-        <div class="texts-title colorText1 font-size1">{{survey.title}}</div>
-        <div class="texts-tags colorText3 font-size3">tags tags tags</div>
-        <div class="texts-slogan colorText2 font-size2">
-          {{survey.slogan}}
-        </div>
-      </div>
-      <div class="actions d-flex flex-row">
-        <button [routerLink]="['/survey', survey.slug]" color="primary" mat-raised-button>Participer</button>
-        <div class="flex-grow-1">
-          <span class="font-weight-bold ml-2">
-            {{survey.members.length}}
-          </span>
-          {{survey.members.length > 1 ? "participants" : "participant" }}
-        </div>
-        <button (click)="onClick('like')" aria-label="like" mat-icon-button>
-          <mat-icon color="primary">favorite_border</mat-icon>
-        </button>
-        <button (click)="onClick('share')" aria-label="share" mat-icon-button>
-          <mat-icon color="primary">share</mat-icon>
-        </button>
-      </div>
-    </mat-card>
-  </div>
+<div class="center" *ngIf="surveys.length<=0">no surveys yet</div>
+<div class="row no-gutters justify-content-center surveys p-3" *ngIf="surveys.length>=1">
+    <div *ngFor="let survey of surveys" class="d-flex survey">
+        <mat-card class="h-100 w-100 bgWhite d-flex flex-column">
+            <div class="header d-flex flex-row mb-3">
+                <div class="profil-photo mr-3">
+                    <img [src]=survey.creator.photo alt="">
+                </div>
+                <div class="">
+                    <div class="profil-name font-size2 text-capitalize">{{survey.creator.username}}</div>
+                    <div class="profil-date font-size3 ">créé le {{survey.created | date:'dd MMM yyyy'}}</div>
+                </div>
+            </div>
+            <div class="image">
+                <img [src]=survey.images[0].url alt="">
+            </div>
+            <div class="texts flex-grow-1">
+                <div class="texts-title colorText1 font-size1">{{survey.title}}</div>
+                <div class="texts-tags colorText3 font-size3">tags tags tags</div>
+                <div class="texts-slogan colorText2 font-size2">
+                    {{survey.slogan}}
+                </div>
+            </div>
+            <div class="actions d-flex flex-row">
+                <button [routerLink]="['/survey', survey.slug]" color="primary" mat-raised-button>Participer</button>
+                <div class="flex-grow-1">
+                  <span class="font-weight-bold ml-2">
+                    {{survey.members.length}}
+                  </span>
+                    {{survey.members.length > 1 ? "participants" : "participant" }}
+                </div>
+                <button (click)="onClick('like')" aria-label="like" mat-icon-button>
+                    <mat-icon color="primary">favorite_border</mat-icon>
+                </button>
+                <button (click)="onClick('share')" aria-label="share" mat-icon-button>
+                    <mat-icon color="primary">share</mat-icon>
+                </button>
+            </div>
+        </mat-card>
+    </div>
 </div>

@@ -102,6 +102,7 @@ module.exports = {
                     error.status = err.status;
                     next(error);
                 } else if (user && token) {
+                    user.password = null; //hide before send
                     res.setHeader('liquid-token', token)
                     res.status(200).json({user});
                 }
@@ -140,6 +141,7 @@ module.exports = {
                     modified: Date.now(),
                 }
             });
+            updatedUser.password = null; //hide before send
             res.status(200).json({message: "updated", user: updatedUser});
         } catch (err) {
             if (err.name === 'MongoError' && err.code === 11000) {
@@ -159,6 +161,7 @@ module.exports = {
                     modified: Date.now(),
                 }
             });
+            updatedUser.password = null; //hide before send
             res.status(200).json({message: "updated", user: updatedUser});
         } catch (err) {
             if (err.name === 'MongoError' && err.code === 11000) {
@@ -195,7 +198,7 @@ module.exports = {
     getMe: async (req, res, next) => {
         try {
             const user = req.user;
-            user.password = null;
+            user.password = null; //hide before send
             res.status(200).json(user);
         } catch (err) {
             console.log('user error', err);
@@ -233,7 +236,7 @@ module.exports = {
     getUser: async (req, res, next) => {
         try {
             const user = await UserModel.findById(req.params.id);
-            user.password = null;
+            user.password = null; //hide before send
             res.status(200).json(user);
         } catch (err) {
             console.log('user error', err);

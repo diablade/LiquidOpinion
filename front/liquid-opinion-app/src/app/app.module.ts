@@ -33,6 +33,7 @@ import {LoginDialogComponent} from './components/dialogs/login-dialog/login-dial
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import {MatInputModule} from "@angular/material/input";
         LoginDialogComponent,
     ],
     imports: [
+        HttpClientModule,
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,

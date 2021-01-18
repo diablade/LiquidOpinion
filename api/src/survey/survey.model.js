@@ -1,5 +1,3 @@
-import {Opinion} from '../../../front/liquid-opinion-app/src/app/models/survey';
-
 const mongoose = require('mongoose');
 
 //Define a schema
@@ -12,14 +10,14 @@ let member = {
 }
 
 let image = {
-    format: string,
-    url: string,
+    format: String,
+    url: String,
 }
 
 let opinion = {
-    label: string,
-    color: string,
-    id: string,
+    label: String,
+    color: String,
+    id: String,
 }
 
 let Survey = new Schema({

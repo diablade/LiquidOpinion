@@ -11,6 +11,7 @@ const usersRoutes = require('./src/user/user.routes');
 const surveysRoutes = require('./src/survey/survey.routes');
 const candidatesRoutes = require('./src/candidate/candidate.routes');
 const votesRoutes = require('./src/vote/vote.routes');
+const fakeData = require('./src/fake/fake.routes');
 
 // USE MIDDLEWARE
 app.use(morgan(":remote-addr | :remote-user |[:date[clf]] " +
@@ -38,6 +39,7 @@ app.use('/user', usersRoutes);
 app.use('/survey', surveysRoutes);
 app.use('/candidate', candidatesRoutes);
 app.use('/vote', votesRoutes);
+app.use('/fakeData', fakeData);
 
 //api health routes
 app.get('/api', (req, res) => {
@@ -68,8 +70,8 @@ app.listen(process.env.PORT_NODE, () => console.log('' +
     '|  _       _                   _       _      ___            _           _                                  |\n' +
     '| | |     (_)   __ _   _   _  (_)   __| |    / _ \\   _ __   (_)  _ __   (_)   ___    _ __                   |\n' +
     '| | |     | |  / _` | | | | | | |  / _` |   | | | | | \'_ \\  | | | \'_ \\  | |  / _ \\  | \'_ \\                  |\n' +
-    '| | |___  | | | (_| | | |_| | | | | (_| |   | |_| | | |_) | | | | | | | | | | (_) | | | | |    _   _   _    |\n' +
-    '| |_____| |_|  \\__, |  \\__,_| |_|  \\__,_|    \\___/  | .__/  |_| |_| |_| |_|  \\___/  |_| |_|   (_) (_) (_)   |\n' +
+    '| | |___  | | | (_| | | |_| | | | | (_| |   | |_| | | |_) | | | | | | | | | | (_) | | | | |                 |\n' +
+    '| |_____| |_|  \\__, |  \\__,_| |_|  \\__,_|    \\___/  | .__/  |_| |_| |_| |_|  \\___/  |_| |_|   0   0   0     |\n' +
     '|                 |_|                               |_|                                                     |\n' +
     '|-----------------------------------------------------------------------------------------------------------|\n' +
     'server ' + pjson.version + ' is started and listening'));
