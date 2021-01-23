@@ -2,6 +2,7 @@ var faker = require('faker/locale/fr');
 var moment = require('moment');
 var _ = require('lodash');
 const log = require('../../config/log');
+const asyncLib = require('async');
 
 const UserModel = require('../user/user.model');
 const SurveyModel = require('../survey/survey.model');
@@ -63,7 +64,7 @@ function fakeCandidate(surveyId, multiplier) {
             description:     faker.lorem.paragraphs(3),
             longDescription: faker.lorem.paragraphs(10),
             currentVotes:    fakeCurrentVotes(),
-            archiveNotes:    fakeArchiveNotes(),
+            archiveNotes:    fakeArchiveResults(),
             noteMax:         5,
             opinions:        [
                 {
@@ -98,7 +99,6 @@ function fakeCandidate(surveyId, multiplier) {
 
 function fakeSurvey(numberCandidats, creator, admins, editors, members) {
     return new SurveyModel({
-        id:              id,
         title:           faker.lorem.sentence(),
         slug:            faker.lorem.slug(),
         creator:         creator,
@@ -109,7 +109,7 @@ function fakeSurvey(numberCandidats, creator, admins, editors, members) {
         admins:          admins,
         editors:         editors,
         members:         members,
-        candidatesIds:   fakeCandidate(id),
+        candidatesIds:   [],
         images:          fakeImages(),
         activate:        true,
         visibleBySearch: true,
@@ -125,11 +125,14 @@ function fakeSurvey(numberCandidats, creator, admins, editors, members) {
 
 module.exports = {
     removeAll: async (req, res, next) => {
-        UserModel.removeAllItem();
-        SurveyModel.removeAllItem();
-        CandidateModel.removeAllItem();
+        log.info('strat');
+        UserModel.remove();
+        SurveyModel.remove();
+        CandidateModel.remove();
+        log.info('end');
+        next({status:200,ok:'ok'});
     },
-    fakeAll:   async (req, res, next) => {
+    fakeAll:   (req, res, next) => {
         var user = new UserModel({
             username:   "test",
             password:   "$2b$10$laG9HO2hWc/Y.omy2L.vseqQBoQ2FG3xPPJAMyAeOuCg/xUr9HffG", // "testtest1",
@@ -137,19 +140,21 @@ module.exports = {
             last_name:  "last name",
             email:      "test@yopmail.com",
         });
-        await user.save(function(err, user) {
+        log.info("here1")
+        var u = user.save(function(err, user) {
             if (!err) {
                 log.info("New user " + user.username + " " + user.password);
-                next({});
+                // next({});
             }
             else {
                 return log.error(err);
             }
         });
+        log.info("here2");
 
         var surveyId;
-        var survey = await fakeSurvey();
-        await survey.save(function(err, survey) {
+        var survey = fakeSurvey();
+        survey.save(function(err, survey) {
             if (!err) {
                 surveyId = survey.id;
             }
@@ -158,7 +163,7 @@ module.exports = {
             }
         });
 
-        var candidates = await fakeCandidate(surveyId, faker.random.number(25));
+        var candidates = fakeCandidate(surveyId, faker.random.number(25));
         for (let candidate of candidates) {
             candidate.save(function(err, candi) {
                 if (!err) {
@@ -171,5 +176,37 @@ module.exports = {
         }
 
         survey.candidatesIds = _.map(candidates, 'id');
+        // survey.save();
+    },
+    regenall:  async (req, res, next) => {
+        asyncLib.waterfall([
+            function removeAll(done) {
+                UserModel.removeAllItem();
+                SurveyModel.removeAllItem();
+                CandidateModel.removeAllItem();
+                done();
+
+            }, async function getSurvey(req, done) {
+                const survey = await SurveyModel.findById(req.body.vote.surveyId);
+                if (survey) {
+                    done(null, survey);
+                }
+                else {
+                    done({
+                        status:  404,
+                        message: "Not found"
+                    });
+                }
+            },
+        ], function(err, done) {
+            if (err) {
+                let error = new Error(err.message);
+                error.status = err.status;
+                next(error);
+            }
+            else if (done) {
+                res.status(201).json({"regen": "done"});
+            }
+        });
     },
 };

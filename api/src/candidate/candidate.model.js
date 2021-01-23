@@ -19,6 +19,11 @@ let note = {
     result: Number,
 }
 
+let image = {
+    format: String,
+    url:    String,
+}
+
 let CandidateSchema = new Schema({
     title: {type: String, required: true},
     surveyId: {type: String, required: true},
