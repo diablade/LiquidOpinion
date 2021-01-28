@@ -36,7 +36,7 @@ let Survey = new Schema({
     activate: {type: Boolean, default: false},
     visibleBySearch: {type: Boolean, default: false},
     isPrivate: {type: Boolean, default: false},
-    typeOfVote: {type: String, required: true, default: "num"},
+    typeOfVote: {type: String, required: true, default: "label"},
     opinionsDefault: { type: [opinion], require: true, default: [
         {label: 'rejeter',id: 'rejected',color: '#e8554e'},
         {label: 'mauvais', id: 'bad', color: '#f19c65'},

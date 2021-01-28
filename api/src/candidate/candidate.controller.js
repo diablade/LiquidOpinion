@@ -1,47 +1,61 @@
 const CandidateModel = require('./candidate.model');
+const SurveyModel = require('../survey/survey.model');
 const {SURVEY, ROLE} = require('../tools/permission');
 
 module.exports = {
     createCandidate: async (req, res, next) => {
+        //TODO validate user right
         //TODO validate data
-        const reqSurvey = req.body.survey;
-        if (!reqSurvey.admins || reqSurvey.admins.length === 0) {
-            reqSurvey.admins = [{id: req.user.id, username: req.user.username}];
-        }
-        if (!reqSurvey.members || reqSurvey.members.length === 0) {
-            reqSurvey.members = [{id: req.user.id, username: req.user.username}];
-        }
-        const survey = new SurveyModel({
-            title: reqSurvey.title,
-            creator: {id: req.user.id, username: req.user.username},
-            description: reqSurvey.description,
-            theme: reqSurvey.theme,
-            tags: reqSurvey.tags,
-            members: reqSurvey.members,
-            editors: reqSurvey.editors,
-            admins: reqSurvey.admins,
-            candidatesIds: reqSurvey.candidatesIds,
-            images: reqSurvey.images,
-            activate: reqSurvey.activate,
-            visibleBySearch: reqSurvey.visibleBySearch,
-            isPrivate: reqSurvey.isPrivate,
-            noteMax: reqSurvey.noteMax,
-            typeOfVote: reqSurvey.typeOfVote,
-            noteLabels: reqSurvey.noteLabels,
-            delayReVote: reqSurvey.delayReVote,
-            expireAt: null,
-            selfDestruct: null
+        const reqCandidate = req.body.candidate;
+
+        const candidate = new CandidateModel({
+            title: reqCandidate.title,
+            slug: reqCandidate.slug,
+            surveyId: reqCandidate.surveyId,
+            slogan: reqCandidate.slogan,
+            description: reqCandidate.description,
+            longDescription: reqCandidate.longDescription,
+            currentVotes: [],
+            archiveResults: [],
+            opinions: [
+                {
+                    label: 'rejeter',
+                    id: 'rejected',
+                    color: '#e8554e'
+                }, {
+                    label: 'mauvais',
+                    id: 'bad',
+                    color: '#f19c65'
+                }, {
+                    label: 'neutre',
+                    id: 'neutral',
+                    color: '#ffd265'
+                }, {
+                    label: 'bien',
+                    id: 'good',
+                    color: '#2aa876'
+                }, {
+                    label: 'excellent',
+                    id: 'excellent',
+                    color: '#0a7b83'
+                },
+            ],
+            images: reqCandidate.images,
+            activate: reqCandidate.activate,
+            creator: req.user.id,
+            modified: Date.now(),
+            created: Date.now(),
         });
 
         try {
-            const savedSurvey = await survey.save();
-            res.status(201).json({survey: savedSurvey});
+            const savedCandidate = await candidate.save();
+            res.status(201).json({candidate: savedCandidate});
         } catch (err) {
             next({status: 500, message: err});
         }
     },
     updateCandidate: async (req, res, next) => {
-        const reqSurvey = req.body.survey;
+        const reqCandidate = req.body.survey;
         if (!req.params.id) {
             next({status: 400, message: "bad request"});
         } else {
@@ -49,32 +63,16 @@ module.exports = {
                 const actualSurvey = await SurveyModel.findById(req.params.id);
                 if (actualSurvey) {
                     if (SURVEY.canEditSurvey(req.user, actualSurvey)) {
-                        if (req.user.role === ROLE.ADMIN && !reqSurvey.admins || reqSurvey.admins.length === 0) {
-                            reqSurvey.admins = [{id: req.user.id, username: req.user.username}];
+                        if (req.user.role === ROLE.ADMIN && !reqCandidate.admins || reqCandidate.admins.length === 0) {
+                            reqCandidate.admins = [{id: req.user.id, username: req.user.username}];
                         }
-                        if (!reqSurvey.members || reqSurvey.members.length === 0) {
-                            reqSurvey.members = [{id: req.user.id, username: req.user.username}];
-                        }
-                        await SurveyModel.updateOne({_id: req.params.id}, {
+
+                        await CandidateModel.updateOne({_id: req.params.id}, {
                             $set: {
-                                title: reqSurvey.title,
-                                description: reqSurvey.description,
-                                theme: reqSurvey.theme,
-                                tags: reqSurvey.tags,
-                                members: reqSurvey.members,
-                                editors: reqSurvey.editors,
-                                admins: reqSurvey.admins,
-                                candidatesIds: reqSurvey.candidatesIds,
-                                images: reqSurvey.images,
-                                activate: reqSurvey.activate,
-                                visibleBySearch: reqSurvey.visibleBySearch,
-                                isPrivate: reqSurvey.isPrivate,
-                                noteMax: reqSurvey.noteMax,
-                                typeOfVote: reqSurvey.typeOfVote,
-                                noteLabels: reqSurvey.noteLabels,
-                                delayReVote: reqSurvey.delayReVote,
-                                expireAt: reqSurvey.expireAt,
-                                selfDestruct: reqSurvey.selfDestruct,
+                                title: reqCandidate.title,
+                                description: reqCandidate.description,
+                                images: reqCandidate.images,
+                                activate: reqCandidate.activate,
                                 modified: Date.now(),
                             }
                         });
@@ -116,6 +114,32 @@ module.exports = {
             }
         }
     },
+    getCandidatesWithSurveyId: async (req, res, next) => {
+        if (!req.params.surveyId) {
+            next({status: 400, message: "bad request"});
+        } else {
+            try {
+                const actualSurvey = await SurveyModel.findById(req.params.surveyId);
+                if (actualSurvey) {
+                    if (SURVEY.canEditSurvey(req.user, actualSurvey)) {
+                        const candidates = await CandidateModel.find({surveyId: req.params.surveyId});
+                        if (candidates) {
+                            res.status(200).json(candidates);
+                        } else {
+                            next({status: 401, message: "Not found"});
+                        }
+                    } else {
+                        next({status: 404, message: "Not allowed"});
+                    }
+                } else {
+                    next({status: 404, message: "Not found"});
+                }
+            } catch (err) {
+                console.log('survey error', err);
+                next({status: 404, message: "not found"});
+            }
+        }
+    },
     deleteCandidate: async (req, res, next) => {
         if (!req.params.id) {
             next({status: 400, message: "bad request"});
@@ -133,4 +157,5 @@ module.exports = {
             }
         }
     },
-};
+}
+;

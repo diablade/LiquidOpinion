@@ -5,6 +5,7 @@ const {authUser} = require('../tools/auth');
 
 router.post('/', authUser, candidateController.createCandidate);
 router.get('/:id', authUser, candidateController.getCandidate);
+router.get('/s/:surveyId', authUser, candidateController.getCandidatesWithSurveyId);
 router.put('/:id', authUser, candidateController.updateCandidate);
 router.delete('/:id', authUser, candidateController.deleteCandidate);
 

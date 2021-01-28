@@ -7,61 +7,66 @@ let vote = {
     idOfOpinion: String,
     last: Date,
 }
-
-let opinion = {
-    id:    String,
-    label: String,
-    color: String,
-}
-
 let note = {
     idOfOpinion: String,
     result: Number,
 }
 
+let result = {
+    date: {type: Date, required: true},
+    results: {type: [note], required: true},
+}
+
+let opinion = {
+    id: String,
+    label: String,
+    color: String,
+}
+
 let image = {
     format: String,
-    url:    String,
+    url: String,
 }
 
 let CandidateSchema = new Schema({
     title: {type: String, required: true},
+    slug: {type: String, required: true},
     surveyId: {type: String, required: true},
+    slogan: {type: String, required: true},
     description: {type: String, required: false},
     longDescription: {type: String, required: false},
     currentVotes: {type: [vote], required: false},//TODO HASHSET !!!
-    archiveResults: [{
-        date:  {type: Date, required: true},
-        results: {type: [note],required: true},
-    }],
-    noteMax: {type: Number, default: 5, required: true},
+    archiveResults: {type: [result], require: false},
+    activate: {type: Boolean, default: false, require: false},
     opinions: {
-        type:    [opinion],
+        type: [opinion],
         require: true,
         default: [
-            {label:    'rejeter',
-                id:    'rejected',
+            {
+                label: 'rejeter',
+                id: 'rejected',
                 color: '#e8554e'
             }, {
                 label: 'mauvais',
-                id:    'bad',
+                id: 'bad',
                 color: '#f19c65'
             }, {
                 label: 'neutre',
-                id:    'neutral',
+                id: 'neutral',
                 color: '#ffd265'
             }, {
                 label: 'bien',
-                id:    'good',
+                id: 'good',
                 color: '#2aa876'
             }, {
                 label: 'excellent',
-                id:    'excellent',
+                id: 'excellent',
                 color: '#0a7b83'
             },
         ]
     },
     images: {type: [image], default: []},
+    creator: {type: String, required: true},
     modified: {type: Date, default: Date.now},
     created: {type: Date, default: Date.now},
 });
