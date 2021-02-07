@@ -1,6 +1,8 @@
 const CandidateModel = require('./candidate.model');
 const SurveyModel = require('../survey/survey.model');
-const {SURVEY, ROLE} = require('../tools/permission');
+const PERMISSION = require('../tools/permission');
+const bcrypt = require('bcrypt');
+const asyncLib = require('async');
 
 module.exports = {
     createCandidate: async (req, res, next) => {
@@ -55,28 +57,25 @@ module.exports = {
         }
     },
     updateCandidate: async (req, res, next) => {
-        const reqCandidate = req.body.survey;
-        if (!req.params.id) {
+        const reqCandidate = req.body.candidate;
+        if (!req.params.surveyId) {
             next({status: 400, message: "bad request"});
         } else {
             try {
-                const actualSurvey = await SurveyModel.findById(req.params.id);
+                const actualSurvey = await SurveyModel.findById(req.params.surveyIdd);
                 if (actualSurvey) {
                     if (SURVEY.canEditSurvey(req.user, actualSurvey)) {
-                        if (req.user.role === ROLE.ADMIN && !reqCandidate.admins || reqCandidate.admins.length === 0) {
-                            reqCandidate.admins = [{id: req.user.id, username: req.user.username}];
-                        }
-
-                        await CandidateModel.updateOne({_id: req.params.id}, {
+                        const updateCandidate = await CandidateModel.updateOne({_id: reqCandidate.id}, {
                             $set: {
                                 title: reqCandidate.title,
                                 description: reqCandidate.description,
                                 images: reqCandidate.images,
                                 activate: reqCandidate.activate,
+                                //TODO rest of the attributes of an candidate
                                 modified: Date.now(),
                             }
                         });
-                        res.status(200).json({message: "ok"});
+                        res.status(200).json({message: "ok", candidate: updateCandidate});
                     } else {
                         next({status: 405, message: "not allowed"});
                     }
@@ -157,5 +156,104 @@ module.exports = {
             }
         }
     },
-}
-;
+    vote: async (req, res, next) => {
+        asyncLib.waterfall([
+                function checkNull(done) {
+                    if (req.body.vote.surveyId && req.body.vote.candidateId && req.body.vote.note) {
+                        done(null, req);
+                    } else {
+                        done({status: 500, message: 'vote error'});
+                    }
+                },
+                async function getSurvey(req, done) {
+                    const survey = await SurveyModel.findById(req.body.vote.surveyId);
+                    if (survey) {
+                        done(null, survey);
+                    } else {
+                        done({status: 404, message: "Not found"});
+                    }
+                },
+                function canAccessVote(survey, done) {
+                    const result = PERMISSION.SURVEY.canAccessVotation(req.user, survey);
+                    if (result.can) {
+                        done(null, survey);
+                    } else {
+                        done({status: 401, message: result.why});
+                    }
+                },
+                async function getCandidate(survey, done) {
+                    const candidate = await CandidateModel.findById(req.body.vote.candidateId);
+                    if (candidate) {
+                        done(null, survey, candidate);
+                    } else {
+                        done({status: 404, message: "Not found"});
+                    }
+                },
+                function hashUserId(survey, candidate, done) {
+                    try {
+                        const salt = bcrypt.genSaltSync(parseInt(process.env.SECURITY_SALT_USERID));
+                        const hashUserId = bcrypt.hashSync(req.user.id, salt);
+                        done(null, survey, candidate, hashUserId);
+                    } catch (err) {
+                        console.log(err);
+                        done({status: 500, message: 'hash error'});
+                    }
+                },
+                function canVote(survey, candidate, hashUserId, done) {
+                    if (PERMISSION.canVoteCandidate(hashUserId, candidate, survey.reVoteDelay)) {
+                        done(null, candidate, hashUserId);
+                    } else {
+                        done({status: 401, message: "Not allowed"});
+                    }
+                },
+                function addVote(candidate, hashUserId, done) {
+                    const vote = {
+                        encryptedUserId: hashUserId,
+                        note: req.body.vote.note,
+                        noteMax: req.body.vote.noteMax,
+                        date: {type: Date, default: Date.now}
+                    };
+                    candidate.currentVotes.push({vote});
+                    done(null, candidate);
+                },
+                async function saveCandidate(candidate, done) {
+                    await candidate.save()
+                        .then(voteSaved => {
+                            done(null, voteSaved);
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            done({status: 500, message: 'save error'});
+                        });
+                }
+            ],
+            function (err, vote) {
+                if (err) {
+                    let error = new Error(err.message);
+                    error.status = err.status;
+                    next(error);
+                } else if (vote) {
+                    res.status(201).json({"vote": "done"});
+                }
+            });
+    },
+    deleteCandidateCurrentVotes: async (req, res, next) => {
+        if (!req.params.id) {
+            next({status: 400, message: "bad request"});
+        } else {
+            try {
+                const candidate = await CandidateModel.findById(req.params.id);
+                if (candidate) {
+                    //TODO delete vote and save
+                    //res.status(200).json({message: "vote deleted"});
+                } else {
+                    next({status: 500, message: "error"});
+                }
+            } catch (err) {
+                next({status: 500, message: err});
+            }
+        }
+    },
+    deleteCurrentVotesOfUserId: (req, res, next) => {
+    }
+};

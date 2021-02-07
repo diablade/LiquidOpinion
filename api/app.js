@@ -10,7 +10,6 @@ const app = express();
 const usersRoutes = require('./src/user/user.routes');
 const surveysRoutes = require('./src/survey/survey.routes');
 const candidatesRoutes = require('./src/candidate/candidate.routes');
-const votesRoutes = require('./src/vote/vote.routes');
 const fakeData = require('./src/fake/fake.routes');
 
 // USE MIDDLEWARE
@@ -38,7 +37,6 @@ app.use((req, res, next) => {
 app.use('/user', usersRoutes);
 app.use('/survey', surveysRoutes);
 app.use('/candidate', candidatesRoutes);
-app.use('/vote', votesRoutes);
 app.use('/fakeData', fakeData);
 
 //api health routes

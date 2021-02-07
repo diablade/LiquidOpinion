@@ -23,6 +23,10 @@ function isMember(userId, listOfMembers) {
     return _.some(listOfMembers, ['id', userId]);
 }
 
+function isAdmin(userRole){
+    return userRole === ROLE.ADMIN;
+}
+
 module.exports = {
     PERM: function (role) {
         return (req, res, next) => {
@@ -39,11 +43,9 @@ module.exports = {
         USER: 'USER',
         ADMIN: 'ADMIN',
     },
+    isAdmin : isAdmin,
     SURVEY: {
         canViewSurvey: function (user, survey) {
-            console.log('canviewPublic', (!survey.isPrivate));
-            console.log('canviewIsMem', isMember(user.id, survey.members));
-            console.log('canviewRole', user.role === module.exports.ROLE.ADMIN);
             return (!survey.isPrivate ||
                 isMember(user.id, survey.members) ||
                 isMember(user.id, survey.editors) ||
@@ -59,6 +61,17 @@ module.exports = {
         canDeleteSurvey: function (user, survey) {
             return (isMember(user.id, survey.admins) ||
                 user.role === module.exports.ROLE.ADMIN);
+        },
+        canAccessVotation: function (user, survey) {
+            if (!survey.activate) {
+                return {can: false, why: "deactivate"};
+            } else if (survey.isPrivate && !isMember(user.id, survey.members)) {
+                return {can: false, why: "private"};
+            } else if (survey.expireAt && isExpired(survey.expireAt)) {
+                return {can: false, why: "expired"};
+            } else {
+                return {can: true, why: ""};
+            }
         }
     },
     CANDIDATE: {
@@ -78,22 +91,9 @@ module.exports = {
         canDeleteCandidate: function (user, survey) {
             return (isMember(user.id, survey.admins) ||
                 user.role === module.exports.ROLE.ADMIN);
-        }
-    },
-    VOTE: {
-        canAccessVotation: function (user, survey) {
-            if (!survey.activate) {
-                return {can: false, why: "deactivate"};
-            } else if (survey.expiredAt && isExpired(survey.expiredAt)) {
-                return {can: false, why: "expired"};
-            } else if (survey.isPrivate && !isMember(user.id, survey.members)) {
-                return {can: false, why: "private"};
-            } else {
-                return {can: true, why: ""};
-            }
         },
-        allowDelayVote: function (userHashId, candidate, delay) {
-            const lastDateVote = getLastVote(userHashId, candidate.votes);
+        canVoteCandidate: function (userHashId, candidate, delay) {
+            const lastDateVote = getLastVote(userHashId, candidate.currentVotes);
             if (lastDateVote && waitToReVote(lastDateVote, delay)) {
                 return {can: false, why: "wait"};
             } else {
