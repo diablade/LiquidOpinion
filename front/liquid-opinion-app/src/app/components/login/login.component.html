@@ -1,0 +1,58 @@
+<div>
+	<mat-tab-group mat-align-tabs="center">
+		<mat-tab label="Connectez-vous">
+			<div [formGroup]="authFormLogin" class="d-flex flex-column align-content-center">
+				<mat-form-field appearance="fill">
+					<mat-label>email ou pseudo</mat-label>
+					<input matInput>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>mot de passe</mat-label>
+					<input [type]="hide ? 'password' : 'text'" matInput>
+					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+							mat-icon-button
+							matSuffix>
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</button>
+				</mat-form-field>
+				<button color="primary" mat-raised-button>se connecter</button>
+				<div> ou se connecter via :</div>
+				<button color="primary" mat-raised-button>facebook</button>
+				<button color="primary" mat-raised-button>France connect</button>
+			</div>
+		</mat-tab>
+		<mat-tab label="Inscrivez-vous">
+			<div [formGroup]="authFormRegister" class="d-flex flex-column align-content-center">
+				<mat-form-field appearance="fill">
+					<mat-label>email</mat-label>
+					<input [formControl]="email" matInput placeholder="myemail@exemple.com" required>
+					<mat-error *ngIf="email.invalid">{{getErrorEmail()}}</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>pseudo</mat-label>
+					<input matInput>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>mot de passe</mat-label>
+					<input [type]="hide ? 'password' : 'text'" matInput>
+					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+							mat-icon-button
+							matSuffix>
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</button>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>confirmation mot de passe</mat-label>
+					<input [type]="hide ? 'password' : 'text'" matInput>
+					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+							mat-icon-button
+							matSuffix>
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</button>
+				</mat-form-field>
+				<!--								<input color="primary" mat-raised-button type="submit" value="créer son compte">-->
+				<button color="primary" mat-raised-button type="submit">créer son compte</button>
+			</div>
+		</mat-tab>
+	</mat-tab-group>
+</div>
