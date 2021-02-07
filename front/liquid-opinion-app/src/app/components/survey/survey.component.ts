@@ -4,7 +4,7 @@ import {Candidate} from '../../models/candidate';
 import {FakeData} from '../../utils/fake.data';
 import {ColorStyle} from '../../utils/colorStyle';
 import {MatDialog} from '@angular/material/dialog';
-import {ChartDialogComponent} from "../dialogs/chart-dialog/chart-dialog.component";
+import {ChartDialogComponent} from '../dialogs/chart-dialog/chart-dialog.component';
 
 
 @Component({
