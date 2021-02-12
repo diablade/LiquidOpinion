@@ -30,7 +30,8 @@
 				</mat-form-field>
 				<mat-form-field appearance="fill">
 					<mat-label>pseudo</mat-label>
-					<input matInput>
+					<input [formControl]="username" matInput required>
+					<mat-error *ngIf="username.invalid">{{getErrorPseudo()}}</mat-error>
 				</mat-form-field>
 				<mat-form-field appearance="fill">
 					<mat-label>mot de passe</mat-label>
