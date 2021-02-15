@@ -15,6 +15,9 @@ import {User} from '../../models/user';
 import {FakeData} from '../../utils/fake.data';
 import {LoginComponent} from '../login/login.component';
 import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {UserService} from '../../services/user.service';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
 	selector: 'app-side-bar',
@@ -35,30 +38,40 @@ export class SideBarComponent implements OnInit, OnChanges {
 	user: User;
 	userConnected = false;
 
-	constructor(public dialog: MatDialog) {
-		this.user = FakeData.createFakeUser();
+	constructor(public dialog: MatDialog, private authService: AuthService, private snackbar: MatSnackBar, private userService: UserService) {
+
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
 	}
 
 	ngOnInit(): void {
+		this.userService.userSubject.subscribe(user => {
+			this.user = user;
+			console.log('user', user);
+		});
 	}
 
 	createSurvey() {
+		this.snackbar.open('test');
 
 	}
 
-	onClick(logout: string) {
+	logout() {
+		this.userConnected = false;
+		this.authService.logout();
+	}
 
+	settings() {
 	}
 
 	openLogin() {
 		const dialogRef = this.dialog.open(LoginComponent);
 
 		dialogRef.afterClosed().subscribe(result => {
-			console.log(`Dialog result: ${result}`);
-			//refresh ?
+			if (result) {
+				this.userConnected = true;
+			}
 		});
 	}
 }

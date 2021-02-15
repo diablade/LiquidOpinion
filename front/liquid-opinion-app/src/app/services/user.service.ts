@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {LocalStorageService} from './local-storage/local-storage.service';
 import {User} from '../models/user';
-import {map} from 'rxjs/operators';
+import {catchError, map, retry} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {HttpErrorService} from './http-error.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,6 +17,7 @@ export class UserService {
 
 	constructor(
 		private http: HttpClient,
+		private errorService: HttpErrorService,
 		private localStorageService: LocalStorageService) {
 	}
 
@@ -30,21 +32,16 @@ export class UserService {
 		this.emitUser(user);
 	}
 
-	// updateUser(user: User): Observable<any> {
-	// 	return this.http....(user).pipe(
-	// 		map(
-	// 			() => this.loadUser().subscribe()
-	// 		)
-	// 	);
-	// }
-	//
 	public loadUser() {
-		return this.http.get<User>(environment.API_HOST + environment.API_CONTROLLEURS.USER + environment.API_ENDPOINTS.ME).pipe(
-			map((user: User) => {
-				this._user = user;
-				this.emitUser(user);
-			})
-		);
+		return this.http.get<User>(environment.API_HOST + environment.API_CONTROLLEURS.USER + environment.API_ENDPOINTS.ME)
+			.pipe(
+				retry(1),
+				catchError(this.errorService.handleError),
+				map((user: User) => {
+					this._user = user;
+					this.emitUser(user);
+				})
+			);
 	}
 
 	private emitUser(user: User) {

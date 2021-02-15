@@ -17,8 +17,6 @@ import {User} from '../models/user';
 })
 export class AuthService {
 	private jwtHelper = new JwtHelperService();
-	private userSubject;
-	private user: User;
 
 	constructor(
 		private router: Router,
@@ -27,13 +25,6 @@ export class AuthService {
 		private userService: UserService,
 		private clearAppService: ClearAppService,
 		private http: HttpClient) {
-
-		this.userSubject = new BehaviorSubject<User>(null);
-		this.user = this.userSubject.asObservable();
-	}
-
-	public get userValue(): User {
-		return this.userSubject.value;
 	}
 
 
@@ -59,22 +50,24 @@ export class AuthService {
 			username,
 			password
 		}).pipe(map(user => {
-			this.userSubject.next(user);
+			this.userService.user = user;
 			return user;
 		}));
 	}
 
-	public login(username: string, password: string) {
+	public login(email: string, password: string) {
 		return this.http.post<any>(environment.API_HOST + environment.API_CONTROLLEURS.USER + environment.API_ENDPOINTS.LOGIN, {
-			username,
+			email,
 			password
 		}).pipe(map(user => {
-			this.userSubject.next(user);
+			this.userService.user = user;
 			return user;
 		}));
 	}
 
 	public logout() {
+		console.log('logged out');
+		this.userService.user = null;
 		this.clearAppService.clearApp();
 		this.router.navigate(['/']);
 	}

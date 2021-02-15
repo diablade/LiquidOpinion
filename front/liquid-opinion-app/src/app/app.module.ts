@@ -15,6 +15,7 @@ import {ProgressRingComponent} from './components/progress-ring/progress-ring.co
 import {ChartCandidateComponent} from './components/chart-candidate/chart-candidate.component';
 import {ChartDialogComponent} from './components/dialogs/chart-dialog/chart-dialog.component';
 import {LoginComponent} from './components/login/login.component';
+import {SnackbarComponent} from './components/snackbar/snackbar.component';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
@@ -34,6 +35,7 @@ import {ChartsModule} from 'ng2-charts';
 import {DisqusModule} from 'ngx-disqus';
 import {VoteComponent} from './components/vote/vote.component';
 import {HttpClientModule} from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
 	declarations: [
@@ -51,6 +53,7 @@ import {HttpClientModule} from '@angular/common/http';
 		VoteComponent,
 		ChartDialogComponent,
 		LoginComponent,
+		SnackbarComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -69,6 +72,7 @@ import {HttpClientModule} from '@angular/common/http';
 		MatTabsModule,
 		MatFormFieldModule,
 		MatInputModule,
+		MatSnackBarModule,
 
 		FontAwesomeModule,
 		ChartsModule,
@@ -77,6 +81,7 @@ import {HttpClientModule} from '@angular/common/http';
 		ReactiveFormsModule,
 	],
 	providers: [],
+	// entryComponents: [SnackbarComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

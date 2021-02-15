@@ -1,59 +1,78 @@
 <div>
 	<mat-tab-group mat-align-tabs="center">
 		<mat-tab label="Connectez-vous">
-			<div [formGroup]="authFormLogin" class="d-flex flex-column align-content-center">
+			<form (ngSubmit)="login()" [formGroup]="formLogin" class="d-flex flex-column align-content-center">
 				<mat-form-field appearance="fill">
-					<mat-label>email ou pseudo</mat-label>
-					<input matInput>
+					<mat-label for="email">email</mat-label>
+					<input formControlName="email" id="email" matInput name="email" required type="text">
+					<mat-error *ngIf="formLogin.controls.email?.invalid && formLogin.controls.email?.touched">
+						Not a valid email
+					</mat-error>
 				</mat-form-field>
 				<mat-form-field appearance="fill">
 					<mat-label>mot de passe</mat-label>
-					<input [type]="hide ? 'password' : 'text'" matInput>
+					<input [type]="hide ? 'password' : 'text'" id="password" matInput name="password">
 					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
 							mat-icon-button
 							matSuffix>
 						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 					</button>
 				</mat-form-field>
-				<button color="primary" mat-raised-button>se connecter</button>
+				<button color="primary" mat-raised-button type="submit">se connecter</button>
 				<div> ou se connecter via :</div>
 				<button color="primary" mat-raised-button>facebook</button>
 				<button color="primary" mat-raised-button>France connect</button>
-			</div>
+			</form>
 		</mat-tab>
 		<mat-tab label="Inscrivez-vous">
-			<div [formGroup]="authFormRegister" class="d-flex flex-column align-content-center">
+			<form [formGroup]="formReg" class="d-flex flex-column align-content-center">
 				<mat-form-field appearance="fill">
 					<mat-label>email</mat-label>
-					<input [formControl]="email" matInput placeholder="myemail@exemple.com" required>
-					<mat-error *ngIf="email.invalid">{{getErrorEmail()}}</mat-error>
+					<input formControlName="emailReg" id="emailReg" matInput name="emailReg"
+						   placeholder="myemail@exemple.com"
+						   required>
+					<mat-error *ngIf="formReg.controls.emailReg?.invalid && formReg.controls.emailReg?.touched">Not a
+						valid email
+					</mat-error>
 				</mat-form-field>
 				<mat-form-field appearance="fill">
 					<mat-label>pseudo</mat-label>
-					<input [formControl]="username" matInput required>
-					<mat-error *ngIf="username.invalid">{{getErrorPseudo()}}</mat-error>
+					<input formControlName="usernameReg" id="usernameReg" matInput name="usernameReg" required>
+					<mat-error *ngIf="formReg.controls.usernameReg?.invalid && formReg.controls.usernameReg?.touched">Not
+						a valid username
+						(4char min, letters & numbers only)
+					</mat-error>
 				</mat-form-field>
 				<mat-form-field appearance="fill">
 					<mat-label>mot de passe</mat-label>
-					<input [type]="hide ? 'password' : 'text'" matInput>
+					<input [type]="hide ? 'password' : 'text'" formControlName="passwordReg" id="passwordReg"
+						   matInput name="passwordReg">
 					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
 							mat-icon-button
 							matSuffix>
 						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 					</button>
+					<div *ngIf="formReg.controls.passwordReg.errors?.invalid && formReg.controls.passwordReg?.touched ">
+						password must be :
+						min 8 Char, lowercase, uppercase letters and numbers
+					</div>
 				</mat-form-field>
 				<mat-form-field appearance="fill">
 					<mat-label>confirmation mot de passe</mat-label>
-					<input [type]="hide ? 'password' : 'text'" matInput>
+					<input [type]="hide ? 'password' : 'text'" formControlName="passwordRegConfirm"
+						   id="passwordRegConfirm" matInput name="passwordRegConfirm">
 					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
 							mat-icon-button
 							matSuffix>
 						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 					</button>
+					<div *ngIf="formReg.controls.passwordRegConfirm.errors?.noMatch && formReg.controls.passwordRegConfirm?.touched">
+						Password and Confirm Password must
+						match.
+					</div>
 				</mat-form-field>
-				<!--								<input color="primary" mat-raised-button type="submit" value="créer son compte">-->
-				<button color="primary" mat-raised-button type="submit">créer son compte</button>
-			</div>
+				<button (click)="register()" color="primary" mat-raised-button type="submit">créer son compte</button>
+			</form>
 		</mat-tab>
 	</mat-tab-group>
 </div>

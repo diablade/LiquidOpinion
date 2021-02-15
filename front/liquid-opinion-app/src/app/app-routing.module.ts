@@ -7,24 +7,25 @@ import {SurveyComponent} from './components/survey/survey.component';
 import {CandidateComponent} from './components/candidate/candidate.component';
 
 const routes: Routes = [
-  // {path: '', component: DashboardComponent},
-  {path: '', component: ListSurveyComponent},
-  {path: 'event', component: ListSurveyComponent},
-  {path: 'favorites', component: ListSurveyComponent},
-  {path: 'created', component: ListSurveyComponent},
-  {path: 'participate', component: ListSurveyComponent},
-  {path: 'shared', component: ListSurveyComponent},
-  {path: 'official', component: ListSurveyComponent},
-  {path: 'public', component: ListSurveyComponent},
-  {path: 'expired', component: ListSurveyComponent},
-  {path: 'survey/:slug', component: SurveyComponent},
-  {path: 'survey/:slug/candidate/:id', component: CandidateComponent},
-  {path: 'not-found', component: NotfoundComponent},
-  {path: '**', redirectTo: '/not-found'},
+	// {path: '', component: DashboardComponent},
+	{path: '', component: ListSurveyComponent},
+	{path: 'event', component: ListSurveyComponent},
+	{path: 'favorites', component: ListSurveyComponent},
+	{path: 'created', component: ListSurveyComponent},
+	{path: 'participate', component: ListSurveyComponent},
+	{path: 'shared', component: ListSurveyComponent},
+	{path: 'official', component: ListSurveyComponent},
+	{path: 'public', component: ListSurveyComponent},
+	{path: 'expired', component: ListSurveyComponent},
+	{path: 'survey/:slug', component: SurveyComponent},
+	{path: 'survey/:slug/candidate/:id', component: CandidateComponent},
+	{path: 'not-found', component: NotfoundComponent},
+	{path: '**', redirectTo: '/not-found'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'})],
+	exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

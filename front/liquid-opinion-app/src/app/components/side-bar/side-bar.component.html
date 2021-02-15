@@ -8,10 +8,10 @@
 				 title="{{user.username}}">{{user.username}}</div>
 			<div class="profil-email font-size3" title="{{user.email}}">{{user.email}}</div>
 		</div>
-		<button (click)="onClick('logout')" aria-label="logout" mat-icon-button>
+		<button (click)="logout()" aria-label="logout" mat-icon-button>
 			<mat-icon color="primary">logout</mat-icon>
 		</button>
-		<button (click)="onClick('settings')" aria-label="settings" mat-icon-button>
+		<button (click)="settings()" aria-label="settings" mat-icon-button>
 			<mat-icon color="primary">settings</mat-icon>
 		</button>
 	</div>
