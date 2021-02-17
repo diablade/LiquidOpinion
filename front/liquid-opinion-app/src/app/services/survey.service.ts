@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Survey} from '../models/survey';
 import {catchError, retry} from 'rxjs/operators';
-import {HttpErrorService} from './http-error.service';
+import {SnackbarService} from './snackbar.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,7 +18,7 @@ export class SurveyService {
 		})
 	};
 
-	constructor(public http: HttpClient, private errorService: HttpErrorService) {
+	constructor(public http: HttpClient, private errorService: SnackbarService) {
 	}
 
 	/**

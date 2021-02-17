@@ -3,26 +3,30 @@
 		<mat-tab label="Connectez-vous">
 			<form (ngSubmit)="login()" [formGroup]="formLogin" class="d-flex flex-column align-content-center">
 				<mat-form-field appearance="fill">
-					<mat-label for="email">email</mat-label>
+					<mat-label for="email">Email</mat-label>
 					<input formControlName="email" id="email" matInput name="email" required type="text">
 					<mat-error *ngIf="formLogin.controls.email?.invalid && formLogin.controls.email?.touched">
 						Not a valid email
 					</mat-error>
 				</mat-form-field>
 				<mat-form-field appearance="fill">
-					<mat-label>mot de passe</mat-label>
-					<input [type]="hide ? 'password' : 'text'" id="password" matInput name="password">
-					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
-							mat-icon-button
-							matSuffix>
-						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-					</button>
+					<mat-label>Mot de passe</mat-label>
+					<input [type]="hide ? 'password' : 'text'" formControlName="password" id="password" matInput
+						   name="password" required>
+					<mat-icon (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+							  matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					<mat-error *ngIf="!formLogin.controls.password?.value && formLogin.controls.password?.touched">Enter
+						your password
+					</mat-error>
 				</mat-form-field>
-				<button color="primary" mat-raised-button type="submit">se connecter</button>
-				<div> ou se connecter via :</div>
-				<button color="primary" mat-raised-button>facebook</button>
-				<button color="primary" mat-raised-button>France connect</button>
+				<button [disabled]="loading" color="primary" mat-raised-button type="submit">se connecter</button>
 			</form>
+			<mat-error *ngIf="errorCredential">
+				Invalid email or password
+			</mat-error>
+			<div> ou se connecter via :</div>
+			<button color="primary" mat-raised-button>facebook</button>
+			<button color="primary" mat-raised-button>France connect</button>
 		</mat-tab>
 		<mat-tab label="Inscrivez-vous">
 			<form [formGroup]="formReg" class="d-flex flex-column align-content-center">
@@ -38,7 +42,8 @@
 				<mat-form-field appearance="fill">
 					<mat-label>pseudo</mat-label>
 					<input formControlName="usernameReg" id="usernameReg" matInput name="usernameReg" required>
-					<mat-error *ngIf="formReg.controls.usernameReg?.invalid && formReg.controls.usernameReg?.touched">Not
+					<mat-error *ngIf="formReg.controls.usernameReg?.invalid && formReg.controls.usernameReg?.touched">
+						Not
 						a valid username
 						(4char min, letters & numbers only)
 					</mat-error>

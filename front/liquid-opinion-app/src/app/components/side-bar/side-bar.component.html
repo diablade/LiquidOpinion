@@ -1,7 +1,7 @@
 <div class="sideMenu d-flex flex-column">
 	<div *ngIf="userConnected" class="sections header d-flex flex-row">
 		<div class="header-photo mr-2">
-			<img [src]=user.photo alt="">
+			<img [src]="user.photo ? user.photo : '../../../assets/user.png'" alt="">
 		</div>
 		<div class="profil flex-grow-1">
 			<div class="profil-name font-size2 text-capitalize font-weight-bold"

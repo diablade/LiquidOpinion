@@ -5,7 +5,7 @@ import {User} from '../models/user';
 import {catchError, map, retry} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {HttpErrorService} from './http-error.service';
+import {SnackbarService} from './snackbar.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -17,7 +17,7 @@ export class UserService {
 
 	constructor(
 		private http: HttpClient,
-		private errorService: HttpErrorService,
+		private errorService: SnackbarService,
 		private localStorageService: LocalStorageService) {
 	}
 

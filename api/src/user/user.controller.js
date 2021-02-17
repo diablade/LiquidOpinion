@@ -109,11 +109,11 @@ module.exports = {
             });
     },
     login: async (req, res, next) => {
-        if (!EMAIL_REGEX.test(req.body.email)) return res.status(400).json({'error': 'email is not valid'});
+        if (!EMAIL_REGEX.test(req.body.email)) return res.status(400).json({'error': 'email not valid'});
 
         //check email existing account
         const user = await UserModel.findOne({email: req.body.email});
-        if (user == null) return res.status(403).json({status: "error", message: "email doesn't exist"});
+        if (user == null) return res.status(403).json({status: "error", message: "Invalid credential"});
 
         if (bcrypt.compareSync(req.body.password, user.password)) {
             const token = await auth.generateToken(user.id);
@@ -123,7 +123,7 @@ module.exports = {
             // res.setHeader('liquid-master-token', masterToken);
             res.status(200).json(user);
         } else {
-            res.status(400).json({status: "error", message: "Invalid email/password!!!", data: null});
+            res.status(400).json({status: "error", message: "Invalid credential", data: null});
         }
 
     },

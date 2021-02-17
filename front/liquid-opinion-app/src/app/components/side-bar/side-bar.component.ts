@@ -12,12 +12,11 @@ import {
 	faVoteYea
 } from '@fortawesome/free-solid-svg-icons';
 import {User} from '../../models/user';
-import {FakeData} from '../../utils/fake.data';
 import {LoginComponent} from '../login/login.component';
 import {MatDialog} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserService} from '../../services/user.service';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from '../../services/auth.service';
+import {SnackbarService} from '../../services/snackbar.service';
 
 @Component({
 	selector: 'app-side-bar',
@@ -38,7 +37,8 @@ export class SideBarComponent implements OnInit, OnChanges {
 	user: User;
 	userConnected = false;
 
-	constructor(public dialog: MatDialog, private authService: AuthService, private snackbar: MatSnackBar, private userService: UserService) {
+	constructor(public dialog: MatDialog, private snackbarService: SnackbarService,
+				private authService: AuthService, private userService: UserService) {
 
 	}
 
@@ -48,12 +48,12 @@ export class SideBarComponent implements OnInit, OnChanges {
 	ngOnInit(): void {
 		this.userService.userSubject.subscribe(user => {
 			this.user = user;
-			console.log('user', user);
 		});
 	}
 
 	createSurvey() {
-		this.snackbar.open('test');
+		this.snackbarService.showSuccess('ssss');
+		// this.snackbarService.showError("grrrrr");
 
 	}
 

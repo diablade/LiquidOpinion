@@ -11,8 +11,9 @@ import {AuthService} from '../../services/auth.service';
 import {first} from 'rxjs/operators';
 
 import {ActivatedRoute, Router} from '@angular/router';
-import {MatDialogRef} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialogRef} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {SnackbarService} from '../../services/snackbar.service';
 
 @Component({
 	selector: 'app-login',
@@ -28,9 +29,12 @@ export class LoginComponent implements OnInit {
 	currentUrl: string;
 	formLogin: FormGroup;
 	formReg: FormGroup;
+	errorCredential = false;
+	loading = false;
 
 	constructor(private authService: AuthService, private dialogRef: MatDialogRef<LoginComponent>,
 				private snackbar: MatSnackBar,
+				private snackBarService: SnackbarService,
 				private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
 		this.initForms();
 	}
@@ -72,32 +76,34 @@ export class LoginComponent implements OnInit {
 	}
 
 	login() {
-		console.log('test');
-		this.isSubmitted = true;
+		this.loading = true;
 		if (this.formLogin.invalid) {
-			console.log(this.formLogin);
+			this.loading = false;
 			return;
 		}
-		console.log('test');
 		this.authService.login(this.formLogin.get('email').value, this.formLogin.get('password').value)
 			.pipe(first())
 			.subscribe({
 				next: () => {
 					// this.router.navigate([this.currentUrl]);
+					this.snackBarService.showSuccess('connexion réussi !');
 					this.dialogRef.close(true);
+					this.loading = false;
 				},
 				error: error => {
-					this.snackbar.open('error');
-					// this.error = error;
-					// this.loading = false;
+					this.snackBarService.showError('Invalid email or password');
+					if (error?.error.message === 'Invalid credential') {
+						this.errorCredential = true;
+					}
+					this.loading = false;
 				}
 			});
 	}
 
 	private initForms() {
 		this.formLogin = this.fb.group({
-			email: ['test@yopmail.com', [Validators.required, Validators.email]],
-			password: ['testtest1', [Validators.required]]
+			email: ['', [Validators.required, Validators.email]],
+			password: [''],
 		});
 
 		this.formReg = this.fb.group({

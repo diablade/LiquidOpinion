@@ -15,7 +15,7 @@ import {ProgressRingComponent} from './components/progress-ring/progress-ring.co
 import {ChartCandidateComponent} from './components/chart-candidate/chart-candidate.component';
 import {ChartDialogComponent} from './components/dialogs/chart-dialog/chart-dialog.component';
 import {LoginComponent} from './components/login/login.component';
-import {SnackbarComponent} from './components/snackbar/snackbar.component';
+// import {SnackbarComponent} from './components/snackbar/snackbar.component';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
@@ -28,6 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -35,7 +36,6 @@ import {ChartsModule} from 'ng2-charts';
 import {DisqusModule} from 'ngx-disqus';
 import {VoteComponent} from './components/vote/vote.component';
 import {HttpClientModule} from '@angular/common/http';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
 	declarations: [
@@ -53,7 +53,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 		VoteComponent,
 		ChartDialogComponent,
 		LoginComponent,
-		SnackbarComponent,
+		// SnackbarComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -80,7 +80,14 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 		DisqusModule.forRoot('liquidopinion'),
 		ReactiveFormsModule,
 	],
-	providers: [],
+	providers: [
+		{
+			provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+				duration: 2500, horizontalPosition: 'center',
+				verticalPosition: 'top',
+			}
+		}
+	],
 	// entryComponents: [SnackbarComponent],
 	bootstrap: [AppComponent]
 })

@@ -3,14 +3,14 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {HttpErrorCode} from '../enums/http-error-code';
-import {HttpErrorService} from '../services/http-error.service';
+import {SnackbarService} from '../services/http-error.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ErrorInterceptor implements HttpInterceptor {
 
-	constructor(private httpErrorService: HttpErrorService) {}
+	constructor(private httpErrorService: SnackbarService) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		return next.handle(req).pipe(
