@@ -98,18 +98,19 @@ module.exports = {
             ],
             function (err, user, token) {
                 if (err) {
-                    let error = new Error(err.message);
-                    error.status = err.status;
-                    next(error);
+                    next({status: err.status, message: err.message});
                 } else if (user && token) {
                     user.password = null; //hide before send
                     res.setHeader('liquid-token', token)
-                    res.status(200).json({user});
+                    res.status(200).json(user);
                 }
             });
     },
     login: async (req, res, next) => {
-        if (!EMAIL_REGEX.test(req.body.email)) return res.status(400).json({'error': 'email not valid'});
+        if (!EMAIL_REGEX.test(req.body.email)) return res.status(400).json({
+            status: "error",
+            message: 'email not valid'
+        });
 
         //check email existing account
         const user = await UserModel.findOne({email: req.body.email});

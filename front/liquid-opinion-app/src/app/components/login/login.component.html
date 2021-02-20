@@ -1,15 +1,15 @@
-<div>
+<div class="login">
 	<mat-tab-group mat-align-tabs="center">
 		<mat-tab label="Connectez-vous">
-			<form (ngSubmit)="login()" [formGroup]="formLogin" class="d-flex flex-column align-content-center">
-				<mat-form-field appearance="fill">
+			<form (ngSubmit)="login()" [formGroup]="formLogin" class="mt-3 d-flex flex-column align-content-center">
+				<mat-form-field appearance="fill" class="mb-3">
 					<mat-label for="email">Email</mat-label>
 					<input formControlName="email" id="email" matInput name="email" required type="text">
 					<mat-error *ngIf="formLogin.controls.email?.invalid && formLogin.controls.email?.touched">
 						Not a valid email
 					</mat-error>
 				</mat-form-field>
-				<mat-form-field appearance="fill">
+				<mat-form-field appearance="fill" class="mb-3">
 					<mat-label>Mot de passe</mat-label>
 					<input [type]="hide ? 'password' : 'text'" formControlName="password" id="password" matInput
 						   name="password" required>
@@ -24,13 +24,13 @@
 			<mat-error *ngIf="errorCredential">
 				Invalid email or password
 			</mat-error>
-			<div> ou se connecter via :</div>
+			<div class="mt-3"> ou se connecter via :</div>
 			<button color="primary" mat-raised-button>facebook</button>
 			<button color="primary" mat-raised-button>France connect</button>
 		</mat-tab>
 		<mat-tab label="Inscrivez-vous">
-			<form [formGroup]="formReg" class="d-flex flex-column align-content-center">
-				<mat-form-field appearance="fill">
+			<form [formGroup]="formReg" class="mt-3 d-flex flex-column align-content-center">
+				<mat-form-field appearance="fill" class="mb-3">
 					<mat-label>email</mat-label>
 					<input formControlName="emailReg" id="emailReg" matInput name="emailReg"
 						   placeholder="myemail@exemple.com"
@@ -39,7 +39,7 @@
 						valid email
 					</mat-error>
 				</mat-form-field>
-				<mat-form-field appearance="fill">
+				<mat-form-field appearance="fill" class="mb-3">
 					<mat-label>pseudo</mat-label>
 					<input formControlName="usernameReg" id="usernameReg" matInput name="usernameReg" required>
 					<mat-error *ngIf="formReg.controls.usernameReg?.invalid && formReg.controls.usernameReg?.touched">
@@ -48,33 +48,33 @@
 						(4char min, letters & numbers only)
 					</mat-error>
 				</mat-form-field>
-				<mat-form-field appearance="fill">
+				<mat-form-field appearance="fill" class="mb-3">
 					<mat-label>mot de passe</mat-label>
-					<input [type]="hide ? 'password' : 'text'" formControlName="passwordReg" id="passwordReg"
-						   matInput name="passwordReg">
+					<input [type]="hide ? 'password' : 'text'" formControlName="passwordReg" id="passwordReg" matInput
+						   name="passwordReg" required>
 					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
 							mat-icon-button
 							matSuffix>
 						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 					</button>
-					<div *ngIf="formReg.controls.passwordReg.errors?.invalid && formReg.controls.passwordReg?.touched ">
-						password must be :
-						min 8 Char, lowercase, uppercase letters and numbers
-					</div>
+					<mat-error *ngIf="formReg.controls.passwordReg?.invalid && formReg.controls.passwordReg?.touched ">
+						password must be : min 8 Char, lowercase, uppercase and numbers
+					</mat-error>
 				</mat-form-field>
-				<mat-form-field appearance="fill">
+				<mat-form-field appearance="fill" class="mb-3">
 					<mat-label>confirmation mot de passe</mat-label>
 					<input [type]="hide ? 'password' : 'text'" formControlName="passwordRegConfirm"
-						   id="passwordRegConfirm" matInput name="passwordRegConfirm">
+						   id="passwordRegConfirm"
+						   matInput name="passwordRegConfirm" required>
 					<button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
 							mat-icon-button
 							matSuffix>
 						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 					</button>
-					<div *ngIf="formReg.controls.passwordRegConfirm.errors?.noMatch && formReg.controls.passwordRegConfirm?.touched">
-						Password and Confirm Password must
-						match.
-					</div>
+					<mat-error
+							*ngIf="formReg.controls.passwordRegConfirm.errors?.noMatch && formReg.controls.passwordRegConfirm?.touched">
+						Passwords must match.
+					</mat-error>
 				</mat-form-field>
 				<button (click)="register()" color="primary" mat-raised-button type="submit">créer son compte</button>
 			</form>

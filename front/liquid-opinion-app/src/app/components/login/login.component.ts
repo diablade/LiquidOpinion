@@ -14,6 +14,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackbarService} from '../../services/snackbar.service';
+import {UserService} from "../../services/user.service";
 
 @Component({
 	selector: 'app-login',
@@ -26,7 +27,6 @@ export class LoginComponent implements OnInit {
 	bestRegexPass = '^[a-zA-Z0-9!"#\\$%&\'\\(\\)\\*\\+,-\\.\\/:;<=>\\?@[\\]\\^_`\\{\\|}~]{8,}$';
 	hide = true;
 	isSubmitted = false;
-	currentUrl: string;
 	formLogin: FormGroup;
 	formReg: FormGroup;
 	errorCredential = false;
@@ -52,8 +52,6 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		// get return url from route parameters or default to '/'
-		this.currentUrl = this.route.snapshot.url.toString() || '/';
 	}
 
 	register() {
@@ -61,16 +59,22 @@ export class LoginComponent implements OnInit {
 		if (this.formReg.invalid) {
 			return;
 		}
+		var email = this.formReg.get('emailReg').value;
+		var pass = this.formReg.get('passwordReg').value;
+		var username = this.formReg.get('usernameReg').value;
 		this.authService
-			.register(this.formReg.get('emailReg').value, this.formReg.get('usernameReg').value, this.formReg.get('passwordReg').value)
+			.register(email, username, pass)
 			.pipe()
 			.subscribe({
 				next: () => {
-					this.router.navigate([this.currentUrl]);
+					this.snackBarService.showSuccess('compte créé et connexion réussi !');
+					this.dialogRef.close(true);
+					this.loading = false;
 				},
 				error: error => {
-					// this.error = error;
-					// this.loading = false;
+					console.log(error);
+					this.snackBarService.showError(error?.error.message ? error.error.message : 'Invalid email or password');
+					this.loading = false;
 				}
 			});
 	}

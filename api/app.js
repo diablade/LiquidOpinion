@@ -59,7 +59,7 @@ app.use(function (err, req, res, next) {
     if (err.status === 500) console.log(err);
     res.status(err.status || 500);
     const message = err.message || "something looks wrong :(";
-    res.json({error: message});
+    res.json({status: "error", message: message});
 });
 
 
