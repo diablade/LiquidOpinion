@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, throwError} from 'rxjs';
 import {LocalStorageService} from './local-storage/local-storage.service';
 import {User} from '../models/user';
 import {catchError, map, retry} from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class UserService {
 
 	constructor(
 		private http: HttpClient,
-		private errorService: SnackbarService,
+		private snackService: SnackbarService,
 		private localStorageService: LocalStorageService) {
 	}
 
@@ -36,11 +36,25 @@ export class UserService {
 		return this.http.get<User>(environment.API_HOST + environment.API_CONTROLLEURS.USER + environment.API_ENDPOINTS.ME)
 			.pipe(
 				retry(1),
-				catchError(this.errorService.handleError),
+				catchError(
+					err => {
+						let errorMessage = '';
+						if (err.error instanceof ErrorEvent) {
+							// Get client-side error
+							errorMessage = err.error.message;
+						} else {
+							// Get server-side error
+							errorMessage = `Error Code: ${err.status}\nMessage: ${err.message}`;
+						}
+						this.snackService.showError(errorMessage);
+						return throwError(errorMessage);
+					}
+				),
 				map((user: User) => {
-					this._user = user;
-					this.emitUser(user);
-				})
+						this._user = user;
+						this.emitUser(user);
+					}
+				)
 			);
 	}
 

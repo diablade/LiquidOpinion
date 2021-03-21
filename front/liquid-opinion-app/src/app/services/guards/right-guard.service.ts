@@ -7,10 +7,10 @@ import {coerceArray} from "@angular/cdk/coercion";
 	providedIn: 'root'
 })
 export class RightGuard {
-	
+
 	constructor(private userService: UserService) {
 	}
-	
+
 	userHasRight(rights: Rights[] | Rights): boolean {
 		const rs = coerceArray(rights);
 		return rs.every(r => this.userService.getRights().includes(r));

@@ -33,18 +33,4 @@ export class SnackbarService {
 		config.duration = 5000;
 		this.snackBar.open(message, null, config);
 	}
-
-	// tslint:disable-next-line:typedef
-	handleError(error) {
-		let errorMessage = '';
-		if (error.error instanceof ErrorEvent) {
-			// Get client-side error
-			errorMessage = error.error.message;
-		} else {
-			// Get server-side error
-			errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-		}
-		this.showError(errorMessage);
-		return throwError(errorMessage);
-	}
 }

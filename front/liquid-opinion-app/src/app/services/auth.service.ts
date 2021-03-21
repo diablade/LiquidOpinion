@@ -45,7 +45,7 @@ export class AuthService {
 	}
 
 	public register(email: string, username: string, password: string) {
-		return this.http.post<any>(environment.API_HOST + environment.API_CONTROLLEURS.USER + environment.API_ENDPOINTS.REGISTER, {
+		return this.http.post<User>(environment.API_HOST + environment.API_CONTROLLEURS.USER + environment.API_ENDPOINTS.REGISTER, {
 			email,
 			username,
 			password
@@ -56,7 +56,7 @@ export class AuthService {
 	}
 
 	public login(email: string, password: string) {
-		return this.http.post<any>(environment.API_HOST + environment.API_CONTROLLEURS.USER + environment.API_ENDPOINTS.LOGIN, {
+		return this.http.post<User>(environment.API_HOST + environment.API_CONTROLLEURS.USER + environment.API_ENDPOINTS.LOGIN, {
 			email,
 			password
 		}).pipe(map(user => {
