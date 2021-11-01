@@ -213,18 +213,17 @@ module.exports = {
         }
     },
     getSurveys: async (req, res, next) => {
-        //TODO filter by req.fliter ...
+        //TODO filter by req.filter ...
         const surveys = await SurveyModel.find({
             activate: true,
-            isPrivate: false,
-            visibleBySearch: true
+            visiblity: "public"
         });
         res.status(200).json(surveys);
     },
     getMySurveys: (req, res, next) => {
         const surveys = SurveyModel.find({
             activate: true,
-            visibleBySearch: true
+            //TODO creator: myself...
         });
         res.status(200).json(surveys);
     },

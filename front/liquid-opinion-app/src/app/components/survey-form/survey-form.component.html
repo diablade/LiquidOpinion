@@ -1,0 +1,83 @@
+<div class="global overflow-auto">
+	<div class="title text-uppercase align-content-center">
+		Créer un nouveau sondage
+	</div>
+	<form (ngSubmit)="submit()" [formGroup]="formSurvey" class="mt-3 d-flex flex-column align-content-center">
+		<mat-form-field appearance="fill" class="mb-3">
+			<mat-label for="titre">Titre</mat-label>
+			<input formControlName="titre" id="titre" matInput name="titre" required type="text">
+			<mat-error *ngIf="formSurvey.controls.titre?.invalid && formSurvey.controls.titre?.touched">
+				seules lettres & chiffres autorisés
+			</mat-error>
+		</mat-form-field>
+
+		<mat-slide-toggle formControlName="activate">Sondage publié</mat-slide-toggle>
+
+		<section>
+			<h4>Choisisez la visiblité de votre sondage</h4>
+			<mat-button-toggle-group formControlName="visibility" aria-label="visibility">
+				<mat-button-toggle value="public">
+					Public
+					<!--TODO tooltip : (visible par recherche)-->
+				</mat-button-toggle>
+				<mat-button-toggle value="link">
+					par lien<!--TODO (visible par ceux qui ont le lien)-->
+				</mat-button-toggle>
+				<mat-button-toggle value="private">
+					par comptes (privé)
+					<!--(privé, seul les comptes ajouté)-->
+				</mat-button-toggle>
+			</mat-button-toggle-group>
+		</section>
+
+		<p class="slug">Slug: {{formSurvey.controls.titre?.value | slugify}}</p>
+		<!--<mat-slide-toggle formControlName="activate">Votation ouvert</mat-slide-toggle>-->
+
+		<mat-form-field appearance="fill">
+			<mat-label>Themes</mat-label>
+			<mat-select formControlName="themes" multiple>
+				<mat-option *ngFor="let theme of themeList" [value]="theme">{{theme}}</mat-option>
+			</mat-select>
+			<mat-error *ngIf="formSurvey.controls.themes?.invalid && formSurvey.controls.slogan?.touched">
+				de 1 theme à 3 maximum
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field appearance="fill" class="mb-3">
+			<mat-label for="slogan">Slogan</mat-label>
+			<textarea class="slogan" formControlName="slogan" id="slogan" matInput name="slogan" required
+					  type="text"></textarea>
+			<mat-error *ngIf="formSurvey.controls.slogan?.invalid && formSurvey.controls.slogan?.touched">
+				seulement 140 charactere , lettres & chiffres autorisés
+			</mat-error>
+		</mat-form-field>
+
+
+		<mat-form-field appearance="fill" class="mb-3">
+			<mat-label for="descr">Description</mat-label>
+			<textarea class="descr" formControlName="descr" id="descr" matInput name="descr" required
+					  type="text"></textarea>
+			<mat-error *ngIf="formSurvey.controls.descr?.invalid && formSurvey.controls.descr?.touched">
+				seules lettres & chiffres autorisés
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field class="" appearance="fill">
+			<mat-label>Mots clef</mat-label>
+			<mat-chip-list #chipList aria-label="tags">
+				<mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+						  [removable]="removable" (removed)="remove(tag)">
+					{{tag}}
+					<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+				</mat-chip>
+				<input placeholder="mots clef..."
+					   [matChipInputFor]="chipList"
+					   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+					   [matChipInputAddOnBlur]="addOnBlur"
+					   (matChipInputTokenEnd)="add($event)">
+			</mat-chip-list>
+		</mat-form-field>
+
+		<button [disabled]="loading" color="primary" mat-raised-button type="submit">Créer</button>
+	</form>
+</div>

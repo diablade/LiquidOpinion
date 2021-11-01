@@ -16,7 +16,6 @@ import {ChartCandidateComponent} from './components/chart-candidate/chart-candid
 import {ChartDialogComponent} from './components/dialogs/chart-dialog/chart-dialog.component';
 import {VoteComponent} from './components/vote/vote.component';
 import {LoginComponent} from './components/login/login.component';
-// import {SnackbarComponent} from './components/snackbar/snackbar.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -30,6 +29,13 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatOptionModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
+
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -37,6 +43,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ChartsModule} from 'ng2-charts';
 import {DisqusModule} from 'ngx-disqus';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {SurveyFormComponent} from './components/survey-form/survey-form.component';
+import {NgSlugifyPipeModule} from 'angular-pipes';
 
 @NgModule({
 	declarations: [
@@ -54,7 +62,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 		VoteComponent,
 		ChartDialogComponent,
 		LoginComponent,
-		// SnackbarComponent,
+		SurveyFormComponent,
 	],
 	imports: [
 		HttpClientModule,
@@ -74,12 +82,18 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 		MatFormFieldModule,
 		MatInputModule,
 		MatSnackBarModule,
+		MatOptionModule,
+		MatSelectModule,
+		MatChipsModule,
+		MatButtonToggleModule,
+		MatSlideToggleModule,
 
 		FontAwesomeModule,
 		ChartsModule,
 		FormsModule,
 		DisqusModule.forRoot('liquidopinion'),
 		ReactiveFormsModule,
+		NgSlugifyPipeModule,
 	],
 	providers: [
 		{

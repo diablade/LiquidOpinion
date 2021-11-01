@@ -6,37 +6,37 @@ import {FakeData} from '../../utils/fake.data';
 
 
 @Component({
-  selector: 'app-candidate',
-  templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.scss']
+	selector: 'app-candidate',
+	templateUrl: './candidate.component.html',
+	styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit {
-  faVoteYea = faVoteYea;
-  candidate: any;
-  pageId: any;
-  url: any;
-  catId: any;
+	faVoteYea = faVoteYea;
+	candidate: any;
+	pageId: any;
+	url: any;
+	catId: any;
 
-  constructor() {
-    this.candidate = FakeData.createFakeCandidate('1', '1');
-  }
+	constructor() {
+		this.candidate = FakeData.createFakeCandidate('1', '1');
+	}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
-  getColorFromScore(score: any) {
-    return ColorStyle.getColorFromScore(score, this.candidate.opinions);
-  }
+	getColorFromScore(score: any) {
+		return ColorStyle.getColorFromScore(score, this.candidate.opinions);
+	}
 
-  onComment($event: DisqusComment) {
+	onComment($event: DisqusComment) {
 
-  }
+	}
 
-  onReady($event: DisqusReady) {
+	onReady($event: DisqusReady) {
 
-  }
+	}
 
-  onPaginate($event: any) {
+	onPaginate($event: any) {
 
-  }
+	}
 }

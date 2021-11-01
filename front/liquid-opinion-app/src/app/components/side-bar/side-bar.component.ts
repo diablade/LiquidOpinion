@@ -17,6 +17,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {UserService} from '../../services/user.service';
 import {AuthService} from '../../services/auth.service';
 import {SnackbarService} from '../../services/snackbar.service';
+import {SurveyFormComponent} from "../survey-form/survey-form.component";
 
 @Component({
 	selector: 'app-side-bar',
@@ -52,8 +53,13 @@ export class SideBarComponent implements OnInit, OnChanges {
 	}
 
 	createSurvey() {
-		this.snackbarService.showSuccess('ssss');
-		// this.snackbarService.showError("grrrrr");
+		const dialogRef = this.dialog.open(SurveyFormComponent);
+
+		dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+				console.log("test");
+			}
+		});
 
 	}
 

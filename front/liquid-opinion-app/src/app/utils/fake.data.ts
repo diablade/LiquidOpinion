@@ -26,8 +26,7 @@ export class FakeData {
 			{format: 'card', url: faker.image.image()},
 			{format: 'banner', url: 'http://placeimg.com/800/200/any'}];
 		survey.activate = true;
-		survey.visibleBySearch = true;
-		survey.isPrivate = false;
+		survey.visibility = 'public';
 		survey.typeOfVote = 'label';
 		survey.reVoteDelay = '1D';
 		survey.expireAt = new Date();
