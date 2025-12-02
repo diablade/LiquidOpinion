@@ -36,10 +36,11 @@ export const environment = {
    *  AUTH CONFIG
    */
   authConfig: {
-    loginUrl: 'https://rec-websso-gardian.myelectricnetwork.com/gardianwebsso/oauth2/multiauth/authorize?acr_values=sesameGROUPE&authlevel=3',
+    loginUrl: 'https://gardian.localhost.com/websso/oauth2/',
     scope: 'openid mail cn uid isMemberOf',
-    clientId: '5CTIM002',
+    clientId: '',
     responseType: 'code',
-    redirectUri: 'https://times-web.sully-group.fr/redirect',
+    redirectUri: 'https://localhost:4200/redirect',
   }
 };
+
